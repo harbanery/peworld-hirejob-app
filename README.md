@@ -54,20 +54,22 @@ There are 6 pages that I working in progress.
    There are two pages:
 
    - View Profile
+
      This page have toolbar to view portofolio and work experience.
 
-   When you're see portofolio:
-   ![View Worker Portofolio](./public/screenshot/View-Worker-Page-Portofolio-As-Worker.png)
+     When you're see portofolio:
+     ![View Worker Portofolio](./public/screenshot/View-Worker-Page-Portofolio-As-Worker.png)
 
-   And when you're see work experience:
-   ![View Worker Work Experience](./public/screenshot/View-Worker-Page-WorkExp-As-Worker.png)
+     And when you're see work experience:
+     ![View Worker Work Experience](./public/screenshot/View-Worker-Page-WorkExp-As-Worker.png)
 
-   This page have different button based on what role you are.
+     This page have different button based on what role you are.
 
-   For example this is worker profile if you're a recruiter
-   ![View Worker as Recruiter](./public/screenshot/View-Worker-As-Recruiter.png)
+     For example this is worker profile if you're a recruiter
+     ![View Worker as Recruiter](./public/screenshot/View-Worker-As-Recruiter.png)
 
    - Edit Profile
+
      In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
      ![Edit Worker](./public/screenshot/Edit-Worker-Page.png)
 
