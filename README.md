@@ -13,81 +13,81 @@ There are 6 pages that I working in progress.
 
 1. Login Page
 
-![Login Page](./public/screenshot/Login-Page.png)
+   ![Login Page](./public/screenshot/Login-Page.png)
 
 2. Register Page
 
-Register for Worker
-![Login Page](./public/screenshot/Register-Page.png)
+   Register for Worker
+   ![Login Page](./public/screenshot/Register-Page.png)
 
-Register for Recruiter
-![Login Page Recruiter](./public/screenshot/Register-Recruiter-Page.png)
+   Register for Recruiter
+   ![Login Page Recruiter](./public/screenshot/Register-Recruiter-Page.png)
 
 3. Landing Page
 
-Landing Page before Login
-![Landing Page](./public/screenshot/Landing-Page.png)
+   Landing Page before Login
+   ![Landing Page](./public/screenshot/Landing-Page.png)
 
-Landing Page as Worker
-![Landing Page as Worker](./public/screenshot/Landing-Page-As-Worker.png)
+   Landing Page as Worker
+   ![Landing Page as Worker](./public/screenshot/Landing-Page-As-Worker.png)
 
-Landing Page as Recruiter
-![Landing Page as Worker](./public/screenshot/Landing-Page-As-Recruiter.png)
+   Landing Page as Recruiter
+   ![Landing Page as Worker](./public/screenshot/Landing-Page-As-Recruiter.png)
 
 4. Home Page
 
-![Home Page](./public/screenshot/Home-Page.png)
+   ![Home Page](./public/screenshot/Home-Page.png)
 
-In home page, there are features for search bar.
-![Search Bar](./public/screenshot/Search-Bar.png)
+   In home page, there are features for search bar.
+   ![Search Bar](./public/screenshot/Search-Bar.png)
 
-The features of search bar includes:
+   The features of search bar includes:
 
-- Search Input to find the skill name.
-  ![Search Skill](./public/screenshot/Home-Page-Search-Input-Skill.png)
+   - Search Input to find the skill name.
+     ![Search Skill](./public/screenshot/Home-Page-Search-Input-Skill.png)
 
-- Sort Bar - so many options (some of them are work in progress)
-  ![Search Skill](./public/screenshot/Home-Page-Sort-Bar.png)
+   - Sort Bar - so many options (some of them are work in progress)
+     ![Search Skill](./public/screenshot/Home-Page-Sort-Bar.png)
 
 5. Worker Profile Page
 
-There are two pages:
+   There are two pages:
 
-- View Profile
-  This page have toolbar to view portofolio and work experience.
+   - View Profile
+     This page have toolbar to view portofolio and work experience.
 
-  When you're see portofolio:
-  ![View Worker Portofolio](./public/screenshot/View-Worker-Page-Portofolio-As-Worker.png)
+   When you're see portofolio:
+   ![View Worker Portofolio](./public/screenshot/View-Worker-Page-Portofolio-As-Worker.png)
 
-  And when you're see work experience:
-  ![View Worker Work Experience](./public/screenshot/View-Worker-Page-WorkExp-As-Worker.png)
+   And when you're see work experience:
+   ![View Worker Work Experience](./public/screenshot/View-Worker-Page-WorkExp-As-Worker.png)
 
-  This page have different button based on what role you are.
+   This page have different button based on what role you are.
 
-  For example this is worker profile if you're a recruiter
-  ![View Worker as Recruiter](./public/screenshot/View-Worker-As-Recruiter.png)
+   For example this is worker profile if you're a recruiter
+   ![View Worker as Recruiter](./public/screenshot/View-Worker-As-Recruiter.png)
 
-- Edit Profile
-  In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
-  ![Edit Worker](./public/screenshot/Edit-Worker-Page.png)
+   - Edit Profile
+     In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
+     ![Edit Worker](./public/screenshot/Edit-Worker-Page.png)
 
 6. Recruiter or Company Profile Page
    This page also have two:
 
-- View Profile
-  ![View Recruiter Company](./public/screenshot/View-Recruiter-Page.png)
+   - View Profile
+     ![View Recruiter Company](./public/screenshot/View-Recruiter-Page.png)
 
-- Edit Profile
-  ![Edit Company](./public/screenshot/Edit-Recruiter-Page.png)
+   - Edit Profile
+     ![Edit Company](./public/screenshot/Edit-Recruiter-Page.png)
 
 7. Hire Page
 
-This page is to offering job to the selected worker from recruiter.
-![Hire Page](./public/screenshot/Hire-Page.png)
+   This page is to offering job to the selected worker from recruiter.
+   ![Hire Page](./public/screenshot/Hire-Page.png)
 
-There also the notification to inform both roles that recruiter offering to worker.
+   There also the notification to inform both roles that recruiter offering to worker.
 
-> Still work in progress.
+   > Still work in progress.
 
 ## Performance
 
