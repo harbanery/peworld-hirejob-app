@@ -3,6 +3,7 @@ import Input from "../../../../../base/Input";
 import Button from "../../../../../base/Button";
 import TagExtra from "../../../../../base/TagExtra";
 import api from "../../../../../../configs/api";
+import currentMonthYear from "../../../../../../configs/currentMonthYear";
 
 const WorkExperience = () => {
   const months = [
@@ -23,7 +24,7 @@ const WorkExperience = () => {
   const [experience, setExperience] = useState({
     position: "",
     company: "",
-    work_date: "",
+    work_date: currentMonthYear(),
     description: "",
   });
   const [myExperience, setMyExperience] = useState([]);
@@ -48,17 +49,17 @@ const WorkExperience = () => {
         description: experience.description,
       })
       .then(() => {
-        alert("berhasil menambahkan pengalaman");
+        alert("Experience successfully added.");
         setExperience({
           position: "",
           company: "",
-          work_date: "",
+          work_date: currentMonthYear(),
           description: "",
         });
         getWork();
       })
       .catch((err) => {
-        alert("gagal menambahkan pengalaman");
+        alert("Failed to add experience. Please try again.");
         console.log(err.response);
       });
   };
@@ -81,7 +82,7 @@ const WorkExperience = () => {
         setExperience({
           position: value.position,
           company: value.company,
-          work_date: `${value.work_year}-${setMonth}-01`,
+          work_date: `${value.work_year}-${setMonth}`,
           description: value.description,
         });
       });
@@ -101,24 +102,24 @@ const WorkExperience = () => {
         description: experience.description,
       })
       .then(() => {
-        alert("berhasil mengubah pengalaman!");
+        alert("Experience successfully updated.");
         setExperience({
           position: "",
           company: "",
-          work_date: "",
+          work_date: currentMonthYear(),
           description: "",
         });
         getWork();
       })
       .catch((err) => {
-        alert("gagal mengubah pengalaman!");
+        alert("Failed to update experience. Please try again.");
         console.log(err.response);
       });
   };
 
   const deleteExperience = (id) => {
     api.delete(`/experience/${id}`).then(() => {
-      alert("berhasil menghapus pengalaman");
+      alert("Experience successfully deleted.");
       getWork();
     });
   };
@@ -137,30 +138,30 @@ const WorkExperience = () => {
   return (
     <section className="w-full rounded-lg py-4 bg-hirejob-white">
       <div className="font-semibold text-[22px] border-b border-[#C4C4C4] px-9 py-[18px] text-hirejob-dark">
-        <h1>Pengalaman Kerja</h1>
+        <h1>Work Experience</h1>
       </div>
       <div className="py-4 px-9">
         <Input
-          label={`Posisi`}
+          label={`Position`}
           name={`position`}
-          placeholder={`web developer`}
+          placeholder={`Enter your position (e.g., Web Developer)`}
           value={experience.position}
           onChange={handleChange}
         />
         <div className="flex justify-between flex-wrap xl:flex-nowrap xl:gap-5">
           <div className="w-full">
             <Input
-              label={`Nama Perusahaan`}
+              label={`Company`}
               name={`company`}
-              placeholder={`PT Harus Bisa`}
+              placeholder={`Enter your company (e.g., Google)`}
               value={experience.company}
               onChange={handleChange}
             />
           </div>
           <div className="w-full">
             <Input
-              label={`Bulan/tahun`}
-              type="date"
+              label={`Month/Year`}
+              type="month"
               name={`work_date`}
               value={experience.work_date}
               onChange={handleChange}
@@ -169,11 +170,11 @@ const WorkExperience = () => {
         </div>
         <div className="mb-8">
           <Input
-            label={`Dekripsi singkat`}
+            label={`Job Description`}
             type={`textarea`}
             name={`description`}
             rows={`6`}
-            placeholder={`Dekripsikan kerja Anda`}
+            placeholder={`Share your job responsibilities briefly`}
             value={experience.description}
             onChange={handleChange}
           />
@@ -190,7 +191,7 @@ const WorkExperience = () => {
             isOutline={true}
             extra={`p-[13.5px]`}
           >
-            Tambah Pengalaman Kerja
+            Add Work Experience
           </Button>
         </div>
         {myExperience && (

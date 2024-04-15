@@ -18,7 +18,7 @@ const Portofolio = () => {
   const getPortofolio = () => {
     api.get("/portfolio").then((res) => {
       const portofolios = res.data.data;
-      console.log(portofolios);
+      // console.log(portofolios);
       setMyPortofolio(portofolios);
     });
   };
@@ -35,7 +35,7 @@ const Portofolio = () => {
         image: portofolio.image,
       })
       .then(() => {
-        alert("berhasil menambahkan data portofolio");
+        alert("Portfolio successfully added.");
         setPortofolio({
           application_name: "",
           link_repository: "",
@@ -45,7 +45,7 @@ const Portofolio = () => {
         getPortofolio();
       })
       .catch((err) => {
-        alert("gagal menambahkan portofolio");
+        alert("Failed to add portfolio. Please try again.");
         console.log(err.response);
       });
   };
@@ -79,7 +79,7 @@ const Portofolio = () => {
         image: portofolio.image,
       })
       .then(() => {
-        alert("berhasil mengubah portofolio!");
+        alert("Portfolio successfully updated.");
         setPortofolio({
           application_name: "",
           link_repository: "",
@@ -89,14 +89,14 @@ const Portofolio = () => {
         getPortofolio();
       })
       .catch((err) => {
-        alert("gagal mengubah portofolio!");
+        alert("Failed to update portfolio. Please try again.");
         console.log(err.response);
       });
   };
 
   const deletePortofolio = (id) => {
     api.delete(`/portfolio/${id}`).then(() => {
-      alert("berhasil menghapus portofolio");
+      alert("Portfolio successfully deleted.");
       getPortofolio();
     });
   };
@@ -110,7 +110,7 @@ const Portofolio = () => {
 
   const handleFileChange = (e) => {
     e.preventDefault();
-    alert("'click only' still in development...");
+    alert("'Click to your local file directory' still in development...");
     // setPortofolio({
     //   ...portofolio,
     //   image: e.target.files[0],
@@ -143,16 +143,6 @@ const Portofolio = () => {
         ...portofolio,
         image: url,
       });
-      // Process the URL as needed
-      // Example: You can use the URL to fetch the image and display it
-      // fetch(url)
-      //   .then(response => response.blob())
-      //   .then(blob => {
-      //     setPortofolio({
-      //       ...portofolio,
-      //       image: blob,
-      //     });
-      //   });
     }
   };
 
@@ -171,22 +161,22 @@ const Portofolio = () => {
       </div>
       <div className="py-4 px-9">
         <Input
-          label={`Nama Aplikasi`}
+          label={`Application Name`}
           name={`application_name`}
-          placeholder={`Masukan nama aplikasi`}
+          placeholder={`Enter your application name`}
           value={portofolio.application_name}
           onChange={handleChange}
         />
         <Input
           label={`Link Repository`}
           name={`link_repository`}
-          placeholder={`Masukan link repository`}
+          placeholder={`Enter your link repository`}
           value={portofolio.link_repository}
           onChange={handleChange}
         />
         <div className="flex flex-col flex-nowrap py-4">
           <span className="font-normal text-xs text-hirejob-gray mb-1">
-            Type Portofolio
+            Application Category
           </span>
           <div className="flex flex-wrap items-center justify-start gap-1">
             <div
@@ -208,7 +198,7 @@ const Portofolio = () => {
                     ? `font-semibold text-hirejob-slate`
                     : `font-normal text-hirejob-gray`
                 }`}
-              >{`Aplikasi Mobile`}</span>
+              >{`Mobile Application`}</span>
             </div>
             <div
               className={`flex items-center justify-center gap-3 p-[15.5px] ${
@@ -229,12 +219,12 @@ const Portofolio = () => {
                     ? `font-semibold text-hirejob-slate`
                     : `font-normal text-hirejob-gray`
                 }`}
-              >{`Aplikasi Web`}</span>
+              >{`Web Application`}</span>
             </div>
           </div>
         </div>
         <div className="pt-4 pb-8 flex flex-col gap-1 text-hirejob-gray">
-          <span className="font-normal text-xs">Upload gambar</span>
+          <span className="font-normal text-xs">Image Upload</span>
           <label
             onDrop={handleDrop}
             onDragOver={handleDragOver}
@@ -248,22 +238,23 @@ const Portofolio = () => {
               {!portofolio.image && (
                 <>
                   <span className="px-5 xl:px-0 flex items-center justify-center text-sm text-center">
-                    Drag & Drop untuk Upload Gambar{" "}
+                    Drag & Drop to Upload{" "}
                     {portofolio.application === "Aplikasi Mobile"
-                      ? `Aplikasi Mobile`
-                      : `Aplikasi Web`}
+                      ? `Mobile Application`
+                      : `Web Application`}{" "}
+                    Image
                   </span>
                   <span className="px-5 md:px-0 flex items-center justify-center text-xs text-center mt-3">
-                    Atau cari untuk mengupload file dari direktorimu.
+                    or browse to upload files from your directory.
                   </span>
                 </>
               )}
               {portofolio.image && (
                 <span className="px-10 xl:px-0 flex items-center justify-center text-base text-center mt-3">
-                  File Uploaded
+                  Image Uploaded
                 </span>
               )}
-              <div className="flex flex-col md:flex-row align-center justify-center mt-9 gap-[29px] md:gap-[58px]">
+              <div className="hidden md:flex flex-col md:flex-row align-center justify-center mt-9 gap-[29px] md:gap-[58px]">
                 <img className="px-20 md:px-0 md:h-5 xl:h-8" src={iconRules1} />
                 <img className="px-20 md:px-0 md:h-5 xl:h-8" src={iconRules2} />
               </div>
@@ -300,7 +291,7 @@ const Portofolio = () => {
             isOutline={true}
             extra={`p-[13.5px]`}
           >
-            Tambah Portofolio
+            Add Portofolio
           </Button>
         </div>
         {myPortofolio && (
@@ -321,7 +312,9 @@ const Portofolio = () => {
                   )}
                   {porfol.application && (
                     <span className="font-semibold text-sm pb-1">
-                      {porfol.application}
+                      {porfol.application === "Aplikasi Mobile"
+                        ? `Mobile Application`
+                        : `Web Application`}
                     </span>
                   )}
                   {porfol.link_repository && (
@@ -337,7 +330,7 @@ const Portofolio = () => {
                   onClick={() => handleUpdatePortofolio(porfol.id)}
                   className="w-full font-semibold text-xs mt-2 py-1 rounded bg-hirejob-white text-hirejob-yellow-normal hover:bg-hirejob-yellow-normal hover:text-hirejob-white transition duration-200"
                 >
-                  Edit
+                  Update
                 </button>
 
                 {deletePortofolio && (
@@ -345,7 +338,7 @@ const Portofolio = () => {
                     onClick={() => deletePortofolio(porfol.id)}
                     className="w-full font-semibold text-xs mt-1 py-1 rounded bg-hirejob-white text-hirejob-yellow-normal hover:bg-hirejob-yellow-normal hover:text-hirejob-white transition duration-200"
                   >
-                    Hapus
+                    Delete
                   </button>
                 )}
               </li>

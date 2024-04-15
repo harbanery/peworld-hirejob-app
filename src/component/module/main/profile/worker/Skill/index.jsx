@@ -19,18 +19,19 @@ const Skill = () => {
     api
       .post(`/skills`, { skill_name: skill })
       .then(() => {
-        alert("berhasil menambahkan skill");
+        alert(`Skill ${skill} successfully added.`);
         setSkill("");
         getSkill();
       })
       .catch((err) => {
+        alert("Failed to add skill. Please try again.");
         console.log(err.response);
       });
   };
 
   const deleteSkill = (id) => {
     api.delete(`/skills/${id}`).then(() => {
-      alert("berhasil menghapus skill");
+      alert("Skill successfully deleted!");
       getSkill();
     });
   };
@@ -42,13 +43,13 @@ const Skill = () => {
   return (
     <section className="w-full rounded-lg py-4 bg-hirejob-white">
       <div className="font-semibold text-[22px] border-b border-[#C4C4C4] px-9 py-[18px] text-hirejob-dark">
-        <h1>Skill</h1>
+        <h1>Skills</h1>
       </div>
       <div className="py-4 px-9 flex justify-between items-center gap-[30px]">
         <div className="w-full">
           <Input
             name={`skill`}
-            placeholder={`Java`}
+            placeholder={`Enter your skill (e.g., Java)`}
             value={skill}
             onChange={(e) => setSkill(e.target.value)}
           />
@@ -59,7 +60,7 @@ const Skill = () => {
             colorButton={`secondary`}
             extra={`p-[13.5px]`}
           >
-            Simpan
+            Add
           </Button>
         </div>
       </div>

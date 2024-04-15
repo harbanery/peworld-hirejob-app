@@ -12,15 +12,15 @@ const Footer = () => {
           alt={`logo-peworld`}
         />
         <p className=" mt-[30px] mb-[30px] md:mb-[67px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod
-          ipsum et dui rhoncus auctor.
+          Empowering Connections, Fostering Opportunities: Explore Talent with
+          Peworld.
         </p>
       </div>
       <div className="flex flex-col sm:flex-row justify-between items-center sm:gap-0 gap-7 border-t pt-7">
-        <span>2020 Pewworld. All right reserved</span>
+        <span>2024 Peworld. All right reserved</span>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-7 sm:gap-[79px]">
-          <Link to={`/contact-phone`}>Telepon</Link>
+          <Link to={`/contact-phone`}>Contact</Link>
           <Link to={`/contact-email`}>Email</Link>
         </div>
       </div>

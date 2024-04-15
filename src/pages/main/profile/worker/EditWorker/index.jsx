@@ -40,11 +40,11 @@ const EditWorker = () => {
         description: profile.description,
       })
       .then(() => {
-        alert("berhasil mengubah profil kamu!");
+        alert("Profile successfully saved.");
         getProfileData();
       })
       .catch((err) => {
-        alert("gagal mengubah profil kamu!");
+        alert("Failed to save. Please try again.");
         console.log(err.response);
       });
   };
@@ -69,12 +69,14 @@ const EditWorker = () => {
         headers: { "content-type": "multipart/form-data" },
       })
       .then(() => {
-        alert("berhasil mengubah foto profil kamu!");
+        alert("Profile photo successfully updated.");
         getProfileData();
       })
       .catch((err) => {
         console.log(err.response.data.message);
-        alert(`Error: ${err.response.data.message}`);
+        alert(`Failed to change profile photo. Please try again. 
+        
+        Error: ${err.response.data.message}`);
       });
   };
 
@@ -95,7 +97,7 @@ const EditWorker = () => {
               <div className="w-[150px] h-[150px] mx-auto overflow-hidden rounded-[50%]">
                 <img
                   className="w-full h-auto"
-                  src={profile.photo === null ? imageUser : profile.photo}
+                  src={profile.photo ? profile.photo : imageUser}
                   alt={profile.name}
                 />
               </div>
@@ -114,7 +116,7 @@ const EditWorker = () => {
                 />
               </div>
               <h1 className="font-semibold text-[22px] mt-[13px] text-hirejob-dark">
-                {profile.name}
+                {profile.name ? profile.name : `Unknown`}
               </h1>
               <h2 className="font-normal text-sm mt-[10px] text-hirejob-dark">
                 {profile.job_desk}
@@ -141,52 +143,52 @@ const EditWorker = () => {
               isOutline={true}
               extra={`py-[15px]`}
             >
-              Batal
+              Cancel
             </Button>
           </aside>
 
           <div className="w-full md:w-3/5 xl:w-2/3 flex flex-col gap-[30px]">
             <section className="w-full rounded-lg py-4 bg-hirejob-white">
               <div className="font-semibold text-[22px] border-b border-[#C4C4C4] px-9 py-[18px] text-hirejob-dark">
-                <h1>Data diri</h1>
+                <h1>Personal Information</h1>
               </div>
               <div className="py-4 px-9">
                 <Input
-                  label={`Nama Lengkap`}
+                  label={`Full Name`}
                   name={`name`}
                   value={profile.name}
                   onChange={handleChange}
-                  placeholder={`Masukan nama lengkap`}
+                  placeholder={`Enter your full name`}
                 />
                 <Input
-                  label={`Job desk`}
+                  label={`Job Preference`}
                   name={`job_desk`}
                   value={profile.job_desk}
                   onChange={handleChange}
-                  placeholder={`Masukan job desk`}
+                  placeholder={`Enter your job preference (e.g., Fullstack Developer)`}
                 />
                 <Input
-                  label={`Domisili`}
+                  label={`Location`}
                   name={`domicile`}
                   value={profile.domicile}
                   onChange={handleChange}
-                  placeholder={`Masukan domisili`}
+                  placeholder={`Enter your location`}
                 />
                 <Input
-                  label={`Tempat kerja`}
+                  label={`Workplace`}
                   name={`workplace`}
                   value={profile.workplace}
                   onChange={handleChange}
-                  placeholder={`Masukan tempat kerja`}
+                  placeholder={`Enter your workplace (e.g., Telkom University)`}
                 />
                 <Input
-                  label={`Dekripsi singkat`}
+                  label={`Personal Summary`}
                   type={`textarea`}
                   name={`description`}
                   rows={`6`}
                   value={profile.description}
                   onChange={handleChange}
-                  placeholder={`Tuliskan dekripsi singkat`}
+                  placeholder={`Tell us about yourself in a few words`}
                 />
               </div>
             </section>
@@ -196,7 +198,7 @@ const EditWorker = () => {
               colorButton={`primary`}
               extra={`py-[15px]`}
             >
-              Simpan
+              Save
             </Button>
 
             <Skill />

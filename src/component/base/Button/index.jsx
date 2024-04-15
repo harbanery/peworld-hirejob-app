@@ -13,6 +13,7 @@ const Button = ({
   isOutline = false,
   isTransparent = false,
   extra,
+  isDisabled = false,
 }) => {
   return (
     <button
@@ -32,6 +33,7 @@ const Button = ({
             : style.secondaryColor
           : ""
       } ${isTransparent ? style.transparentOutlineHover : ""}`}
+      disabled={isDisabled}
     >
       {children}
     </button>

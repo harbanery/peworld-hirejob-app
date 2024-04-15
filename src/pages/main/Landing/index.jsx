@@ -13,7 +13,6 @@ import arrowIconRight from "../../../assets/img/icons/next.png";
 import NavbarLanding from "../../../component/module/navbar/NavbarLanding";
 import Footer from "../../../component/module/Footer";
 import Button from "../../../component/base/Button";
-import api from "../../../configs/api";
 
 const Landing = () => {
   return (
@@ -25,18 +24,18 @@ const Landing = () => {
           <section className="flex flex-col-reverse lg:flex-row items-center lg:items-stretch justify-between gap-5">
             <div className="w-full lg:w-2/3 xl:w-[46%] lg:mt-8 xl:mt-32 text-center lg:text-left">
               <h1 className="font-semibold text-3xl xl:text-[44px] xl:leading-[70px] text-hirejob-dark">
-                Talenta terbaik negri untuk perubahan revolusi 4.0
+                The Best Domestic Talent to Welcome 5.0 Era
               </h1>
               <p className="font-normal text-lg mt-5 mb-5 md:mb-14 text-hirejob-slate">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Being part of the movement to embrace the 5.0 era with the best
+                local talent is a valuable opportunity.
               </p>
               <Button
                 colorButton={`primary`}
                 isWidthFull={false}
                 extra={`px-6 py-[21.5px]`}
               >
-                Mulai dari Sekarang
+                Let's Start Now!
               </Button>
             </div>
             <div className="w-5/6 md:w-4/5 lg:w-auto xl:w-[54%]">
@@ -57,25 +56,25 @@ const Landing = () => {
             </div>
             <div className="w-full lg:w-1/2 xl:w-[55%] text-center lg:text-left xl:pr-24">
               <h2 className="font-semibold text-2xl md:text-3xl xl:text-4xl xl:leading-[56px] lg:my-6 2xl:my-10 text-hirejob-dark">
-                Kenapa harus mencari tallent di peworld
+                Why Should You Seek Talent on Peworld?
               </h2>
               <div className="flex flex-wrap lg:block my-8 xl:my-10">
                 {/* tick */}
                 <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
-                  <span>Lorem ipsum dolor sit amet.</span>
+                  <span>Discover top-notch local talent</span>
                 </div>
                 <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
-                  <span>Lorem ipsum dolor sit amet.</span>
+                  <span>Expand your options</span>
                 </div>
                 <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
-                  <span>Lorem ipsum dolor sit amet.</span>
+                  <span>Boost collaboration</span>
                 </div>
                 <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
-                  <span>Lorem ipsum dolor sit amet.</span>
+                  <span>Save time in hiring</span>
                 </div>
               </div>
             </div>
@@ -83,11 +82,12 @@ const Landing = () => {
           <section className="flex flex-col-reverse xl:flex-row items-center xl:items-stretch justify-between gap-5 my-20">
             <div className="w-full md:w-4/5 xl:w-1/2 text-center xl:text-left xl:pl-16">
               <h2 className="font-semibold text-2xl md:text-3xl xl:text-4xl xl:leading-[56px] lg:my-6 2xl:my-10 text-hirejob-dark">
-                Skill Tallent
+                Skill Talent
               </h2>
               <p className="font-normal text-lg my-5 text-hirejob-slate">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Peworld empowers skillful talents by providing a platform to
+                showcase their abilities and expertise, connecting them with
+                opportunities that match their skills.
               </p>
               <div className="w-full h-auto md:h-60 flex flex-col flex-wrap items-center xl:items-stretch gap-y-8 my-8 xl:my-10">
                 {/* tick */}
@@ -159,11 +159,11 @@ const Landing = () => {
                 Harry Styles
               </h1>
               <h2 className="font-normal text-lg text-hirejob-gray">
-                Web Developer
+                Software Developer
               </h2>
               <p className="font-normal text-lg leading-7 text-hirejob-slate text-center px-[2%] py-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Peworld offers a fantastic platform where IT professionals like
+                myself can easily discover promising career paths.
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center w-2/3 md:w-2/5 lg:w-1/3 2xl:w-1/4 px-[3%] py-[2%] bg-hirejob-white shadow-md">
@@ -178,10 +178,11 @@ const Landing = () => {
                 Niall Horan
               </h1>
               <h2 className="font-normal text-lg text-hirejob-gray">
-                Web Developer
+                Computer Network Specialist
               </h2>
               <p className="font-normal text-lg leading-7 text-hirejob-slate text-center px-[2%] py-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                I'm impressed by Peworld's intuitive interface and their
+                attentive customer service.
               </p>
             </div>
             <div className="hidden lg:flex flex-col items-center w-2/3 md:w-2/5 lg:w-1/3 2xl:w-1/4 px-[3%] py-[2%] bg-hirejob-white shadow-md">
@@ -196,10 +197,12 @@ const Landing = () => {
                 Louis Tomlinson
               </h1>
               <h2 className="font-normal text-lg text-hirejob-gray">
-                Web Developer
+                Data Analyst
               </h2>
               <p className="font-normal text-lg leading-7 text-hirejob-slate text-center px-[2%] py-3">
-                Lorem ipsum dolor sit amet, consectetur
+                Peworld's commitment to promoting diversity and inclusivity
+                within the IT industry creates a welcoming and enriching
+                experience for all users.
               </p>
             </div>
             <div className="flex justify-center items-center">
@@ -215,11 +218,11 @@ const Landing = () => {
             <div
               className={`w-full flex flex-col md:flex-row items-center justify-between p-9 md:px-[68px] md:py-[57px] rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg text-hirejob-white ${style.bgSpecial} hover:bg-repeat hover:bg-cover`}
             >
-              <h1 className="font-semibold text-xl text-center md:text-left lg:text-2xl xl:text-4xl xl:leading-[56px] pb-10 md:pb-0 w-full md:w-[30%]">
-                Lorem ipsum dolor sit amet
+              <h1 className="font-semibold text-xl text-center md:text-left lg:text-2xl xl:text-4xl xl:leading-[56px] pb-10 md:pb-0 w-full md:w-[45%]">
+                Discover Talent on Peworld Today.
               </h1>
-              <button className="font-bold text-base p-6 rounded bg-hirejob-white text-hirejob-purple-normal hover:bg-[#00000000] hover:text-hirejob-white transition duration-200 ">
-                Mulai Dari Sekarang
+              <button className="font-bold text-base py-6 px-12 rounded bg-hirejob-white text-hirejob-purple-normal hover:bg-[#00000000] hover:text-hirejob-white transition duration-200 ">
+                Start Now!
               </button>
             </div>
           </section>

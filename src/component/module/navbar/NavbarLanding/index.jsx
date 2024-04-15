@@ -52,7 +52,7 @@ const NavbarLanding = () => {
           <div className="flex justify-between items-center gap-3 md:gap-4">
             <NavLink to={`/recruiter/register`}>
               <span className="hidden md:inline-block font-semibold text-base md:text-lg text-hirejob-purple-normal hover:text-hirejob-purple-dark after:content-[''] after:block after:py-0 after:border-b-2 after:scale-x-0 after:transition after:ease-linear after:duration-200 after:hover:scale-x-100">
-                Untuk Perusahaan
+                Recruiter Site
               </span>
             </NavLink>
             <NavLink to={`/login`}>
@@ -64,7 +64,7 @@ const NavbarLanding = () => {
                 isOutline={true}
                 extra={`hidden md:block leading-6 px-[10px] md:px-5 py-[10px]`}
               >
-                Masuk
+                Sign In
               </Button>
             </NavLink>
             <NavLink to={`/register`}>
@@ -74,17 +74,23 @@ const NavbarLanding = () => {
                 isBorder={true}
                 extra={`hidden md:block leading-6 px-[10px] md:px-5 py-[10px]`}
               >
-                Daftar
+                Sign Up
               </Button>
             </NavLink>
-            <Button
+            <button
+              onClick={() => setClassNav("h-full")}
+              className=" font-bold text-2xl block md:hidden text-hirejob-purple-normal hover:text-hirejob-purple-dark"
+            >
+              &#9776;
+            </button>
+            {/* <Button
               onClick={() => setClassNav("h-full")}
               colorButton={`primary`}
               size="text-lg"
               extra={`block md:hidden py-[10px] px-[15px]`}
             >
               &#9776;
-            </Button>
+            </Button> */}
           </div>
           <div
             className={`w-full ${classNav} md:h-0 fixed z-[1] top-0 left-0 bg-[#fffffff1] text-hirejob-purple-normal overflow-hidden transition duration-500`}
@@ -105,7 +111,7 @@ const NavbarLanding = () => {
                   isWidthFull={false}
                   extra={`w-4/5 my-1 leading-6 p-[10px]`}
                 >
-                  Masuk
+                  Sign In
                 </Button>
               </NavLink>
               <NavLink to={`/register`}>
@@ -116,12 +122,12 @@ const NavbarLanding = () => {
                   isWidthFull={false}
                   extra={`w-4/5 my-1 leading-6 p-[10px]`}
                 >
-                  Daftar
+                  Sign Up
                 </Button>
               </NavLink>
               <NavLink to={`/recruiter/register`}>
                 <span className="inline-block font-medium text-3xl mt-5 text-hirejob-purple-normal hover:text-hirejob-purple-dark after:content-[''] after:block after:py-0 after:border-b-2 after:scale-x-0 after:transition after:ease-linear after:duration-200 after:hover:scale-x-100">
-                  Untuk Perusahaan
+                  Recruiter Site
                 </span>
               </NavLink>
             </div>
@@ -174,16 +180,22 @@ const NavbarLanding = () => {
               isOutline={true}
               extra={`hidden md:block leading-6 px-[10px] md:px-5 py-[10px]`}
             >
-              Logout
+              Sign Out
             </Button>
-            <Button
+            <button
+              onClick={() => setClassNav("h-full")}
+              className=" font-bold text-2xl block md:hidden text-hirejob-purple-normal hover:text-hirejob-purple-dark"
+            >
+              &#9776;
+            </button>
+            {/* <Button
               onClick={() => setClassNav("h-full")}
               colorButton={`primary`}
               size="text-lg"
               extra={`block md:hidden py-[10px] px-[15px]`}
             >
               &#9776;
-            </Button>
+            </Button> */}
           </div>
           <div
             className={`w-full ${classNav} md:h-0 fixed z-[1] top-0 left-0 bg-[#fffffff1] text-hirejob-purple-normal overflow-hidden transition duration-500`}
@@ -221,7 +233,7 @@ const NavbarLanding = () => {
                 isWidthFull={false}
                 extra={`w-4/5 my-1 leading-6 p-[10px]`}
               >
-                Logout
+                Sign Out
               </Button>
             </div>
           </div>

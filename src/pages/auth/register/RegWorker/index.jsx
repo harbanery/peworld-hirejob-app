@@ -27,13 +27,16 @@ const RegWorker = () => {
           name: form.name,
           phone: form.phone,
         })
-        .then((res) => {
-          alert("selamat berhasil login");
+        .then(() => {
+          alert("Sign up successfully.");
           navigate("/login");
         })
         .catch((err) => {
           console.log(err.response);
-          alert("anda gagal register");
+          alert(`Sign up failed. Try again!
+          
+          
+          Error: ${err.response.data.message}`);
         });
     }
   };
@@ -53,49 +56,48 @@ const RegWorker = () => {
 
         <section className="w-full py-9 lg-py-0 lg:w-[650px] 2xl:w-3/5 ml-0 lg:ml-[75px] mt-0 lg:mt-[106px] flex flex-col justify-center lg:justify-start text-hirejob-dark">
           <AuthDesc
-            title="Halo, Pewpeople"
-            para="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod
-          ipsum et dui rhoncus auctor."
+            title="Hello, Pewpeople..."
+            para="Celebrate excellence and explore boundless opportunities with Peworld."
           />
           <Input
-            label="Nama"
+            label="Full Name"
             type="text"
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Masukan nama panjang"
+            placeholder="Enter your full name"
           />
           <Input
-            label="Email"
+            label="Email Address"
             type="email"
             name="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="Masukkan alamat email"
+            placeholder="Enter your email"
           />
           <Input
-            label="No handphone"
+            label="Phone Number"
             type="text"
             name="phone"
             value={form.phone}
             onChange={handleChange}
-            placeholder="Masukan no handphone"
+            placeholder="Enter your phone number"
           />
           <Input
-            label="Kata Sandi"
+            label="Password"
             type="password"
             name="password"
             value={form.password}
             onChange={handleChange}
-            placeholder="Masukkan kata sandi"
+            placeholder="Enter your password"
           />
           <Input
-            label="Konfirmasi Kata Sandi"
+            label="Confirm Password"
             type="password"
             name="confirmPassword"
             value={form.confirmPassword}
             onChange={handleChange}
-            placeholder="Masukan konfirmasi kata sandi"
+            placeholder="Re-enter your password"
           />
           <div className="my-3"></div>
           <Button
@@ -103,15 +105,15 @@ const RegWorker = () => {
             colorButton={"secondary"}
             extra="p-[15px] my-4"
           >
-            Daftar
+            Sign Up
           </Button>
           <h6 className="font-normal text-base mt-3 leading-[21.79px] block text-center">
-            Anda sudah punya akun?{" "}
+            Do you already have an account?{" "}
             <Link
               className="text-hirejob-yellow-normal hover:text-hirejob-yellow-dark"
               to="/login"
             >
-              Masuk disini
+              Sign in here.
             </Link>
           </h6>
         </section>

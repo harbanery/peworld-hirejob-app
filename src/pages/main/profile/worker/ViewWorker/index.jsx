@@ -7,9 +7,6 @@ import iconPhone from "../../../../../assets/img/icons/phone.png";
 import imageFolio1 from "../../../../../assets/img/portofolio/pf1.png";
 import imageFolio2 from "../../../../../assets/img/portofolio/pf2.png";
 import imageFolio3 from "../../../../../assets/img/portofolio/pf3.png";
-import imageFolio4 from "../../../../../assets/img/portofolio/pf4.png";
-import imageFolio5 from "../../../../../assets/img/portofolio/pf5.png";
-import imageFolio6 from "../../../../../assets/img/portofolio/pf6.png";
 import CardExperience from "../../../../../component/module/main/profile/worker/CardExperience";
 import CardPortofolio from "../../../../../component/module/main/profile/worker/CardPortofolio";
 import Button from "../../../../../component/base/Button";
@@ -163,8 +160,8 @@ const ViewWorker = () => {
                 <div className="w-[150px] md:w-[300px] lg:w-[150px] h-[150px] md:h-[300px] lg:h-[150px] overflow-hidden rounded-[50%]">
                   <img
                     className="w-full h-auto"
-                    src={worker.photo === null ? imageUser : worker.photo}
-                    alt={worker.name}
+                    src={worker.photo ? worker.photo : imageUser}
+                    alt={worker.name ? worker.name : `Unknown`}
                   />
                 </div>
               </div>
@@ -253,7 +250,7 @@ const ViewWorker = () => {
                 onClick={() => getExperienceBar()}
                 className={`${expBar.expToolbar} cursor-pointer`}
               >
-                Pengalaman Kerja
+                Work Experience
               </li>
             </ul>
 

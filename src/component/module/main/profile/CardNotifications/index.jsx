@@ -1,23 +1,23 @@
 import React from "react";
+import imageUserNav from "../../../../../assets/img/profile-img/user-noimage.png";
+import TimeAgo from "../../../../../configs/timeAgo";
+import Button from "../../../../base/Button";
 
-const CardNotifications = ({ id }) => {
+const CardNotifications = ({ image = null, message, company_name, date }) => {
   return (
-    <div
-      id={id}
-      className={`block absolute w-2/3 sm:w-1/2 md:w-2/5 xl:w-1/5 h-2/5 top-14 right-8 md:top-20 md:right-28 lg:right-48 z-10 bg-hirejob-white border border-hirejob-frost rounded-md shadow-lg transition duration-500 overflow-y-scroll`}
-    >
+    <>
       <div className="w-full border-y border-hirejob-frost">
         <div className="flex px-5 pt-5 gap-5">
           <div className="w-1/4">
-            <img src={imageUserNav} />
+            <img src={image ? image : imageUserNav} />
           </div>
           <div className="w-3/4">
             <p className="font-medium text-sm leading-6 text-hirejob-dark">
-              Seorang perekrut dari perusahaan PT Pijar Mahir ingin menawari
-              sebuah pekerjaan kepada Anda
+              A recruiter from {company_name} has sent you a message about a{" "}
+              <span className="capitalize">{message}</span>.
             </p>
             <h3 className="font-normal text-sm text-hirejob-gray my-2">
-              1 minute ago
+              <TimeAgo date={date} />
             </h3>
           </div>
         </div>
@@ -26,8 +26,9 @@ const CardNotifications = ({ id }) => {
             colorButton={`primary`}
             isWidthFull={false}
             extra={`w-5/6 mt-2 mx-5 mb-5 p-2`}
+            isDisabled={true}
           >
-            Lihat Penawaran
+            View Offers
           </Button>
         </div>
       </div>
@@ -40,7 +41,7 @@ const CardNotifications = ({ id }) => {
           Belum ada notifikasi
         </p>
       </div> */}
-    </div>
+    </>
   );
 };
 

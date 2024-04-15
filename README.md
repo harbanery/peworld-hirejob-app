@@ -1,15 +1,14 @@
-# HireJob implementation based on Figma
+# Peworld: Hire Job Implementation Based on Figma
 
-> Hire Job is one of the web applications that provides workers for applicants so that it is easy to find the desired worker and company information.
+> Peworld is a web application that facilitates job seekers in finding suitable employment opportunities and accessing detailed company information.
 
 ## Usage
 
-This website using Vite + React with Javascript and API using AXIOS library.
-I also using React Dom Routes to navigating the pages.
+This website is built using Vite + React with JavaScript, and the API management is done through the Axios library. Additionally, I use the React Dom Routes library for navigating between pages, along with Tailwind as the CSS Framework.
 
 ## Documentation
 
-There are 6 pages that I working in progress.
+There are 7 pages that I working in progress.
 
 1. Login Page
 
@@ -93,11 +92,16 @@ There are 6 pages that I working in progress.
 
 ## Performance
 
-For performance still on development.
+According to PageSpeed Insights, the desktop performance scored 97%, with minor issues regarding LCP. However, the mobile performance, at 52%, is concerning due to significant CLS and LCP issues. The absence of loading indicators on the website may be contributing to this discrepancy. To address this, I propose implementing loading indicators for images and other elements to enhance performance in future updates. Despite these challenges, the website remains functional on both mobile and desktop platforms.
+
+<div style="display: flex; gap: 10px; justify-content: center;">
+  <img src="./public/screenshot/Performance-Mobile.png" alt="Performance Mobile">
+  <img src="./public/screenshot/Performance-Desktop.png" alt="Performance Desktop">
+</div>
 
 ## Domain to Visit Pages
 
-If you would like to see my web pages, click the link right below. Thank you so much for your appreciation.
+If you wish to view my website, please click the link provided below. Thank you very much for your interest and appreciation.
 
 [Click Here](https://react-hirejob-figma-git-main.vercel.app/)
 

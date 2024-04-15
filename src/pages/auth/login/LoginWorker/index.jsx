@@ -51,9 +51,8 @@ const LoginWorker = () => {
 
         <section className="w-full py-9 lg-py-0 lg:w-[650px] 2xl:w-3/5 ml-0 lg:ml-[75px] mt-0 lg:mt-[106px] flex flex-col justify-center lg:justify-start text-hirejob-dark">
           <AuthDesc
-            title="Halo, Pewpeople"
-            para="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod
-          ipsum et dui rhoncus auctor."
+            title="Hello, Pewpeople..."
+            para="Celebrate excellence and explore boundless opportunities with Peworld."
           />
           <form onSubmit={handleLogin}>
             <Input
@@ -62,35 +61,35 @@ const LoginWorker = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="Masukkan alamat email"
+              placeholder="Enter your email"
             />
             <Input
-              label="Kata Sandi"
+              label="Password"
               type="password"
               name="password"
               value={form.password}
               onChange={handleChange}
-              placeholder="Masukkan kata sandi"
+              placeholder="Enter your password"
             />
             <h6 className="font-normal text-base leading-[21.79px] block my-2 text-right">
               <Link
                 className="text-hirejob-yellow-normal hover:text-hirejob-yellow-dark"
                 to="/reset-password"
               >
-                Lupa kata sandi?
+                Forgot Password?
               </Link>
             </h6>
             <Button colorButton={"secondary"} extra="p-[15px] my-4">
-              Masuk
+              Sign In
             </Button>
           </form>
           <h6 className="font-normal text-base mt-3 leading-[21.79px] block text-center">
-            Anda belum punya akun?{" "}
+            Don't have an account yet?{" "}
             <Link
               className="text-hirejob-yellow-normal hover:text-hirejob-yellow-dark"
               to="/register"
             >
-              Daftar disini
+              Sign up here.
             </Link>
           </h6>
         </section>

@@ -12,9 +12,10 @@ const Dashboard = () => {
           alt="logo-peworld"
         />
       </Link>
-      <div className="w-[400px] xl:w-[456px] h-[280px] relative top-[23%] left-[8%] xl:left-[9.5%]">
-        <h1 className="text-hirejob-white text-[33px] xl:text-[44px] font-bold leading-[70px]">
-          Temukan developer berbakat & terbaik di berbagai bidang keahlian
+      <div className="w-[400px] lg:w-[360px] xl:w-[456px] h-[280px] relative top-[23%] left-[8%] xl:left-[9.5%]">
+        <h1 className="text-hirejob-white text-[33px] xl:text-[44px] font-bold leading-14 xl:leading-[70px]">
+          Discover talented and top-notch developers across various fields of
+          expertise.
         </h1>
       </div>
     </aside>

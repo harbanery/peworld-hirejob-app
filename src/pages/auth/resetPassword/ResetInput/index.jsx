@@ -22,7 +22,7 @@ const ResetInput = () => {
             label="Email"
             type="email"
             name="email"
-            placeholder="Masukkan alamat email"
+            placeholder="Enter your email"
           />
 
           <div className="my-3"></div>

@@ -1,12 +1,9 @@
 import React from "react";
 
-const Tag = ({ children, key, deleteClick }) => {
+const Tag = ({ children, deleteClick }) => {
   return (
     <>
-      <li
-        key={key}
-        className="px-4 py-1 my-[10px] mr-[10px] border rounded bg-[#fbb01799] border-hirejob-yellow-normal"
-      >
+      <li className="px-4 py-1 my-[10px] mr-[10px] border rounded bg-[#fbb01799] border-hirejob-yellow-normal">
         {children}
         {deleteClick && (
           <button
