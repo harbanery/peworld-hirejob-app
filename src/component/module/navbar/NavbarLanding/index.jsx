@@ -1,41 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import imageLogo from "../../../../assets/img/header-logo.png";
 import Button from "../../../base/Button";
-import api from "../../../../configs/api";
 
-const NavbarLanding = () => {
-  const navigate = useNavigate();
-  const [auth, setAuth] = useState(false);
-  const [role, setRole] = useState("");
+const NavbarLanding = ({ auth = false, role = "", handleLogout }) => {
   const [classNav, setClassNav] = useState("h-0");
-
-  const getRole = () => {
-    api.get("/auth/check-role").then((res) => {
-      const role = res.data.data.data.role;
-      setRole(role);
-    });
-  };
-
-  const handleLogout = () => {
-    api
-      .get(`/auth/logout`)
-      .then(() => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("resfreshToken");
-        navigate("/login");
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  };
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getRole();
-      setAuth(true);
-    }
-  }, []);
 
   return (
     <>
@@ -143,16 +112,12 @@ const NavbarLanding = () => {
                 alt={`logo-peworld`}
               />
             </Link>
-            {role === "recruiter" ? (
-              <NavLink
-                to={`/main/home`}
-                className="inline-block font-semibold text-base md:text-lg text-hirejob-purple-normal hover:text-hirejob-purple-dark after:content-[''] after:block after:py-0 after:border-b-2 after:scale-x-0 after:transition after:ease-linear after:duration-200 after:hover:scale-x-100"
-              >
-                Home
-              </NavLink>
-            ) : (
-              <></>
-            )}
+            <NavLink
+              to={`/main/home`}
+              className="inline-block font-semibold text-base md:text-lg text-hirejob-purple-normal hover:text-hirejob-purple-dark after:content-[''] after:block after:py-0 after:border-b-2 after:scale-x-0 after:transition after:ease-linear after:duration-200 after:hover:scale-x-100"
+            >
+              Home
+            </NavLink>
           </div>
 
           <div className="flex justify-between items-center gap-3 md:gap-4">

@@ -3,7 +3,7 @@ import Dashboard from "../../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../../component/module/auth/AuthDesc";
 import Input from "../../../../component/base/Input";
 import Button from "../../../../component/base/Button";
-import style from "../../login.module.css";
+import style from "../../auth.module.css";
 
 const ResetInput = () => {
   return (

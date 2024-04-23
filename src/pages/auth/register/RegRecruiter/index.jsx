@@ -4,10 +4,13 @@ import Dashboard from "../../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../../component/module/auth/AuthDesc";
 import Input from "../../../../component/base/Input";
 import Button from "../../../../component/base/Button";
-import style from "../../login.module.css";
-import api from "../../../../configs/api";
+import style from "../../auth.module.css";
+import { useDispatch } from "react-redux";
+import { registerRecruiter } from "../../../../configs/redux/action/recruiterAction";
+import { reset } from "../../../../configs/redux/action/authAction";
 
 const RegRecruiter = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -21,28 +24,11 @@ const RegRecruiter = () => {
   });
 
   const handleRegister = () => {
-    if (form.password === form.confirmPassword) {
-      api
-        .post("/recruiters/register", {
-          email: form.email,
-          password: form.password,
-          name: form.name,
-          company: form.company,
-          position: form.position,
-          phone: form.phone,
-        })
-        .then((res) => {
-          alert("Sign up successfully.");
-          navigate("/login");
-        })
-        .catch((err) => {
-          console.log(err.response);
-          alert(`Sign up failed. Try again!
-          
-          
-          Error: ${err.response.data.message}`);
-        });
-    }
+    dispatch(registerRecruiter(form, navigate));
+  };
+
+  const handleNavigate = () => {
+    dispatch(reset());
   };
 
   const handleChange = (e) => {
@@ -132,7 +118,8 @@ const RegRecruiter = () => {
             Do you already have an account?{" "}
             <Link
               className="text-hirejob-yellow-normal hover:text-hirejob-yellow-dark"
-              to="/recruiter/login"
+              to="/login"
+              onClick={handleNavigate}
             >
               Sign in here.
             </Link>

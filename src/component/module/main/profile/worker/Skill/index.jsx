@@ -3,42 +3,23 @@ import Input from "../../../../../base/Input";
 import Button from "../../../../../base/Button";
 import Tag from "../../../../../base/Tag";
 import api from "../../../../../../configs/api";
+import { useDispatch } from "react-redux";
+import {
+  createSkill,
+  deleteSkill,
+} from "../../../../../../configs/redux/action/skillAction";
 
-const Skill = () => {
+const Skill = ({ mySkills }) => {
+  const dispatch = useDispatch();
   const [skill, setSkill] = useState("");
-  const [mySkill, setMySkill] = useState([]);
 
-  const getSkill = () => {
-    api.get("/skills").then((res) => {
-      const skills = res.data.data;
-      setMySkill(skills);
-    });
+  const handleCreateSkill = () => {
+    dispatch(createSkill(skill, setSkill));
   };
 
-  const handleAddSkill = () => {
-    api
-      .post(`/skills`, { skill_name: skill })
-      .then(() => {
-        alert(`Skill ${skill} successfully added.`);
-        setSkill("");
-        getSkill();
-      })
-      .catch((err) => {
-        alert("Failed to add skill. Please try again.");
-        console.log(err.response);
-      });
+  const handleDeleteSkill = (id) => {
+    dispatch(deleteSkill(id));
   };
-
-  const deleteSkill = (id) => {
-    api.delete(`/skills/${id}`).then(() => {
-      alert("Skill successfully deleted!");
-      getSkill();
-    });
-  };
-
-  useEffect(() => {
-    getSkill();
-  }, []);
 
   return (
     <section className="w-full rounded-lg py-4 bg-hirejob-white">
@@ -56,7 +37,7 @@ const Skill = () => {
         </div>
         <div>
           <Button
-            onClick={handleAddSkill}
+            onClick={handleCreateSkill}
             colorButton={`secondary`}
             extra={`p-[13.5px]`}
           >
@@ -64,10 +45,10 @@ const Skill = () => {
           </Button>
         </div>
       </div>
-      {mySkill && (
+      {mySkills && (
         <ul className="pb-4 px-9 font-semibold text-xs mt-[10px] flex flex-row justify-center md:justify-start flex-wrap text-hirejob-white">
-          {mySkill.map((item) => (
-            <Tag key={item.id} deleteClick={() => deleteSkill(item.id)}>
+          {mySkills.map((item) => (
+            <Tag key={item.id} deleteClick={() => handleDeleteSkill(item.id)}>
               {item.skill_name}
             </Tag>
           ))}

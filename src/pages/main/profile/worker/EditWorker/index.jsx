@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "../../profile.module.css";
 import iconMap from "../../../../../assets/img/icons/map.png";
 import iconEdit from "../../../../../assets/img/icons/edit.png";
@@ -9,83 +10,49 @@ import WorkExperience from "../../../../../component/module/main/profile/worker/
 import Portofolio from "../../../../../component/module/main/profile/worker/Portofolio";
 import Input from "../../../../../component/base/Input";
 import Button from "../../../../../component/base/Button";
-import api from "../../../../../configs/api";
+import {
+  getWorkerProfile,
+  updateWorkerProfile,
+  updateWorkerProfilePhoto,
+  updateWorkerUser,
+} from "../../../../../configs/redux/action/workerAction";
+import { getSkills } from "../../../../../configs/redux/action/skillAction";
+import { getExperience } from "../../../../../configs/redux/action/experienceAction";
+import { getPortofolio } from "../../../../../configs/redux/action/portofolioAction";
 
 const EditWorker = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, profile } = useSelector((state) => state.worker);
 
-  const [profile, setProfile] = useState({
-    name: "",
-    job_desk: "",
-    domicile: "",
-    workplace: "",
-    description: "",
-  });
-
-  const getProfileData = () => {
-    api.get("/workers/profile").then((res) => {
-      const profileData = res.data.data;
-      // console.log(profileData);
-      setProfile(profileData);
-    });
+  const getProfile = () => {
+    dispatch(getWorkerProfile());
+    dispatch(getSkills());
+    dispatch(getExperience());
+    dispatch(getPortofolio());
   };
 
   const handleUpdateProfile = () => {
-    api
-      .put(`/workers/profile`, {
-        name: profile.name,
-        job_desk: profile.job_desk,
-        domicile: profile.domicile,
-        workplace: profile.workplace,
-        description: profile.description,
-      })
-      .then(() => {
-        alert("Profile successfully saved.");
-        getProfileData();
-      })
-      .catch((err) => {
-        alert("Failed to save. Please try again.");
-        console.log(err.response);
-      });
+    dispatch(updateWorkerProfile(user));
   };
 
   const handleChange = (e) => {
-    setProfile({
-      ...profile,
+    const changeUser = {
+      ...user,
       [e.target.name]: e.target.value,
-    });
+    };
+    dispatch(updateWorkerUser(changeUser));
   };
 
   const handleFileSelect = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    console.log(file);
 
-    const formData = new FormData();
-    formData.append("photo", file);
-
-    api
-      .put(`/workers/profile/photo`, formData, {
-        headers: { "content-type": "multipart/form-data" },
-      })
-      .then(() => {
-        alert("Profile photo successfully updated.");
-        getProfileData();
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-        alert(`Failed to change profile photo. Please try again. 
-        
-        Error: ${err.response.data.message}`);
-      });
+    dispatch(updateWorkerProfilePhoto(file));
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getProfileData();
-    } else {
-      navigate("/login");
-    }
+    getProfile();
   }, []);
 
   return (
@@ -97,8 +64,8 @@ const EditWorker = () => {
               <div className="w-[150px] h-[150px] mx-auto overflow-hidden rounded-[50%]">
                 <img
                   className="w-full h-auto"
-                  src={profile.photo ? profile.photo : imageUser}
-                  alt={profile.name}
+                  src={user.photo ? user.photo : imageUser}
+                  alt={user.name}
                 />
               </div>
               <div className="pt-5 pb-[31px] font-semibold text-[22px] text-hirejob-gray">
@@ -116,24 +83,24 @@ const EditWorker = () => {
                 />
               </div>
               <h1 className="font-semibold text-[22px] mt-[13px] text-hirejob-dark">
-                {profile.name ? profile.name : `Unknown`}
+                {user.name ? user.name : `Unknown`}
               </h1>
               <h2 className="font-normal text-sm mt-[10px] text-hirejob-dark">
-                {profile.job_desk}
+                {user.job_desk}
               </h2>
 
-              {profile.domicile && (
+              {user.domicile && (
                 <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm mt-[13px] text-hirejob-gray">
                   <img className=" w-4 h-auto" src={iconMap} />
-                  <span>{profile.domicile}</span>
+                  <span>{user.domicile}</span>
                 </div>
               )}
               <h3 className="font-normal text-sm mt-[13px] text-hirejob-gray">
-                {profile.workplace}
+                {user.workplace}
               </h3>
 
               <p className=" my-[18px] font-normal text-sm leading-6 text-hirejob-gray">
-                {profile.description}
+                {user.description}
               </p>
             </div>
             <Button
@@ -156,28 +123,28 @@ const EditWorker = () => {
                 <Input
                   label={`Full Name`}
                   name={`name`}
-                  value={profile.name}
+                  value={user.name}
                   onChange={handleChange}
                   placeholder={`Enter your full name`}
                 />
                 <Input
                   label={`Job Preference`}
                   name={`job_desk`}
-                  value={profile.job_desk}
+                  value={user.job_desk}
                   onChange={handleChange}
                   placeholder={`Enter your job preference (e.g., Fullstack Developer)`}
                 />
                 <Input
                   label={`Location`}
                   name={`domicile`}
-                  value={profile.domicile}
+                  value={user.domicile}
                   onChange={handleChange}
                   placeholder={`Enter your location`}
                 />
                 <Input
                   label={`Workplace`}
                   name={`workplace`}
-                  value={profile.workplace}
+                  value={user.workplace}
                   onChange={handleChange}
                   placeholder={`Enter your workplace (e.g., Telkom University)`}
                 />
@@ -186,7 +153,7 @@ const EditWorker = () => {
                   type={`textarea`}
                   name={`description`}
                   rows={`6`}
-                  value={profile.description}
+                  value={user.description}
                   onChange={handleChange}
                   placeholder={`Tell us about yourself in a few words`}
                 />
@@ -201,11 +168,11 @@ const EditWorker = () => {
               Save
             </Button>
 
-            <Skill />
+            <Skill mySkills={profile.skills} />
 
-            <WorkExperience />
+            <WorkExperience myExperience={profile.experiences} />
 
-            <Portofolio />
+            <Portofolio myPortofolio={profile.portofolios} />
           </div>
         </div>
       </main>

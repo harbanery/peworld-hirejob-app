@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getSkills } from "../../../../../configs/redux/action/skillAction";
+import { getWorkerProfile } from "../../../../../configs/redux/action/workerAction";
+import { getExperience } from "../../../../../configs/redux/action/experienceAction";
+import { getPortofolio } from "../../../../../configs/redux/action/portofolioAction";
 import imageUser from "../.././../../../assets/img/profile-img/user-noimage.png";
 import iconMap from "../../../../../assets/img/icons/map.png";
 import iconMail from "../../../../../assets/img/icons/mail.png";
 import iconPhone from "../../../../../assets/img/icons/phone.png";
-import imageFolio1 from "../../../../../assets/img/portofolio/pf1.png";
-import imageFolio2 from "../../../../../assets/img/portofolio/pf2.png";
-import imageFolio3 from "../../../../../assets/img/portofolio/pf3.png";
 import CardExperience from "../../../../../component/module/main/profile/worker/CardExperience";
 import CardPortofolio from "../../../../../component/module/main/profile/worker/CardPortofolio";
 import Button from "../../../../../component/base/Button";
 import Tag from "../../../../../component/base/Tag";
-import api from "../../../../../configs/api";
 
 const ViewWorker = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { workerId } = useParams();
-  const [role, setRole] = useState("");
-  const [workerSkills, setWorkerSkills] = useState([]);
-  const [workerExperiences, setWorkerExperiences] = useState([]);
-  const [workerPortofolio, setWorkerPortofolio] = useState([]);
+  const { role } = useSelector((state) => state.checkRole);
+  const { user, profile } = useSelector((state) => state.worker);
   const [portoBar, setPortoBar] = useState({
     portoToolbar:
       "pb-1.5 border-b-4 border-hirejob-purple-normal text-hirejob-dark",
@@ -29,93 +29,12 @@ const ViewWorker = () => {
     expToolbar: "",
     expDisplay: "hidden",
   });
-  const [worker, setWorker] = useState({
-    name: "",
-    job_desk: "",
-    domicile: "",
-    workplace: "",
-    description: "",
-  });
 
-  const getRole = () => {
-    api.get("/auth/check-role").then((res) => {
-      const role = res.data.data.data.role;
-      // console.log(role);
-      if (role === "worker") {
-        getWorkerData();
-        getWorkerSkills();
-        getWorkerExperience();
-        getWorkerPortofolio();
-      } else if (role === "recruiter") {
-        getWorkerDataId(workerId);
-        getWorkerSkillsId(workerId);
-        getWorkerExperienceId(workerId);
-        getWorkerPortofolioId(workerId);
-      }
-      setRole(role);
-    });
-  };
-
-  const getWorkerData = () => {
-    api.get("/workers/profile").then((res) => {
-      const workerData = res.data.data;
-      // console.log(workerData);
-      setWorker(workerData);
-    });
-  };
-
-  const getWorkerSkills = () => {
-    api.get("/skills").then((res) => {
-      const skills = res.data.data;
-      // console.log(skills);
-      setWorkerSkills(skills);
-    });
-  };
-
-  const getWorkerExperience = () => {
-    api.get("/experience").then((res) => {
-      const experiences = res.data.data;
-      setWorkerExperiences(experiences);
-    });
-  };
-
-  const getWorkerPortofolio = () => {
-    api.get("/portfolio").then((res) => {
-      const portofolios = res.data.data;
-      setWorkerPortofolio(portofolios);
-    });
-  };
-
-  const getWorkerDataId = (id) => {
-    api.get(`/workers/${id}`).then((res) => {
-      const workerData = res.data.data;
-      // console.log(workerData);
-      setWorker(workerData);
-    });
-  };
-
-  const getWorkerSkillsId = (id) => {
-    api.get(`/skills/${id}`).then((res) => {
-      const skills = res.data.data;
-      // console.log(skills);
-      setWorkerSkills(skills);
-    });
-  };
-
-  const getWorkerExperienceId = (id) => {
-    api.get(`/experience/${id}`).then((res) => {
-      const experiences = res.data.data;
-      // console.log(experiences);
-      setWorkerExperiences(experiences);
-    });
-  };
-
-  const getWorkerPortofolioId = (id) => {
-    api.get(`/portfolio/${id}`).then((res) => {
-      const portofolios = res.data.data;
-      // console.log(experiences);
-      setWorkerPortofolio(portofolios);
-    });
+  const getProfile = (id) => {
+    dispatch(getWorkerProfile(id));
+    dispatch(getSkills(id));
+    dispatch(getExperience(id));
+    dispatch(getPortofolio(id));
   };
 
   const getPortofolioBar = () => {
@@ -143,11 +62,7 @@ const ViewWorker = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getRole();
-    } else {
-      navigate(`/login`);
-    }
+    getProfile(workerId);
   }, []);
 
   return (
@@ -160,78 +75,82 @@ const ViewWorker = () => {
                 <div className="w-[150px] md:w-[300px] lg:w-[150px] h-[150px] md:h-[300px] lg:h-[150px] overflow-hidden rounded-[50%]">
                   <img
                     className="w-full h-auto"
-                    src={worker.photo ? worker.photo : imageUser}
-                    alt={worker.name ? worker.name : `Unknown`}
+                    src={user.photo ? user.photo : imageUser}
+                    alt={user.name ? user.name : `Unknown`}
                   />
                 </div>
               </div>
               <h1 className="font-semibold text-[22px] mt-[13px] text-hirejob-dark">
-                {worker.name ? worker.name : `Unknown`}
+                {user.name ? user.name : `Unknown`}
               </h1>
               <h2 className="font-normal text-sm mt-[10px] text-hirejob-dark">
-                {worker.job_desk}
+                {user.job_desk}
               </h2>
 
               <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm mt-[13px] text-hirejob-gray">
                 <img className=" w-4 h-auto" src={iconMap} />
-                <span>{worker.domicile ? worker.domicile : `Somewhere`}</span>
+                <span>{user.domicile ? user.domicile : `Somewhere`}</span>
               </div>
 
               <h3 className="font-normal text-sm mt-[13px] text-hirejob-gray">
-                {worker.workplace}
+                {user.workplace}
               </h3>
 
               <p className=" my-[18px] font-normal text-sm leading-6 text-hirejob-gray">
-                {worker.description}
+                {user.description}
               </p>
 
               {role === "recruiter" && (
                 <Button
                   colorButton={`primary`}
                   extra={`py-[15px]`}
-                  onClick={() => navigate(`/main/hire/${worker.id}`)}
+                  onClick={() => navigate(`/main/hire/${user.id}`)}
                 >
                   Hire
                 </Button>
               )}
 
               {role === "worker" && (
-                <Link to={`/main/profile/worker/edit`}>
-                  <Button colorButton={`primary`} extra={`py-[15px]`}>
-                    Edit Profile
-                  </Button>
-                </Link>
+                <>
+                  {!workerId && (
+                    <Link to={`/main/profile/worker/edit`}>
+                      <Button colorButton={`primary`} extra={`py-[15px]`}>
+                        Edit Profile
+                      </Button>
+                    </Link>
+                  )}
+                </>
               )}
 
-              {workerSkills.length !== 0 && (
+              {profile.skills.length !== 0 && (
                 <>
                   <h1 className="font-semibold text-[22px] mt-[13px] text-hirejob-dark">
                     Skill
                   </h1>
                   <ul className="font-semibold text-xs mt-[10px] flex flex-row justify-center md:justify-start flex-wrap text-hirejob-white">
-                    {workerSkills
+                    {profile.skills
                       .filter((_skill, i) => i < 10)
                       .map((skill) => (
                         <Tag key={skill.id}>{skill.skill_name} </Tag>
                       ))}
-                    {workerSkills.length > 10 && (
-                      <Tag>{`+${workerSkills.length - 10}`} </Tag>
+                    {profile.skills.length > 10 && (
+                      <Tag>{`+${profile.skills.length - 10}`} </Tag>
                     )}
                   </ul>
                 </>
               )}
 
               <div className="my-9 flex flex-col justify-center items-start gap-6">
-                {worker.email && (
+                {user.email && (
                   <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm text-hirejob-gray h-6">
                     <img src={iconMail} />
-                    <span>{worker.email}</span>
+                    <span>{user.email}</span>
                   </div>
                 )}
-                {worker.phone && (
+                {user.phone && (
                   <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm text-hirejob-gray h-6">
                     <img src={iconPhone} />
-                    <span>{worker.phone}</span>
+                    <span>{user.phone}</span>
                   </div>
                 )}
               </div>
@@ -254,12 +173,13 @@ const ViewWorker = () => {
               </li>
             </ul>
 
-            {workerPortofolio.length !== 0 ? (
+            {profile.portofolios.length !== 0 ? (
               <div
-                className={`${portoBar.portoDisplay} flex-wrap justify-between gap-6 md:gap-3`}
+                className={`${portoBar.portoDisplay} flex-wrap justify-start gap-7`}
               >
-                {workerPortofolio.map((portofolio) => (
+                {profile.portofolios.map((portofolio) => (
                   <CardPortofolio
+                    key={portofolio.id}
                     link={portofolio.link_repository}
                     image={portofolio.image}
                   >
@@ -333,14 +253,15 @@ const ViewWorker = () => {
                 className={`${portoBar.portoDisplay} justify-center items-center h-[150px]`}
               >
                 <h1 className="font-semibold text-lg text-hirejob-slate">
-                  Belum Memiliki Portofolio
+                  Portfolio Not Available
                 </h1>
               </div>
             )}
-            {workerExperiences.length !== 0 ? (
+            {profile.experiences.length !== 0 ? (
               <ul className={`${expBar.expDisplay} flex-col my-3`}>
-                {workerExperiences.map((experience) => (
+                {profile.experiences.map((experience) => (
                   <CardExperience
+                    key={experience.id}
                     company={experience.company}
                     position={experience.position}
                     month={experience.work_month}
@@ -354,7 +275,7 @@ const ViewWorker = () => {
                 className={`${expBar.expDisplay} justify-center items-center h-[150px]`}
               >
                 <h1 className="font-semibold text-lg text-hirejob-slate">
-                  Belum Memiliki Pengalaman Kerja
+                  Work Experience Not Available
                 </h1>
               </div>
             )}

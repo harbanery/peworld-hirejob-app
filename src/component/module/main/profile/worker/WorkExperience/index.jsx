@@ -2,24 +2,17 @@ import React, { useState, useEffect } from "react";
 import Input from "../../../../../base/Input";
 import Button from "../../../../../base/Button";
 import TagExtra from "../../../../../base/TagExtra";
-import api from "../../../../../../configs/api";
-import currentMonthYear from "../../../../../../configs/currentMonthYear";
+import currentMonthYear from "../../../../../../configs/tools/currentMonthYear";
+import { useDispatch } from "react-redux";
+import {
+  createExperience,
+  deleteExperience,
+  readExperience,
+  updateExperience,
+} from "../../../../../../configs/redux/action/experienceAction";
 
-const WorkExperience = () => {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+const WorkExperience = ({ myExperience }) => {
+  const dispatch = useDispatch();
 
   const [experience, setExperience] = useState({
     position: "",
@@ -27,101 +20,21 @@ const WorkExperience = () => {
     work_date: currentMonthYear(),
     description: "",
   });
-  const [myExperience, setMyExperience] = useState([]);
-
-  const getWork = () => {
-    api.get("/experience").then((res) => {
-      const experiences = res.data.data;
-      setMyExperience(experiences);
-    });
-  };
 
   const handleAddExperience = () => {
-    const date = new Date(experience.work_date);
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-    api
-      .post(`/experience`, {
-        position: experience.position,
-        company: experience.company,
-        work_month: month,
-        work_year: year,
-        description: experience.description,
-      })
-      .then(() => {
-        alert("Experience successfully added.");
-        setExperience({
-          position: "",
-          company: "",
-          work_date: currentMonthYear(),
-          description: "",
-        });
-        getWork();
-      })
-      .catch((err) => {
-        alert("Failed to add experience. Please try again.");
-        console.log(err.response);
-      });
+    dispatch(createExperience(experience, setExperience));
   };
 
-  const getDataExperience = (id) => {
-    setExperience({
-      position: "",
-      company: "",
-      work_date: "",
-      description: "",
-    });
-    api.get("/experience").then((res) => {
-      const dataExperience = res.data.data.filter((item) => item.id === id);
-      dataExperience.map((value) => {
-        const setMonth = (
-          months.findIndex((month) => month === value.work_month) + 1
-        )
-          .toString()
-          .padStart(2, "0");
-        setExperience({
-          position: value.position,
-          company: value.company,
-          work_date: `${value.work_year}-${setMonth}`,
-          description: value.description,
-        });
-      });
-    });
+  const handleGetExperience = (id) => {
+    dispatch(readExperience(id, setExperience));
   };
 
   const handleUpdateExperience = (id) => {
-    const date = new Date(experience.work_date);
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-    api
-      .put(`/experience/${id}`, {
-        position: experience.position,
-        company: experience.company,
-        work_month: month,
-        work_year: year,
-        description: experience.description,
-      })
-      .then(() => {
-        alert("Experience successfully updated.");
-        setExperience({
-          position: "",
-          company: "",
-          work_date: currentMonthYear(),
-          description: "",
-        });
-        getWork();
-      })
-      .catch((err) => {
-        alert("Failed to update experience. Please try again.");
-        console.log(err.response);
-      });
+    dispatch(updateExperience(id, experience, setExperience));
   };
 
-  const deleteExperience = (id) => {
-    api.delete(`/experience/${id}`).then(() => {
-      alert("Experience successfully deleted.");
-      getWork();
-    });
+  const handleDeleteExperience = (id) => {
+    dispatch(deleteExperience(id));
   };
 
   const handleChange = (e) => {
@@ -130,10 +43,6 @@ const WorkExperience = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  useEffect(() => {
-    getWork();
-  }, []);
 
   return (
     <section className="w-full rounded-lg py-4 bg-hirejob-white">
@@ -202,9 +111,9 @@ const WorkExperience = () => {
                 date={`${exp.work_month} ${exp.work_year}`}
                 position={exp.position}
                 company={exp.company}
-                getClick={() => getDataExperience(exp.id)}
+                getClick={() => handleGetExperience(exp.id)}
                 updateClick={() => handleUpdateExperience(exp.id)}
-                deleteClick={() => deleteExperience(exp.id)}
+                deleteClick={() => handleDeleteExperience(exp.id)}
               />
             ))}
           </ul>

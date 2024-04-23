@@ -27,11 +27,8 @@ There are 7 pages that I working in progress.
    Landing Page before Login
    ![Landing Page](./public/screenshot/Landing-Page.png)
 
-   Landing Page as Worker
-   ![Landing Page as Worker](./public/screenshot/Landing-Page-As-Worker.png)
-
-   Landing Page as Recruiter
-   ![Landing Page as Worker](./public/screenshot/Landing-Page-As-Recruiter.png)
+   Landing Page after Login
+   ![Landing Page after Login](./public/screenshot/Landing-Page-After-Login.png)
 
 4. Home Page
 
@@ -42,11 +39,14 @@ There are 7 pages that I working in progress.
 
    The features of search bar includes:
 
-   - Search Input to find the skill name.
-     ![Search Skill](./public/screenshot/Home-Page-Search-Input-Skill.png)
+   - Search Input to find the worker name.
+     ![Search Skill](./public/screenshot/Home-Page-Search-Input.png)
 
-   - Sort Bar - so many options (some of them are work in progress)
+   - Sort Bar to sort by name or location
      ![Search Skill](./public/screenshot/Home-Page-Sort-Bar.png)
+
+   Not only search bar, there also pagination feature to find based on how much page you find the worker.
+   ![Pagination](./public/screenshot/Pagination.png)
 
 5. Worker Profile Page
 
@@ -92,18 +92,16 @@ There are 7 pages that I working in progress.
 
 ## Performance
 
-According to PageSpeed Insights, the desktop performance scored 97%, with minor issues regarding LCP. However, the mobile performance, at 52%, is concerning due to significant CLS and LCP issues. The absence of loading indicators on the website may be contributing to this discrepancy. To address this, I propose implementing loading indicators for images and other elements to enhance performance in future updates. Despite these challenges, the website remains functional on both mobile and desktop platforms.
+According to PageSpeed Insights, the desktop performance scored 97%, with minor issues regarding LCP. However, the mobile performance, at 52%, is concerning due to significant CLS and LCP issues. The absence of loading indicators on the website may be contributing to this discrepancy. To address this, I propose implementing more loading indicators for images and other elements to enhance performance in future updates. Despite these challenges, the website remains functional on both mobile and desktop platforms.
 
-<div style="display: flex; gap: 10px; justify-content: center;">
-  <img src="./public/screenshot/Performance-Mobile.png" alt="Performance Mobile">
-  <img src="./public/screenshot/Performance-Desktop.png" alt="Performance Desktop">
-</div>
+![Performance Mobile](./public/screenshot/Performance-Mobile.png)
+![Performance Desktop](./public/screenshot/Performance-Desktop.png)
 
 ## Domain to Visit Pages
 
 If you wish to view my website, please click the link provided below. Thank you very much for your interest and appreciation.
 
-[Click Here](https://react-hirejob-figma-git-main.vercel.app/)
+[Click Here](https://peworld-hirejob.vercel.app/)
 
 ## Reference
 

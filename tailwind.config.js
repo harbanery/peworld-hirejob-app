@@ -20,6 +20,14 @@ export default {
       "hirejob-ice": "#F0F5F9",
       "hirejob-light": "#F6F7F8",
       "hirejob-white": "#FFFFFF",
+      "hirejob-danger": {
+        normal: "#F32013",
+        dark: "#CA0B00",
+      },
+      "hirejob-success": {
+        normal: "	#5cb85c",
+        dark: "#408140",
+      },
     },
   },
   plugins: [],

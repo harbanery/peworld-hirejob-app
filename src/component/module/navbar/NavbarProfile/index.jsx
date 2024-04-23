@@ -7,73 +7,76 @@ import imageUserNav from "../../../../assets/img/profile-img/user-noimage.png";
 import imageNoNotif from "../../../../assets/img/icons/no-notification.png";
 import CardNotifications from "../../main/profile/CardNotifications";
 import api from "../../../../configs/api";
+import { useDispatch } from "react-redux";
+import { resetWorkers } from "../../../../configs/redux/action/workerAction";
 
-const NavbarProfile = ({ isShadow = false, popoverVisible, togglePopover }) => {
+const NavbarProfile = ({
+  isShadow = false,
+  popoverVisible,
+  togglePopover,
+  role,
+  notifHire,
+  image,
+}) => {
   const navigate = useNavigate();
-  const [role, setRole] = useState("");
-  const [notifHire, setNotifHire] = useState([]);
+  const dispatch = useDispatch();
 
-  const getRole = () => {
-    api
-      .get("/auth/check-role")
-      .then((res) => {
-        const role = res.data.data.data.role;
-        if (role === "worker") {
-          getWorker();
-          getHireFromWorker();
-        } else if (role === "recruiter") {
-          getRecruiter();
-          getHireFromRecruiter();
-        }
-        setRole(role);
-      })
-      .catch((err) => {
-        alert(err.response.data);
-        console.log(err.response);
-        navigate(`/login`);
-      });
-  };
+  // const handleNavigation = () => {
+  //   dispatch(resetWorkers());
+  // };
+  // const [role, setRole] = useState("");
+  // const [image, setImage] = useState("");
+  // const [notifHire, setNotifHire] = useState([]);
 
-  const [image, setImage] = useState("");
+  // const getRole = () => {
+  //   if (role === "worker") {
+  //     // getWorker();
+  //     getHireFromWorker();
+  //   } else {
+  //     // getRecruiter();
+  //     getHireFromRecruiter();
+  //   }
+  // };
 
-  const getWorker = () => {
-    api.get("/workers/profile").then((res) => {
-      const image = res.data.data.photo;
-      // console.log(workerData);
-      setImage(image);
-    });
-  };
+  // const getWorker = () => {
+  // api.get("/workers/profile").then((res) => {
+  //   const image = res.data.data.photo;
+  //   // console.log(workerData);
+  //   setImage(image);
+  // });
+  // };
 
-  const getHireFromWorker = () => {
-    api.get("/hire/workers").then((res) => {
-      const data = res.data.data.filter(
-        (hire) => hire.message_purpose && hire.email_request_hire
-      );
-      // console.log(data);
-      setNotifHire(data);
-    });
-  };
+  // const getHireFromWorker = () => {
+  //   api.get("/hire/workers").then((res) => {
+  //     const data = res.data.data.filter(
+  //       (hire) => hire.message_purpose && hire.email_request_hire
+  //     );
+  //     // console.log(data);
+  //     setNotifHire(data);
+  //   });
+  // };
 
-  const getRecruiter = () => {
-    api.get("/recruiters/profile").then((res) => {
-      const image = res.data.data.photo;
-      // console.log(profileData);
-      setImage(image);
-    });
-  };
+  // const getRecruiter = () => {
+  //   api.get("/recruiters/profile").then((res) => {
+  //     const image = res.data.data.photo;
+  //     // console.log(profileData);
+  //     setImage(image);
+  //   });
+  // };
 
-  const getHireFromRecruiter = () => {
-    api.get("/hire/recruiters").then((res) => {
-      const hire = res.data.data;
-      // console.log(hire);
-    });
-  };
+  // const getHireFromRecruiter = () => {
+  //   api.get("/hire/recruiters").then((res) => {
+  //     const data = res.data.data.filter(
+  //       (hire) => hire.message_purpose && hire.email_request_hire
+  //     );
+  //     // console.log(data);
+  //     setNotifHire(data);
+  //   });
+  // };
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getRole();
-    }
-  }, []);
+  // useEffect(() => {
+  //   getRole();
+  // }, []);
 
   return (
     <nav
@@ -96,26 +99,32 @@ const NavbarProfile = ({ isShadow = false, popoverVisible, togglePopover }) => {
           <div
             id="popover-content"
             className={`block absolute w-4/5 sm:w-1/2 md:w-2/5 xl:w-1/5 ${
-              !notifHire || notifHire.length <= 1 ? `h-auto` : `h-2/5`
+              role === "recruiter" && notifHire.length > 1
+                ? `h-2/5`
+                : role === "worker" && notifHire.length > 2
+                ? `h-2/5`
+                : `h-auto`
             } top-14 right-8 md:top-20 md:right-28 lg:right-48 z-10 bg-hirejob-white border border-hirejob-frost rounded-md shadow-lg transition duration-500 ${
-              !notifHire && `overflow-y-scroll`
+              notifHire && `overflow-y-scroll`
             }`}
           >
             {notifHire.length !== 0 ? (
-              notifHire.map((hire) => (
-                <CardNotifications
-                  message={hire.message_purpose}
-                  company_name={hire.recruiter_company}
-                  date={hire.created_at}
-                />
-              ))
+              <CardNotifications role={role} arrayNotif={notifHire} />
             ) : (
+              // notifHire.map((hire) => (
+              //   <CardNotifications
+              //     key={hire.id}
+              //     message={hire.message_purpose}
+              //     company_name={hire.recruiter_company}
+              //     date={hire.created_at}
+              //   />
+              // ))
               <div className="w-full h-full flex flex-col justify-center items-center gap-4 px-10 py-20">
                 <div>
                   <img className="" src={imageNoNotif} />
                 </div>
                 <p className="font-normal text-sm text-hirejob-dark">
-                  Belum ada notifikasi
+                  No Notifications Available
                 </p>
               </div>
             )}
@@ -178,6 +187,7 @@ const NavbarProfile = ({ isShadow = false, popoverVisible, togglePopover }) => {
           to={
             role === "worker" ? `/main/profile/worker` : `/main/profile/company`
           }
+          // onClick={handleNavigation}
           className="w-[32px] h-[32px] overflow-hidden rounded-[50%]"
         >
           <img className="w-full h-auto" src={image ? image : imageUserNav} />

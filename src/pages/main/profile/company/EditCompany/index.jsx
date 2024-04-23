@@ -11,86 +11,112 @@ import imageUser from "../.././../../../assets/img/profile-img/user-noimage.png"
 import Input from "../../../../../component/base/Input";
 import Button from "../../../../../component/base/Button";
 import api from "../../../../../configs/api";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getRecruiterProfile,
+  updateRecruiterProfile,
+  updateRecruiterUser,
+} from "../../../../../configs/redux/action/recruiterAction";
+import { createAssetProfile } from "../../../../../configs/redux/action/assetActions";
 
 const EditCompany = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.recruiter);
 
-  const [profile, setProfile] = useState({
-    company: "",
-    position: "",
-    city: "",
-    description: "",
-    email: "",
-    instagram: "",
-    phone: "",
-    linkedin: "",
-  });
+  // const [profile, setProfile] = useState({
+  //   company: "",
+  //   position: "",
+  //   city: "",
+  //   description: "",
+  //   email: "",
+  //   instagram: "",
+  //   phone: "",
+  //   linkedin: "",
+  //   photo: "",
+  // });
 
-  const getProfileData = () => {
-    api.get("/recruiters/profile").then((res) => {
-      const profileData = res.data.data;
-      // console.log(profileData);
-      setProfile(profileData);
-    });
+  // const getProfileData = () => {
+  //   api.get("/recruiters/profile").then((res) => {
+  //     const profileData = res.data.data;
+  //     // console.log(profileData);
+  //     setProfile(profileData);
+  //   });
+  // };
+
+  const getProfile = () => {
+    dispatch(getRecruiterProfile());
   };
 
   const handleUpdateProfile = () => {
-    api
-      .put(`/recruiters/profile`, {
-        company: profile.company,
-        position: profile.position,
-        city: profile.city,
-        description: profile.description,
-        email: profile.email,
-        instagram: profile.instagram,
-        phone: profile.phone,
-        linkedin: profile.linkedin,
-      })
-      .then(() => {
-        alert("berhasil mengubah profil kamu!");
-        getProfileData();
-      })
-      .catch((err) => {
-        alert("gagal mengubah profil kamu!");
-        console.log(err.response);
-      });
+    dispatch(updateRecruiterProfile(user));
+    // api
+    //   .put(`/recruiters/profile`, {
+    //     company: profile.company,
+    //     position: profile.position,
+    //     city: profile.city,
+    //     description: profile.description,
+    //     email: profile.email,
+    //     instagram: profile.instagram,
+    //     phone: profile.phone,
+    //     linkedin: profile.linkedin,
+    //     photo: profile.photo,
+    //   })
+    //   .then(() => {
+    //     alert("Profile successfully saved.");
+    //     getProfileData();
+    //   })
+    //   .catch((err) => {
+    //     alert("Failed to save. Please try again.");
+    //     console.log(err.response);
+    //   });
   };
 
   const handleChange = (e) => {
-    setProfile({
-      ...profile,
+    const changeUser = {
+      ...user,
       [e.target.name]: e.target.value,
-    });
+    };
+    dispatch(updateRecruiterUser(changeUser));
   };
 
-  // const handleFileSelect = (e) => {
-  //   e.preventDefault();
-  //   const file = e.target.files[0];
-  //   console.log(file);
-
-  //   const formData = new FormData();
-  //   formData.append("photo", file);
-
-  //   api
-  //     .put(`/recruiters/profile`, formData, {
-  //       headers: { "content-type": "multipart/form-data" },
-  //     })
-  //     .then((res) => {
-  //       alert("berhasil mengubah foto profil kamu!");
-  //       getProfileData();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response.data.message);
-  //       alert(`Error: ${err.response.data.message}`);
-  //     });
+  // const handleChange = (e) => {
+  //   const changeUser = {
+  //     ...user,
+  //     [e.target.name]: e.target.value,
+  //   };
+  //   dispatch(updateWorkerUser(changeUser));
   // };
 
+  const handleFileSelect = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    // console.log(file);
+
+    dispatch(createAssetProfile(file, user));
+
+    // const formData = new FormData();
+    // formData.append("file", file);
+
+    // api
+    //   .post(`/upload`, formData, {
+    //     headers: { "content-type": "multipart/form-data" },
+    //   })
+    //   .then((res) => {
+    //     const changeUser = {
+    //       ...user,
+    //       photo: res.data.data.file_url,
+    //     };
+    //     dispatch(updateRecruiterUser(changeUser));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response.data.message);
+    //     alert(`Failed to change portofolio image. Please try again.`);
+    //   });
+  };
+
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getProfileData();
-    } else {
-      navigate("/login");
-    }
+    getProfile();
   }, []);
 
   return (
@@ -102,8 +128,8 @@ const EditCompany = () => {
               <div className="w-[150px] h-[150px] mx-auto overflow-hidden rounded-[50%]">
                 <img
                   className="w-full h-auto"
-                  src={imageUser}
-                  alt={profile.company}
+                  src={user.photo ? user.photo : imageUser}
+                  alt={user.company}
                 />
               </div>
               <div className="pt-5 pb-[31px] font-semibold text-[22px] text-hirejob-gray">
@@ -117,48 +143,48 @@ const EditCompany = () => {
                 <input
                   id="img-worker-upload"
                   type="file"
-                  // onChange={handleFileSelect}
+                  onChange={handleFileSelect}
                 />
               </div>
               <h1 className="font-semibold text-[22px] mt-[13px] text-hirejob-dark">
-                {profile.company}
+                {user.company}
               </h1>
               <h2 className="font-normal text-sm mt-[10px] text-hirejob-dark">
-                {profile.position}
+                {user.position}
               </h2>
-              {profile.city && (
+              {user.city && (
                 <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm mt-[13px] text-hirejob-gray">
                   <img className=" w-4 h-auto" src={iconMap} />
-                  <span>{profile.city}</span>
+                  <span>{user.city}</span>
                 </div>
               )}
               <p className=" my-[18px] font-normal text-sm leading-6 text-hirejob-gray">
-                {profile.description}
+                {user.description}
               </p>
 
               <div className="my-9 flex flex-col justify-center items-start gap-6">
-                {profile.email && (
+                {user.email && (
                   <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm text-hirejob-gray h-6">
                     <img src={iconMail} />
-                    <span>{profile.email} </span>
+                    <span>{user.email} </span>
                   </div>
                 )}
-                {profile.instagram && (
+                {user.instagram && (
                   <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm text-hirejob-gray h-6">
                     <img src={iconInsta} />
-                    <span>{profile.instagram}</span>
+                    <span>{user.instagram}</span>
                   </div>
                 )}
-                {profile.phone && (
+                {user.phone && (
                   <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm text-hirejob-gray h-6">
                     <img src={iconPhone} />
-                    <span>{profile.phone} </span>
+                    <span>{user.phone} </span>
                   </div>
                 )}
-                {profile.linkedin && (
+                {user.linkedin && (
                   <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm text-hirejob-gray h-6">
                     <img src={iconLinkedIn} />
-                    <span>{profile.linkedin}</span>
+                    <span>{user.linkedin}</span>
                   </div>
                 )}
               </div>
@@ -170,74 +196,74 @@ const EditCompany = () => {
               isOutline={true}
               extra={`py-[15px]`}
             >
-              Batal
+              Cancel
             </Button>
           </aside>
 
           <div className="w-full md:w-3/5 xl:w-2/3 flex flex-col gap-[30px]">
             <section className="w-full rounded-lg py-4 bg-hirejob-white">
               <div className="font-semibold text-[22px] border-b border-[#C4C4C4] px-9 py-[18px] text-hirejob-dark">
-                <h1>Data diri</h1>
+                <h1>Company Information</h1>
               </div>
               <div className="py-4 px-9">
                 <Input
-                  label={`Nama Perusahaan`}
+                  label={`Company Name`}
                   name={`company`}
-                  value={profile.company}
+                  value={user.company}
                   onChange={handleChange}
-                  placeholder={`Masukan nama perusahan`}
+                  placeholder={`Company name`}
                 />
                 <Input
-                  label={`Bidang`}
+                  label={`Position`}
                   name={`position`}
-                  value={profile.position}
+                  value={user.position}
                   onChange={handleChange}
-                  placeholder={`Masukan bidang perusahaan ex : Financial`}
+                  placeholder={`Position`}
                 />
                 <Input
-                  label={`Kota`}
+                  label={`City`}
                   name={`city`}
-                  value={profile.city}
+                  value={user.city}
                   onChange={handleChange}
-                  placeholder={`Masukan kota`}
+                  placeholder={`City`}
                 />
                 <Input
-                  label={`Dekripsi singkat`}
+                  label={`Description`}
                   type={`textarea`}
                   name={`description`}
                   rows={`6`}
-                  placeholder={`Tuliskan dekripsi singkat`}
-                  value={profile.description}
+                  placeholder={`Tell us about your company in a few words`}
+                  value={user.description}
                   onChange={handleChange}
                 />
                 <Input
                   label={`Email`}
                   type="email"
                   name={`email`}
-                  value={profile.email}
+                  value={user.email}
                   onChange={handleChange}
-                  placeholder={`Masukan email`}
+                  placeholder={`Email`}
                 />
                 <Input
                   label={`Instagram`}
                   name={`instagram`}
-                  value={profile.instagram}
+                  value={user.instagram}
                   onChange={handleChange}
-                  placeholder={`Masukan nama Instagram`}
+                  placeholder={`Instagram`}
                 />
                 <Input
-                  label={`Nomor Telepon`}
+                  label={`Phone Number`}
                   name={`phone`}
-                  value={profile.phone}
+                  value={user.phone}
                   onChange={handleChange}
-                  placeholder={`Masukan nomor telepon`}
+                  placeholder={`Phone`}
                 />
                 <Input
-                  label={`Linkedin`}
+                  label={`LinkedIn`}
                   name={`linkedin`}
-                  value={profile.linkedin}
+                  value={user.linkedin}
                   onChange={handleChange}
-                  placeholder={`Masukan nama Linkedin`}
+                  placeholder={`LinkedIn`}
                 />
               </div>
             </section>
@@ -247,7 +273,7 @@ const EditCompany = () => {
               colorButton={`primary`}
               extra={`py-[15px]`}
             >
-              Simpan
+              Save
             </Button>
           </div>
         </div>

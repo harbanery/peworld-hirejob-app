@@ -5,100 +5,39 @@ import iconUpload from "../../../../../../assets/img/icons/cloud.png";
 import iconRules1 from "../../../../../../assets/img/icons/high-res-img-rules.png";
 import iconRules2 from "../../../../../../assets/img/icons/size-img-rules.png";
 import api from "../../../../../../configs/api";
+import { useDispatch } from "react-redux";
+import {
+  createPortofolio,
+  deletePortofolio,
+  readPortofolio,
+  updatePortofolio,
+} from "../../../../../../configs/redux/action/portofolioAction";
+import { createAsset } from "../../../../../../configs/redux/action/assetActions";
 
-const Portofolio = () => {
+const Portofolio = ({ myPortofolio }) => {
+  const dispatch = useDispatch();
+
   const [portofolio, setPortofolio] = useState({
     application_name: "",
     link_repository: "",
     application: "Aplikasi Mobile",
     image: "",
   });
-  const [myPortofolio, setMyPortofolio] = useState([]);
-
-  const getPortofolio = () => {
-    api.get("/portfolio").then((res) => {
-      const portofolios = res.data.data;
-      // console.log(portofolios);
-      setMyPortofolio(portofolios);
-    });
-  };
 
   const handleAddPortofolio = () => {
-    // console.log(
-    //   `${portofolio.application} ${portofolio.application_name} ${portofolio.link_repository} ${portofolio.image}`
-    // );
-    api
-      .post(`/portfolio`, {
-        application_name: portofolio.application_name,
-        link_repository: portofolio.link_repository,
-        application: portofolio.application,
-        image: portofolio.image,
-      })
-      .then(() => {
-        alert("Portfolio successfully added.");
-        setPortofolio({
-          application_name: "",
-          link_repository: "",
-          application: "Aplikasi Mobile",
-          image: "",
-        });
-        getPortofolio();
-      })
-      .catch((err) => {
-        alert("Failed to add portfolio. Please try again.");
-        console.log(err.response);
-      });
+    dispatch(createPortofolio(portofolio, setPortofolio));
   };
 
-  const getDataPortofolio = (id) => {
-    setPortofolio({
-      application_name: "",
-      link_repository: "",
-      application: "Aplikasi Mobile",
-      image: "",
-    });
-    api.get("/portfolio").then((res) => {
-      const dataExperience = res.data.data.filter((item) => item.id === id);
-      dataExperience.map((value) => {
-        setPortofolio({
-          application_name: value.application_name,
-          link_repository: value.link_repository,
-          application: value.application,
-          image: value.image,
-        });
-      });
-    });
+  const handleGetPortofolio = (id) => {
+    dispatch(readPortofolio(id, setPortofolio));
   };
 
   const handleUpdatePortofolio = (id) => {
-    api
-      .put(`/portfolio/${id}`, {
-        application_name: portofolio.application_name,
-        link_repository: portofolio.link_repository,
-        application: portofolio.application,
-        image: portofolio.image,
-      })
-      .then(() => {
-        alert("Portfolio successfully updated.");
-        setPortofolio({
-          application_name: "",
-          link_repository: "",
-          application: "Aplikasi Mobile",
-          image: "",
-        });
-        getPortofolio();
-      })
-      .catch((err) => {
-        alert("Failed to update portfolio. Please try again.");
-        console.log(err.response);
-      });
+    dispatch(updatePortofolio(id, portofolio, setPortofolio));
   };
 
-  const deletePortofolio = (id) => {
-    api.delete(`/portfolio/${id}`).then(() => {
-      alert("Portfolio successfully deleted.");
-      getPortofolio();
-    });
+  const handleDeletePortofolio = (id) => {
+    dispatch(deletePortofolio(id));
   };
 
   const handleChange = (e) => {
@@ -110,7 +49,30 @@ const Portofolio = () => {
 
   const handleFileChange = (e) => {
     e.preventDefault();
-    alert("'Click to your local file directory' still in development...");
+    const file = e.target.files[0];
+    // console.log(file);
+
+    dispatch(createAsset(file, portofolio, setPortofolio));
+
+    // const formData = new FormData();
+    // formData.append("file", file);
+
+    // api
+    //   .post(`/upload`, formData, {
+    //     headers: { "content-type": "multipart/form-data" },
+    //   })
+    //   .then((res) => {
+    //     // console.log(res.data.data.file_url);
+    //     setPortofolio({
+    //       ...portofolio,
+    //       image: res.data.data.file_url,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response.data.message);
+    //     alert(`Failed to change portofolio image. Please try again.`);
+    //   });
+    // alert("'Click to your local file directory' still in development...");
     // setPortofolio({
     //   ...portofolio,
     //   image: e.target.files[0],
@@ -126,11 +88,30 @@ const Portofolio = () => {
       for (let i = 0; i < dataTransfer.items.length; i++) {
         if (dataTransfer.items[i].kind === "file") {
           const file = dataTransfer.items[i].getAsFile();
-          console.log(file);
-          setPortofolio({
-            ...portofolio,
-            image: file,
-          });
+          // console.log(file);
+          console.log(dataTransfer.types.includes("text/uri-list"));
+
+          if (!dataTransfer.types.includes("text/uri-list")) {
+            dispatch(createAsset(file, portofolio, setPortofolio));
+            // const formData = new FormData();
+            // formData.append("file", file);
+
+            // api
+            //   .post(`/upload`, formData, {
+            //     headers: { "content-type": "multipart/form-data" },
+            //   })
+            //   .then((res) => {
+            //     console.log(res.data.data.file_url);
+            //     setPortofolio({
+            //       ...portofolio,
+            //       image: res.data.data.file_url,
+            //     });
+            //   })
+            //   .catch((err) => {
+            //     console.log(err.response.data.message);
+            //     alert(`Failed to change portofolio image. Please try again.`);
+            //   });
+          }
         }
       }
     }
@@ -150,9 +131,9 @@ const Portofolio = () => {
     e.preventDefault();
   };
 
-  useEffect(() => {
-    getPortofolio();
-  }, []);
+  // useEffect(() => {
+  //   getPortofolio();
+  // }, []);
 
   return (
     <section className="w-full rounded-lg py-4 bg-hirejob-white">
@@ -303,7 +284,7 @@ const Portofolio = () => {
               >
                 <div
                   className={`flex flex-col cursor-pointer`}
-                  onClick={() => getDataPortofolio(porfol.id)}
+                  onClick={() => handleGetPortofolio(porfol.id)}
                 >
                   {porfol.application_name && (
                     <span className="font-bold text-base pb-1">
@@ -335,7 +316,7 @@ const Portofolio = () => {
 
                 {deletePortofolio && (
                   <button
-                    onClick={() => deletePortofolio(porfol.id)}
+                    onClick={() => handleDeletePortofolio(porfol.id)}
                     className="w-full font-semibold text-xs mt-1 py-1 rounded bg-hirejob-white text-hirejob-yellow-normal hover:bg-hirejob-yellow-normal hover:text-hirejob-white transition duration-200"
                   >
                     Delete

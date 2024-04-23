@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import style from "../../login.module.css";
-import api from "../../../../configs/api";
-import Dashboard from "../../../../component/module/auth/Dashboard";
-import AuthDesc from "../../../../component/module/auth/AuthDesc";
-import Input from "../../../../component/base/Input";
-import Button from "../../../../component/base/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { login, reset } from "../../../configs/redux/action/authAction";
+import style from "../auth.module.css";
+import Dashboard from "../../../component/module/auth/Dashboard";
+import AuthDesc from "../../../component/module/auth/AuthDesc";
+import Input from "../../../component/base/Input";
+import Button from "../../../component/base/Button";
+import Modal from "../../../component/base/Modal";
 
-const LoginWorker = () => {
+const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading, response } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
     email: "",
@@ -17,24 +21,13 @@ const LoginWorker = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    api({
-      method: "POST",
-      url: `/auth/login`,
-      data: {
-        email: form.email,
-        password: form.password,
-      },
-    })
-      .then((res) => {
-        const { token, refreshToken } = res.data.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("resfreshToken", refreshToken);
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    dispatch(login(form, navigate));
   };
+
+  const handleNavigate = () => {
+    dispatch(reset());
+  };
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -46,6 +39,11 @@ const LoginWorker = () => {
     <main
       className={`container h-screen max-w-full flex items-center lg:block py-[39px] ${style.bgAuthWorker}`}
     >
+      <Modal
+        isOpen={response.open}
+        error={response.error}
+        message={response.message}
+      />
       <div className="flex mx-5 md:mx-[75px] rounded lg:rounded-none bg-[#ffffffd3] lg:bg-hirejob-light lg:bg-none shadow-md lg:shadow-none px-5 lg:px-0 ">
         <Dashboard />
 
@@ -75,12 +73,21 @@ const LoginWorker = () => {
               <Link
                 className="text-hirejob-yellow-normal hover:text-hirejob-yellow-dark"
                 to="/reset-password"
+                onClick={handleNavigate}
               >
                 Forgot Password?
               </Link>
             </h6>
-            <Button colorButton={"secondary"} extra="p-[15px] my-4">
-              Sign In
+            <Button
+              colorButton={"secondary"}
+              extra="p-[15px] my-4 h-[50px]"
+              isDisabled={loading}
+            >
+              {!loading ? (
+                `Sign In`
+              ) : (
+                <div className={`mx-auto ${style.loader}`}></div>
+              )}
             </Button>
           </form>
           <h6 className="font-normal text-base mt-3 leading-[21.79px] block text-center">
@@ -88,6 +95,7 @@ const LoginWorker = () => {
             <Link
               className="text-hirejob-yellow-normal hover:text-hirejob-yellow-dark"
               to="/register"
+              onClick={handleNavigate}
             >
               Sign up here.
             </Link>
@@ -98,4 +106,4 @@ const LoginWorker = () => {
   );
 };
 
-export default LoginWorker;
+export default Login;

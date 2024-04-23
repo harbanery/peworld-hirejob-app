@@ -5,7 +5,6 @@ import Tag from "../../../../base/Tag";
 import Button from "../../../../base/Button";
 
 const CardUser = ({
-  key,
   onClick,
   image = null,
   name = "Unknown",
@@ -26,21 +25,21 @@ const CardUser = ({
       </div>
       <div className="text-center md:text-left w-4/5 md:w-1/2 xl:w-2/3 2xl:w-2/3">
         <h1 className="font-semibold text-[22px] my-2 text-hirejob-dark">
-          {name !== null ? name : "Unknown"}
+          {name ? name : "Unknown"}
         </h1>
         <h2 className="font-normal text-sm my-2 text-hirejob-gray">
-          {job_desk !== null ? job_desk : "Unknown"}
+          {job_desk ? job_desk : "Unknown"}
         </h2>
         <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm text-hirejob-gray">
           <img className=" w-4 h-auto" src={iconMap} />
-          <span>{domicile !== null ? domicile : "Somewhere"}</span>
+          <span>{domicile ? domicile : "Somewhere"}</span>
         </div>
         {skills.length !== 0 ? (
           <ul className="font-semibold text-xs mt-[10px] flex flex-row justify-center md:justify-start flex-wrap text-hirejob-white">
             {skills
               .filter((_skill, i) => i < 5)
-              .map((skill) => (
-                <Tag key={key}>{skill}</Tag>
+              .map((skill, i) => (
+                <Tag key={i}>{skill}</Tag>
               ))}
             {skills.length > 5 && <Tag>{`+${skills.length - 6}`}</Tag>}
           </ul>

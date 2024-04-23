@@ -8,20 +8,27 @@ import Input from "../../../component/base/Input";
 import Tag from "../../../component/base/Tag";
 import Button from "../../../component/base/Button";
 import api from "../../../configs/api";
+import { useDispatch, useSelector } from "react-redux";
+import { createHire } from "../../../configs/redux/action/hireAction";
+import { getWorkerProfile } from "../../../configs/redux/action/workerAction";
+import { getSkills } from "../../../configs/redux/action/skillAction";
 
 const Hire = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { workerId } = useParams();
-  const [role, setRole] = useState("");
-  const [workerSkills, setWorkerSkills] = useState([]);
-  const [worker, setWorker] = useState({
-    id: "",
-    name: "",
-    job_desk: "",
-    domicile: "",
-    workplace: "",
-    description: "",
-  });
+  // const [role, setRole] = useState("");
+  const { role } = useSelector((state) => state.checkRole);
+  const { user, profile } = useSelector((state) => state.worker);
+  // const [workerSkills, setWorkerSkills] = useState([]);
+  // const [worker, setWorker] = useState({
+  //   id: "",
+  //   name: "",
+  //   job_desk: "",
+  //   domicile: "",
+  //   workplace: "",
+  //   description: "",
+  // });
 
   const [hire, setHire] = useState({
     message_purpose: "project",
@@ -32,70 +39,73 @@ const Hire = () => {
     description: "",
   });
 
-  const [recruiter, setRecruiter] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
+  // const [recruiter, setRecruiter] = useState({
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  // });
 
-  const getRole = () => {
-    api.get("/auth/check-role").then((res) => {
-      const role = res.data.data.data.role;
-      // console.log(role);
-      if (role === "recruiter") {
-        getWorkerDataId(workerId);
-        getWorkerSkillsId(workerId);
-        getRecruiter();
-      } else {
-        navigate(`/`);
-      }
-    });
-  };
+  // const getRole = () => {
+  //   api.get("/auth/check-role").then((res) => {
+  //     const role = res.data.data.data.role;
+  //     // console.log(role);
+  //     if (role === "recruiter") {
+  //       getWorkerDataId(workerId);
+  //       getWorkerSkillsId(workerId);
+  //       getRecruiter();
+  //     } else {
+  //       navigate(`/`);
+  //     }
+  //   });
+  // };
 
   const getWorkerDataId = (id) => {
-    api.get(`/workers/${id}`).then((res) => {
-      const workerData = res.data.data;
-      //   console.log(workerData);
-      setWorker(workerData);
-    });
+    dispatch(getWorkerProfile(id));
+    // api.get(`/workers/${id}`).then((res) => {
+    //   const workerData = res.data.data;
+    //   //   console.log(workerData);
+    //   setWorker(workerData);
+    // });
   };
 
   const getWorkerSkillsId = (id) => {
-    api.get(`/skills/${id}`).then((res) => {
-      const skills = res.data.data;
-      //   console.log(skills);
-      setWorkerSkills(skills);
-    });
+    dispatch(getSkills(id));
+    // api.get(`/skills/${id}`).then((res) => {
+    //   const skills = res.data.data;
+    //   //   console.log(skills);
+    //   setWorkerSkills(skills);
+    // });
   };
 
-  const getRecruiter = () => {
-    api.get("/recruiters/profile").then((res) => {
-      const profileData = res.data.data;
-      //   console.log(profileData);
-      setRecruiter(profileData);
-    });
-  };
+  // const getRecruiter = () => {
+  //   api.get("/recruiters/profile").then((res) => {
+  //     const profileData = res.data.data;
+  //     //   console.log(profileData);
+  //     setRecruiter(profileData);
+  //   });
+  // };
 
   const handleAddHire = () => {
-    api
-      .post(`/hire`, {
-        message_purpose: hire.message_purpose,
-        worker_id: worker.id,
-        name: hire.name,
-        email: hire.email,
-        phone: hire.phone,
-        desciption: hire.description,
-      })
-      .then(() => {
-        alert(
-          `berhasil dikirimkan ke ${worker.name}! tunggu pekerja untuk menerima tawaran Anda.`
-        );
-        navigate(`/main/home`);
-      })
-      .catch((err) => {
-        alert("gagal dikirimkan!");
-        console.log(err.response);
-      });
+    dispatch(createHire(hire, workerId, navigate));
+    // api
+    //   .post(`/hire`, {
+    //     message_purpose: hire.message_purpose,
+    //     worker_id: worker.id,
+    //     name: hire.name,
+    //     email: hire.email,
+    //     phone: hire.phone,
+    //     desciption: hire.description,
+    //   })
+    //   .then(() => {
+    //     alert(
+    //       `Successfully sent to ${worker.name}! Now wait for the worker to accept your offer.`
+    //     );
+    //     navigate(`/main/home`);
+    //   })
+    //   .catch((err) => {
+    //     alert("Failed to send. Please try again later.");
+    //     console.log(err.response);
+    //   });
   };
 
   const handleChange = (e) => {
@@ -106,10 +116,11 @@ const Hire = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getRole();
+    if (role === "recruiter") {
+      getWorkerDataId(workerId);
+      getWorkerSkillsId(workerId);
     } else {
-      navigate(`/login`);
+      navigate(`/main/home`);
     }
   }, []);
   return (
@@ -122,40 +133,40 @@ const Hire = () => {
                 <div className="w-[150px] md:w-[300px] lg:w-[150px] h-[150px] md:h-[300px] lg:h-[150px] overflow-hidden rounded-[50%]">
                   <img
                     className="w-full h-auto"
-                    src={worker.photo ? worker.photo : imageUser}
-                    alt={worker.name}
+                    src={user.photo ? user.photo : imageUser}
+                    alt={user.name}
                   />
                 </div>
               </div>
               <h1 className="font-semibold text-[22px] mt-[13px] text-hirejob-dark">
-                {worker.name}
+                {user.name ? user.name : "Unknown"}
               </h1>
               <h2 className="font-normal text-sm mt-[10px] text-hirejob-dark">
-                {worker.job_desk}
+                {user.job_desk}
               </h2>
 
-              {worker.domicile && (
+              {user.domicile && (
                 <div className="flex justify-center md:justify-start items-center gap-[11px] font-normal text-sm mt-[13px] text-hirejob-gray">
                   <img className=" w-4 h-auto" src={iconMap} />
-                  <span>{worker.domicile ? worker.domicile : "Somewhere"}</span>
+                  <span>{user.domicile ? user.domicile : "Somewhere"}</span>
                 </div>
               )}
 
               <h3 className="font-normal text-sm mt-[13px] text-hirejob-gray">
-                {worker.workplace}
+                {user.workplace}
               </h3>
 
               <p className=" my-[18px] font-normal text-sm leading-6 text-hirejob-gray">
-                {worker.description}
+                {user.description}
               </p>
 
-              {workerSkills.length !== 0 && (
+              {profile.skills.length !== 0 && (
                 <>
                   <h1 className="font-semibold text-[22px] mt-[13px] text-hirejob-dark">
                     Skill
                   </h1>
                   <ul className="font-semibold text-xs mt-[10px] flex flex-row justify-center md:justify-start flex-wrap text-hirejob-white">
-                    {workerSkills.map((skill) => (
+                    {profile.skills.map((skill) => (
                       <Tag key={skill.id}>{skill.skill_name}</Tag>
                     ))}
                   </ul>
@@ -166,16 +177,16 @@ const Hire = () => {
 
           <section className="w-full lg:w-3/5 xl:w-2/3 rounded-lg xl:pr-36">
             <h1 className=" font-semibold text-[32px]">
-              {`Hubungi ${worker.name}`}
+              {`Hire ${user.name ? user.name : "Someone"}`}
             </h1>
             <p className="font-normal text-lg text-hirejob-slate mt-4 my-12">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-              euismod ipsum et dui rhoncus auctor.
+              After that, feel free to contact for any additional details or
+              inquiries.
             </p>
 
             <div className="flex flex-col flex-nowrap py-4">
               <span className="font-normal text-xs text-hirejob-gray mb-1">
-                Tujuan tentang pesan ini
+                Message Purpose
               </span>
               <select
                 className="w-full h-[50px] rounded px-[15px] border border-hirejob-frost font-normal text-sm text-hirejob-gray"
@@ -189,11 +200,11 @@ const Hire = () => {
             </div>
 
             <Input
-              label={`Nama Lengkap`}
+              label={`Full Name`}
               name={`name`}
               value={hire.name}
               onChange={handleChange}
-              placeholder={`Masukkan nama lengkap`}
+              placeholder={`Enter your full name`}
             />
 
             <Input
@@ -201,25 +212,25 @@ const Hire = () => {
               name={`email`}
               value={hire.email}
               onChange={handleChange}
-              placeholder={`Masukkan email`}
+              placeholder={`Enter your email`}
             />
 
             <Input
-              label={`No handphone`}
+              label={`Phone Number`}
               name={`phone`}
               value={hire.phone}
               onChange={handleChange}
-              placeholder={`Masukkan no telepon`}
+              placeholder={`Enter your phone number`}
             />
 
             <Input
-              label={`Dekripsi singkat`}
+              label={`Job Brief`}
               type={`textarea`}
               name={`description`}
               value={hire.description}
               onChange={handleChange}
               rows={`10`}
-              placeholder={`Tuliskan dekripsi singkat`}
+              placeholder={`Describe the job briefly`}
             />
 
             <Button

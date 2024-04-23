@@ -17,3 +17,7 @@ body {
   outline: none;
   text-decoration: none;
 }
+
+.slick-slide > div {
+  margin: 0 1rem;
+}

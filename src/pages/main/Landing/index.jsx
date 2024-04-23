@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import style from "./landing.module.css";
+import { checkRole } from "../../../configs/redux/action/checkRoleAction";
+import { logout } from "../../../configs/redux/action/authAction";
 import imageLanding1 from "../../../assets/img/landing-page-1.png";
 import imageLanding2 from "../../../assets/img/landing-page-2.png";
 import imageLanding3 from "../../../assets/img/landing-page-3.png";
+import arrowIconLeft from "../../../assets/img/icons/prev.png";
+import arrowIconRight from "../../../assets/img/icons/next.png";
 import imageUser1 from "../../../assets/img/profile-img/user-1.png";
 import imageUser2 from "../../../assets/img/profile-img/user-2.png";
 import imageUser3 from "../../../assets/img/profile-img/user-3.png";
 import tickLogo1 from "../../../assets/img/icons/tick_purple.png";
 import tickLogo2 from "../../../assets/img/icons/tick_yellow.png";
-import arrowIconLeft from "../../../assets/img/icons/prev.png";
-import arrowIconRight from "../../../assets/img/icons/next.png";
 import NavbarLanding from "../../../component/module/navbar/NavbarLanding";
 import Footer from "../../../component/module/Footer";
 import Button from "../../../component/base/Button";
+import ReviewSlider from "../../../component/module/main/landing/ReviewSlider";
 
 const Landing = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLogged } = useSelector((state) => state.auth);
+  const { role } = useSelector((state) => state.checkRole);
+
+  const handleLogout = () => {
+    dispatch(logout(navigate));
+  };
+
+  useEffect(() => {
+    dispatch(checkRole());
+  }, []);
+
   return (
     <>
-      <NavbarLanding />
+      <NavbarLanding auth={isLogged} role={role} handleLogout={handleLogout} />
 
       <main>
         <div className="container max-w-full px-4 md:px-16 lg:px-[150px] py-5">
@@ -134,7 +152,10 @@ const Landing = () => {
             </div>
           </section>
         </div>
-        <div className="block px-4 md:px-16 xl:px-[150px] py-28 bg-hirejob-ice">
+
+        <ReviewSlider />
+
+        {/* <div className="block px-4 md:px-16 xl:px-[150px] py-28 bg-hirejob-ice">
           <div className="text-center mb-[52px]">
             <h1 className="font-semibold text-4xl">
               Their opinion about peworld
@@ -147,7 +168,10 @@ const Landing = () => {
                 src={arrowIconLeft}
               />
             </div>
-            <div className="flex flex-col items-center w-2/3 md:w-2/5 lg:w-1/3 2xl:w-1/4 px-[3%] py-[2%] bg-hirejob-white shadow-md">
+            <div
+              id="Card"
+              className="flex flex-col items-center w-2/3 md:w-2/5 lg:w-1/3 2xl:w-1/4 px-[3%] py-[2%] bg-hirejob-white shadow-md"
+            >
               <div className="my-3">
                 <img
                   className=" max-w-28 h-auto border-[10px] border-hirejob-yellow-dark rounded-full"
@@ -212,7 +236,8 @@ const Landing = () => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
+
         <div className="container max-w-full p-4 md:p-16 lg:p-[150px]">
           <section className="flex items-center justify-center">
             <div

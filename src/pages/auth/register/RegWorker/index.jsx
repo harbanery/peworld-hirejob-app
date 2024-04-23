@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import style from "../../login.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../../../configs/redux/action/workerAction";
+import style from "../../auth.module.css";
 import api from "../../../../configs/api";
 import Dashboard from "../../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../../component/module/auth/AuthDesc";
 import Input from "../../../../component/base/Input";
 import Button from "../../../../component/base/Button";
+import Modal from "../../../../component/base/Modal";
+import { reset } from "../../../../configs/redux/action/authAction";
 
 const RegWorker = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading, response } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
     email: "",
@@ -19,27 +25,13 @@ const RegWorker = () => {
   });
 
   const handleRegister = () => {
-    if (form.password === form.confirmPassword) {
-      api
-        .post("/workers/register", {
-          email: form.email,
-          password: form.password,
-          name: form.name,
-          phone: form.phone,
-        })
-        .then(() => {
-          alert("Sign up successfully.");
-          navigate("/login");
-        })
-        .catch((err) => {
-          console.log(err.response);
-          alert(`Sign up failed. Try again!
-          
-          
-          Error: ${err.response.data.message}`);
-        });
-    }
+    dispatch(register(form, navigate));
   };
+
+  const handleNavigate = () => {
+    dispatch(reset());
+  };
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -51,6 +43,11 @@ const RegWorker = () => {
     <main
       className={`container max-w-full flex items-center lg:block py-[39px] ${style.bgAuthWorker}`}
     >
+      <Modal
+        isOpen={response.open}
+        error={response.error}
+        message={response.message}
+      />
       <div className="flex mx-5 md:mx-[75px] rounded lg:rounded-none bg-[#ffffffd3] lg:bg-hirejob-light lg:bg-none shadow-md lg:shadow-none px-5 lg:px-0 ">
         <Dashboard />
 
@@ -103,15 +100,21 @@ const RegWorker = () => {
           <Button
             onClick={handleRegister}
             colorButton={"secondary"}
-            extra="p-[15px] my-4"
+            extra="p-[15px] my-4 h-[50px]"
+            isDisabled={loading}
           >
-            Sign Up
+            {!loading ? (
+              `Sign Up`
+            ) : (
+              <div className={`mx-auto ${style.loader}`}></div>
+            )}
           </Button>
           <h6 className="font-normal text-base mt-3 leading-[21.79px] block text-center">
             Do you already have an account?{" "}
             <Link
               className="text-hirejob-yellow-normal hover:text-hirejob-yellow-dark"
               to="/login"
+              onClick={handleNavigate}
             >
               Sign in here.
             </Link>

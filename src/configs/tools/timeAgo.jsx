@@ -5,41 +5,46 @@ const TimeAgo = ({ date }) => {
 
   useEffect(() => {
     const calculateTimeAgo = () => {
-      const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+      const secondsDiff = Math.floor((new Date() - new Date(date)) / 1000);
 
-      let interval = Math.floor(seconds / 31536000);
+      if (secondsDiff <= 0) {
+        setTimeAgo("Just now"); // Handle future dates
+        return;
+      }
+
+      let interval = Math.floor(secondsDiff / 31536000);
       if (interval >= 1) {
         setTimeAgo(`${interval} year${interval === 1 ? "" : "s"} ago`);
         return;
       }
 
-      interval = Math.floor(seconds / 2592000);
+      interval = Math.floor(secondsDiff / 2592000);
       if (interval >= 1) {
         setTimeAgo(`${interval} month${interval === 1 ? "" : "s"} ago`);
         return;
       }
 
-      interval = Math.floor(seconds / 86400);
+      interval = Math.floor(secondsDiff / 86400);
       if (interval >= 1) {
         setTimeAgo(`${interval} day${interval === 1 ? "" : "s"} ago`);
         return;
       }
 
-      interval = Math.floor(seconds / 3600);
+      interval = Math.floor(secondsDiff / 3600);
       if (interval >= 1) {
         setTimeAgo(`${interval} hour${interval === 1 ? "" : "s"} ago`);
         return;
       }
 
-      interval = Math.floor(seconds / 60);
+      interval = Math.floor(secondsDiff / 60);
       if (interval >= 1) {
         setTimeAgo(`${interval} minute${interval === 1 ? "" : "s"} ago`);
         return;
       }
 
       setTimeAgo(
-        `${Math.floor(seconds)} second${
-          Math.floor(seconds) === 1 ? "" : "s"
+        `${Math.floor(secondsDiff)} second${
+          Math.floor(secondsDiff) === 1 ? "" : "s"
         } ago`
       );
     };
@@ -53,7 +58,7 @@ const TimeAgo = ({ date }) => {
     return () => clearInterval(timer);
   }, [date]);
 
-  return <>{timeAgo}</>;
+  return timeAgo;
 };
 
 export default TimeAgo;
