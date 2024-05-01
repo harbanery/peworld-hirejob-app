@@ -3,7 +3,7 @@ import Dashboard from "../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../component/module/auth/AuthDesc";
 import Input from "../../../component/base/Input";
 import Button from "../../../component/base/Button";
-import style from "../auth.module.css";
+import style from "../../../styles/pages/auth.module.css";
 
 const ConfirmPassword = () => {
   return (

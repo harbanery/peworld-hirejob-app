@@ -7,7 +7,6 @@ import iconPhone from "../../../assets/img/icons/phone.png";
 import Input from "../../../component/base/Input";
 import Tag from "../../../component/base/Tag";
 import Button from "../../../component/base/Button";
-import api from "../../../configs/api";
 import { useDispatch, useSelector } from "react-redux";
 import { createHire } from "../../../configs/redux/action/hireAction";
 import { getWorkerProfile } from "../../../configs/redux/action/workerAction";

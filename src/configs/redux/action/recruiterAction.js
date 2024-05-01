@@ -1,4 +1,4 @@
-import api from "../../axios/api";
+import api from "../../../services/api";
 
 const validation_password = (form) => {
   return new Promise((resolve, reject) => {

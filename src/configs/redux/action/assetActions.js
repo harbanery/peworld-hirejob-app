@@ -1,4 +1,4 @@
-import api from "../../axios/api";
+import api from "../../../services/api";
 import { updateRecruiterUser } from "./recruiterAction";
 
 export const createAsset = (file, state, setState) => async (dispatch) => {

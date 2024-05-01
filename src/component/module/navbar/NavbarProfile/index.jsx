@@ -6,7 +6,6 @@ import iconMail from "../../../../assets/img/icons/mail.png";
 import imageUserNav from "../../../../assets/img/profile-img/user-noimage.png";
 import imageNoNotif from "../../../../assets/img/icons/no-notification.png";
 import CardNotifications from "../../main/profile/CardNotifications";
-import api from "../../../../configs/api";
 import { useDispatch } from "react-redux";
 import { resetWorkers } from "../../../../configs/redux/action/workerAction";
 

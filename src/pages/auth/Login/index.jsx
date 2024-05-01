@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, reset } from "../../../configs/redux/action/authAction";
-import style from "../auth.module.css";
+import style from "../../../styles/pages/auth.module.css";
+import loader from "../../../styles/components/loading.module.css";
 import Dashboard from "../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../component/module/auth/AuthDesc";
 import Input from "../../../component/base/Input";
@@ -86,7 +87,7 @@ const Login = () => {
               {!loading ? (
                 `Sign In`
               ) : (
-                <div className={`mx-auto ${style.loader}`}></div>
+                <div className={`mx-auto ${loader.loaderDotsl21}`}></div>
               )}
             </Button>
           </form>

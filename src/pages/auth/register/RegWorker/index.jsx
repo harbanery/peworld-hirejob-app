@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../../../configs/redux/action/workerAction";
-import style from "../../auth.module.css";
-import api from "../../../../configs/api";
+import style from "../../../../styles/pages/auth.module.css";
+import loader from "../../../../styles/components/loading.module.css";
 import Dashboard from "../../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../../component/module/auth/AuthDesc";
 import Input from "../../../../component/base/Input";
 import Button from "../../../../component/base/Button";
 import Modal from "../../../../component/base/Modal";
 import { reset } from "../../../../configs/redux/action/authAction";
+import { validateRegister } from "../../../../utils/validation";
 
 const RegWorker = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
   const { loading, response } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
@@ -24,8 +26,25 @@ const RegWorker = () => {
     confirmPassword: "",
   });
 
-  const handleRegister = () => {
-    dispatch(register(form, navigate));
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const errors = {};
+
+    // Memvalidasi setiap input
+    Object.keys(form).forEach((key) => {
+      const errorMessage = validateRegister(key, form[key]);
+      if (errorMessage) {
+        errors[key] = errorMessage;
+      }
+    });
+
+    if (Object.keys(errors).length === 0) {
+      // Form is valid, submit data
+      dispatch(register(form, navigate));
+    } else {
+      // Form is invalid, set errors
+      setErrors(errors);
+    }
   };
 
   const handleNavigate = () => {
@@ -33,9 +52,17 @@ const RegWorker = () => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    const errorMessage = validateRegister(name, value);
+
+    setErrors({
+      ...errors,
+      [name]: errorMessage,
+    });
+
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -63,6 +90,7 @@ const RegWorker = () => {
             value={form.name}
             onChange={handleChange}
             placeholder="Enter your full name"
+            validation={errors.name}
           />
           <Input
             label="Email Address"
@@ -71,6 +99,7 @@ const RegWorker = () => {
             value={form.email}
             onChange={handleChange}
             placeholder="Enter your email"
+            validation={errors.email}
           />
           <Input
             label="Phone Number"
@@ -79,6 +108,7 @@ const RegWorker = () => {
             value={form.phone}
             onChange={handleChange}
             placeholder="Enter your phone number"
+            validation={errors.phone}
           />
           <Input
             label="Password"
@@ -87,6 +117,7 @@ const RegWorker = () => {
             value={form.password}
             onChange={handleChange}
             placeholder="Enter your password"
+            validation={errors.password}
           />
           <Input
             label="Confirm Password"
@@ -95,6 +126,7 @@ const RegWorker = () => {
             value={form.confirmPassword}
             onChange={handleChange}
             placeholder="Re-enter your password"
+            validation={errors.confirmPassword}
           />
           <div className="my-3"></div>
           <Button
@@ -106,7 +138,7 @@ const RegWorker = () => {
             {!loading ? (
               `Sign Up`
             ) : (
-              <div className={`mx-auto ${style.loader}`}></div>
+              <div className={`mx-auto ${loader.loaderDotsl21}`}></div>
             )}
           </Button>
           <h6 className="font-normal text-base mt-3 leading-[21.79px] block text-center">

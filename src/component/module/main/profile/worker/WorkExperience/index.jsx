@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Input from "../../../../../base/Input";
 import Button from "../../../../../base/Button";
 import TagExtra from "../../../../../base/TagExtra";
-import currentMonthYear from "../../../../../../configs/tools/currentMonthYear";
+import { currentMonthYear } from "../../../../../../utils/helper";
 import { useDispatch } from "react-redux";
 import {
   createExperience,

@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import imageLogo from "../../../../assets/img/header-logo.png";
 import Button from "../../../base/Button";
 
-const NavbarLanding = ({ auth = false, role = "", handleLogout }) => {
-  const [classNav, setClassNav] = useState("h-0");
-
+const NavbarLanding = ({
+  auth = false,
+  role = "",
+  popoverVisible,
+  togglePopover,
+  handleLogout,
+}) => {
   return (
     <>
       {!auth ? (
-        <nav className="px-4 md:px-16 lg:px-[150px] py-5 md:py-[45px] flex justify-between items-center">
+        <nav className="px-4 md:px-16 lg:px-[150px] py-5 md:py-[45px] flex justify-between items-center relative">
           <Link to={`/`}>
             <img
               className="md:w-auto w-24"
@@ -46,64 +50,52 @@ const NavbarLanding = ({ auth = false, role = "", handleLogout }) => {
                 Sign Up
               </Button>
             </NavLink>
-            <button
-              onClick={() => setClassNav("h-full")}
-              className=" font-bold text-2xl block md:hidden text-hirejob-purple-normal hover:text-hirejob-purple-dark"
-            >
-              &#9776;
-            </button>
-            {/* <Button
-              onClick={() => setClassNav("h-full")}
+            <Button
+              onClick={togglePopover}
               colorButton={`primary`}
-              size="text-lg"
+              isOutline={true}
+              size="text-2xl"
               extra={`block md:hidden py-[10px] px-[15px]`}
             >
               &#9776;
-            </Button> */}
-          </div>
-          <div
-            className={`w-full ${classNav} md:h-0 fixed z-[1] top-0 left-0 bg-[#fffffff1] text-hirejob-purple-normal overflow-hidden transition duration-500`}
-          >
-            <button
-              onClick={() => setClassNav("h-0")}
-              className="font-bold text-6xl block p-2 absolute top-5 right-10 text-hirejob-purple-normal hover:text-hirejob-purple-dark focus:text-hirejob-purple-dark transition duration-300 "
-            >
-              &times;
-            </button>
-            <div className="relative top-1/4 w-full text-center mt-8">
-              <NavLink to={`/login`}>
-                <Button
-                  colorButton={`primary`}
-                  size="text-2xl"
-                  isBorder={true}
-                  isOutline={true}
-                  isWidthFull={false}
-                  extra={`w-4/5 my-1 leading-6 p-[10px]`}
-                >
-                  Sign In
-                </Button>
-              </NavLink>
-              <NavLink to={`/register`}>
-                <Button
-                  colorButton={`primary`}
-                  size="text-2xl"
-                  isBorder={true}
-                  isWidthFull={false}
-                  extra={`w-4/5 my-1 leading-6 p-[10px]`}
-                >
-                  Sign Up
-                </Button>
-              </NavLink>
-              <NavLink to={`/recruiter/register`}>
-                <span className="inline-block font-medium text-3xl mt-5 text-hirejob-purple-normal hover:text-hirejob-purple-dark after:content-[''] after:block after:py-0 after:border-b-2 after:scale-x-0 after:transition after:ease-linear after:duration-200 after:hover:scale-x-100">
-                  Recruiter Site
-                </span>
-              </NavLink>
-            </div>
+            </Button>
+            {popoverVisible && (
+              <div
+                id="popover-content"
+                className="block md:hidden absolute w-1/2 sm:w-1/2 md:w-2/5 xl:w-1/5 h-auto p-1 top-16 right-4 md:top-20 md:right-28 lg:right-48 z-10 bg-hirejob-white border border-hirejob-frost rounded-md shadow-lg transition duration-500"
+              >
+                <NavLink to={`/login`}>
+                  <Button
+                    colorButton={`primary`}
+                    isBorder={true}
+                    isOutline={true}
+                    extra={`leading-6 px-[10px] py-[10px] mb-1`}
+                  >
+                    Sign In
+                  </Button>
+                </NavLink>
+                <NavLink to={`/register`}>
+                  <Button
+                    colorButton={`primary`}
+                    isBorder={true}
+                    extra={`leading-6 px-[10px] py-[10px]`}
+                  >
+                    Sign Up
+                  </Button>
+                </NavLink>
+                <NavLink to={`/recruiter/register`}>
+                  <div className=" w-full py-[10px] text-center">
+                    <span className="font-semibold text-base text-hirejob-purple-normal hover:text-hirejob-purple-dark after:content-[''] after:block after:py-0 after:border-b-2 after:scale-x-0 after:transition after:ease-linear after:duration-200 after:hover:scale-x-[.6]">
+                      Recruiter Site
+                    </span>
+                  </div>
+                </NavLink>
+              </div>
+            )}
           </div>
         </nav>
       ) : (
-        <nav className="px-4 md:px-16 lg:px-[150px] py-5 md:py-[45px] flex justify-between items-center">
+        <nav className="px-4 md:px-16 lg:px-[150px] py-5 md:py-[45px] flex justify-between items-center relative">
           <div className="flex justify-between items-center gap-12 md:gap-16 xl:gap-36">
             <Link to={`/`}>
               <img
@@ -147,60 +139,46 @@ const NavbarLanding = ({ auth = false, role = "", handleLogout }) => {
             >
               Sign Out
             </Button>
-            <button
-              onClick={() => setClassNav("h-full")}
-              className=" font-bold text-2xl block md:hidden text-hirejob-purple-normal hover:text-hirejob-purple-dark"
-            >
-              &#9776;
-            </button>
-            {/* <Button
-              onClick={() => setClassNav("h-full")}
+            <Button
+              onClick={togglePopover}
               colorButton={`primary`}
-              size="text-lg"
+              isOutline={true}
+              size="text-2xl"
               extra={`block md:hidden py-[10px] px-[15px]`}
             >
               &#9776;
-            </Button> */}
-          </div>
-          <div
-            className={`w-full ${classNav} md:h-0 fixed z-[1] top-0 left-0 bg-[#fffffff1] text-hirejob-purple-normal overflow-hidden transition duration-500`}
-          >
-            <button
-              onClick={() => setClassNav("h-0")}
-              className="font-bold text-6xl block p-2 absolute top-5 right-10 text-hirejob-purple-normal hover:text-hirejob-purple-dark focus:text-hirejob-purple-dark transition duration-300 "
-            >
-              &times;
-            </button>
-            <div className="relative top-1/4 w-full text-center mt-8">
-              <NavLink
-                to={
-                  role === "worker"
-                    ? `/main/profile/worker`
-                    : `/main/profile/company`
-                }
+            </Button>
+            {popoverVisible && (
+              <div
+                id="popover-content"
+                className="block md:hidden absolute w-1/2 sm:w-1/2 md:w-2/5 xl:w-1/5 h-auto p-1 top-16 right-4 md:top-20 md:right-28 lg:right-48 z-10 bg-hirejob-white border border-hirejob-frost rounded-md shadow-lg transition duration-500"
               >
+                <NavLink
+                  to={
+                    role === "worker"
+                      ? `/main/profile/worker`
+                      : `/main/profile/company`
+                  }
+                >
+                  <Button
+                    colorButton={`primary`}
+                    isBorder={true}
+                    extra={`leading-6 px-[10px] py-[10px] mb-1`}
+                  >
+                    Profile
+                  </Button>
+                </NavLink>
                 <Button
                   colorButton={`primary`}
-                  size="text-2xl"
+                  onClick={handleLogout}
                   isBorder={true}
-                  isWidthFull={false}
-                  extra={`w-4/5 my-1 leading-6 p-[10px]`}
+                  isOutline={true}
+                  extra={`leading-6 px-[10px] py-[10px]`}
                 >
-                  Profile
+                  Sign Out
                 </Button>
-              </NavLink>
-              <Button
-                colorButton={`primary`}
-                onClick={handleLogout}
-                size="text-2xl"
-                isBorder={true}
-                isOutline={true}
-                isWidthFull={false}
-                extra={`w-4/5 my-1 leading-6 p-[10px]`}
-              >
-                Sign Out
-              </Button>
-            </div>
+              </div>
+            )}
           </div>
         </nav>
       )}

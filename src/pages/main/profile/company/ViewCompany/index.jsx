@@ -9,7 +9,6 @@ import iconInsta from "../../../../../assets/img/icons/instagram.png";
 import iconPhone from "../../../../../assets/img/icons/phone.png";
 import iconLinkedIn from "../../../../../assets/img/icons/linkedin.png";
 import Button from "../../../../../component/base/Button";
-import api from "../../../../../configs/api";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecruiterProfile } from "../../../../../configs/redux/action/recruiterAction";
 

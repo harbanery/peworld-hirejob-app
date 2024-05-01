@@ -1,4 +1,4 @@
-import api from "../../axios/api";
+import api from "../../../services/api";
 
 export const getSkills = (id) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });

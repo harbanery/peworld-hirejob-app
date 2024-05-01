@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Input from "../../../../../base/Input";
 import Button from "../../../../../base/Button";
 import Tag from "../../../../../base/Tag";
-import api from "../../../../../../configs/api";
 import { useDispatch } from "react-redux";
 import {
   createSkill,

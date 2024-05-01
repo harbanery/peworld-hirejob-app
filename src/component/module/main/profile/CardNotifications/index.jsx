@@ -1,6 +1,6 @@
 import React from "react";
 import imageUserNav from "../../../../../assets/img/profile-img/user-noimage.png";
-import TimeAgo from "../../../../../configs/tools/timeAgo";
+import TimeAgo from "../../../../base/TimeAgo";
 import Button from "../../../../base/Button";
 
 const CardNotifications = ({ role, arrayNotif = [] }) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import convertToHttps from "../../../../../../configs/tools/convertToHttps";
+import { convertToHttps } from "../../../../../../utils/helper";
 import imageNoFolio from "../../../../../../assets/img/portofolio/no-portofolio.png";
 
 const CardPortofolio = ({ children, link, image }) => {

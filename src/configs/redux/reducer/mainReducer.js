@@ -112,6 +112,7 @@ const mainReducer = (state = initialState, action) => {
           search: action.search,
           page: 1,
         },
+        totalPage: 1,
         loading: {
           ...state.loading,
           search: true,

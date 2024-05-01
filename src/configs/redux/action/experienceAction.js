@@ -1,20 +1,6 @@
-import api from "../../axios/api";
-import currentMonthYear from "../../tools/currentMonthYear";
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import api from "../../../services/api";
+import { months } from "../../../utils/constants";
+import { currentMonthYear } from "../../../utils/helper";
 
 export const getExperience = (id) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });

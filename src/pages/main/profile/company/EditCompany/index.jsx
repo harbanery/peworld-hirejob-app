@@ -10,7 +10,6 @@ import iconLinkedIn from "../../../../../assets/img/icons/linkedin.png";
 import imageUser from "../.././../../../assets/img/profile-img/user-noimage.png";
 import Input from "../../../../../component/base/Input";
 import Button from "../../../../../component/base/Button";
-import api from "../../../../../configs/api";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getRecruiterProfile,

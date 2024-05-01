@@ -4,7 +4,6 @@ import Button from "../../../../../base/Button";
 import iconUpload from "../../../../../../assets/img/icons/cloud.png";
 import iconRules1 from "../../../../../../assets/img/icons/high-res-img-rules.png";
 import iconRules2 from "../../../../../../assets/img/icons/size-img-rules.png";
-import api from "../../../../../../configs/api";
 import { useDispatch } from "react-redux";
 import {
   createPortofolio,

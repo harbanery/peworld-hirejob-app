@@ -4,14 +4,18 @@ import Dashboard from "../../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../../component/module/auth/AuthDesc";
 import Input from "../../../../component/base/Input";
 import Button from "../../../../component/base/Button";
-import style from "../../auth.module.css";
-import { useDispatch } from "react-redux";
+import style from "../../../../styles/pages/auth.module.css";
+import loader from "../../../../styles/components/loading.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import { registerRecruiter } from "../../../../configs/redux/action/recruiterAction";
 import { reset } from "../../../../configs/redux/action/authAction";
+import Modal from "../../../../component/base/Modal";
 
 const RegRecruiter = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+  const { loading, response } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
     email: "",
@@ -24,7 +28,23 @@ const RegRecruiter = () => {
   });
 
   const handleRegister = () => {
-    dispatch(registerRecruiter(form, navigate));
+    e.preventDefault();
+    const errors = {};
+
+    Object.keys(form).forEach((key) => {
+      const errorMessage = validateRegister(key, form[key]);
+      if (errorMessage) {
+        errors[key] = errorMessage;
+      }
+    });
+
+    if (Object.keys(errors).length === 0) {
+      // Form is valid, submit data
+      dispatch(registerRecruiter(form, navigate));
+    } else {
+      // Form is invalid, set errors
+      setErrors(errors);
+    }
   };
 
   const handleNavigate = () => {
@@ -32,9 +52,17 @@ const RegRecruiter = () => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    const errorMessage = validateRegister(name, value);
+
+    setErrors({
+      ...errors,
+      [name]: errorMessage,
+    });
+
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -42,6 +70,11 @@ const RegRecruiter = () => {
     <main
       className={`container max-w-full flex items-center lg:block py-[39px] ${style.bgAuthRecruiter}`}
     >
+      <Modal
+        isOpen={response.open}
+        error={response.error}
+        message={response.message}
+      />
       <div className="flex mx-5 md:mx-[75px] rounded lg:rounded-none bg-[#ffffffd3] lg:bg-hirejob-light lg:bg-none shadow-md lg:shadow-none px-5 lg:px-0 ">
         <Dashboard />
 
@@ -111,8 +144,13 @@ const RegRecruiter = () => {
             onClick={handleRegister}
             colorButton={"secondary"}
             extra="p-[15px] my-4"
+            isDisabled={loading}
           >
-            Sign In
+            {!loading ? (
+              `Sign In`
+            ) : (
+              <div className={`mx-auto ${loader.loaderDotsl21}`}></div>
+            )}
           </Button>
           <h6 className="font-normal text-base mt-3 leading-[21.79px] block text-center">
             Do you already have an account?{" "}

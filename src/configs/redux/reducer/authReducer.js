@@ -11,6 +11,7 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "AUTH_RESET":
       return initialState;
+
     case "RESPONSE_OPEN_RESET":
       return {
         ...state,
@@ -19,11 +20,13 @@ const authReducer = (state = initialState, action) => {
           open: false,
         },
       };
+
     case "LOGGED_ON":
       return {
         ...state,
         isLogged: true,
       };
+
     case "LOGIN_REQUEST":
       return {
         ...state,
@@ -33,6 +36,7 @@ const authReducer = (state = initialState, action) => {
           open: false,
         },
       };
+
     case "LOGIN_SUCCESS":
       return {
         ...state,
@@ -44,6 +48,7 @@ const authReducer = (state = initialState, action) => {
           message: "",
         },
       };
+
     case "LOGIN_FAILURE":
       return {
         ...state,
@@ -54,6 +59,7 @@ const authReducer = (state = initialState, action) => {
           message: action.message,
         },
       };
+
     case "REGISTER_REQUEST":
       return {
         ...state,
@@ -63,6 +69,7 @@ const authReducer = (state = initialState, action) => {
           open: false,
         },
       };
+
     case "REGISTER_SUCCESS":
       return {
         ...state,
@@ -73,6 +80,7 @@ const authReducer = (state = initialState, action) => {
           message: action.message,
         },
       };
+
     case "REGISTER_FAILURE":
       return {
         ...state,
@@ -83,6 +91,7 @@ const authReducer = (state = initialState, action) => {
           message: action.message,
         },
       };
+
     case "GET_PROFILE_REQUEST":
       return {
         ...state,
@@ -92,6 +101,7 @@ const authReducer = (state = initialState, action) => {
           open: false,
         },
       };
+
     case "GET_PROFILE_SUCCESS":
       return {
         ...state,
@@ -102,6 +112,7 @@ const authReducer = (state = initialState, action) => {
           message: "",
         },
       };
+
     case "GET_PROFILE_FAILURE":
       return {
         ...state,
@@ -113,11 +124,13 @@ const authReducer = (state = initialState, action) => {
           message: "Data not rendering",
         },
       };
+
     case "LOGOUT":
       return {
         ...state,
         isLogged: false,
       };
+
     default:
   }
   return state;
