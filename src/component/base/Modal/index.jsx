@@ -9,13 +9,18 @@ const Modal = ({
   const [isOpenInternal, setIsOpenInternal] = useState(false);
 
   useEffect(() => {
+    let timer;
     if (isOpen) {
       setIsOpenInternal(true);
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setIsOpenInternal(false);
       }, durationInSeconds * 1000); // Convert seconds to milliseconds
-      return () => clearTimeout(timer);
     }
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
   }, [isOpen, durationInSeconds]);
 
   return (
