@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerRecruiter } from "../../../../configs/redux/action/recruiterAction";
 import { reset } from "../../../../configs/redux/action/authAction";
 import Modal from "../../../../component/base/Modal";
+import { validateRegister } from "../../../../utils/validation";
 
 const RegRecruiter = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const RegRecruiter = () => {
     confirmPassword: "",
   });
 
-  const handleRegister = () => {
+  const handleRegister = (e) => {
     e.preventDefault();
     const errors = {};
 
