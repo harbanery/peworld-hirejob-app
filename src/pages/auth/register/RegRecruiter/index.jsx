@@ -91,6 +91,7 @@ const RegRecruiter = () => {
             value={form.name}
             onChange={handleChange}
             placeholder="Enter your full name"
+            validation={errors.name}
           />
           <Input
             label="Email"
@@ -99,6 +100,7 @@ const RegRecruiter = () => {
             value={form.email}
             onChange={handleChange}
             placeholder="Enter your email"
+            validation={errors.email}
           />
           <Input
             label="Company"
@@ -107,6 +109,7 @@ const RegRecruiter = () => {
             value={form.company}
             onChange={handleChange}
             placeholder="Enter your company"
+            validation={errors.company}
           />
           <Input
             label="Position"
@@ -115,6 +118,7 @@ const RegRecruiter = () => {
             value={form.position}
             onChange={handleChange}
             placeholder="Enter your position"
+            validation={errors.position}
           />
           <Input
             label="Phone Number"
@@ -123,6 +127,7 @@ const RegRecruiter = () => {
             value={form.phone}
             onChange={handleChange}
             placeholder="Enter your phone number"
+            validation={errors.phone}
           />
           <Input
             label="Password"
@@ -131,6 +136,7 @@ const RegRecruiter = () => {
             value={form.password}
             onChange={handleChange}
             placeholder="Enter your password"
+            validation={errors.password}
           />
           <Input
             label="Confirm Password"
@@ -139,6 +145,7 @@ const RegRecruiter = () => {
             value={form.confirmPassword}
             onChange={handleChange}
             placeholder="Re-enter your password"
+            validation={errors.confirmPassword}
           />
           <div className="my-3"></div>
           <Button
