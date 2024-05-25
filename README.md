@@ -93,6 +93,8 @@ There are 7 pages that I working in progress.
 
 According to PageSpeed Insights, the desktop performance scored 97%, with minor issues regarding LCP. However, the mobile performance, at 52%, is concerning due to significant CLS and LCP issues. The absence of loading indicators on the website may be contributing to this discrepancy. To address this, I propose implementing more loading indicators for images and other elements to enhance performance in future updates. Despite these challenges, the website remains functional on both mobile and desktop platforms.
 
+> UPDATED : After updates, mobile performance saw a significant improvement, reaching 90% from the initial 52%, thereby reducing CLS and LCP issues considerably. However, there are still shortcomings in SEO, specifically 'Document does not have a meta description' and 'Image elements do not have [alt] attributes'. Additionally, the desktop performance remains the same at 97%, with the same issues as the mobile performance.
+
 ![Performance Mobile](./public/screenshot/Performance-Mobile.png)
 ![Performance Desktop](./public/screenshot/Performance-Desktop.png)
 
