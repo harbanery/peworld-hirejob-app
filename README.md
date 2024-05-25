@@ -1,6 +1,6 @@
 # Peworld: Hire Job Implementation Based on Figma
 
-> Peworld is a web application that facilitates job seekers in finding suitable employment opportunities and accessing detailed company information.
+Peworld is a dynamic web application designed to revolutionize the job search experience. It not only helps job seekers find suitable employment opportunities but also provides comprehensive and detailed information about potential employers. With Peworld, users can explore a wide range of job listings tailored to their skills and preferences, gain insights into company cultures and benefits, and stay updated on the latest industry trends.
 
 ## Usage
 
@@ -10,85 +10,84 @@ This website is built using Vite + React with JavaScript, and the API management
 
 There are 7 pages that I working in progress.
 
-1. Login Page
+1.  Login Page
 
-   ![Login Page](./public/screenshot/Login-Page.png)
+    ![Login Page](./public/screenshot/Login-Page.png)
 
-2. Register Page
+2.  Register Page
 
-   Register for Worker
-   ![Login Page](./public/screenshot/Register-Page.png)
+    Register for Worker
+    ![Login Page](./public/screenshot/Register-Page.png)
 
-   Register for Recruiter
-   ![Login Page Recruiter](./public/screenshot/Register-Recruiter-Page.png)
+    Register for Recruiter
+    ![Login Page Recruiter](./public/screenshot/Register-Recruiter-Page.png)
 
-3. Landing Page
+3.  Landing Page
 
-   Landing Page (before Login)
-   ![Landing Page](./public/screenshot/Landing-Page.png)
+    Landing Page (before Login)
+    ![Landing Page](./public/screenshot/Landing-Page.png)
 
-   Landing Page after Login
-   ![Landing Page after Login](./public/screenshot/Landing-Page-After-Login.png)
+    Landing Page after Login
+    ![Landing Page after Login](./public/screenshot/Landing-Page-After-Login.png)
 
-4. Home Page
+4.  Home Page
 
-   ![Home Page](./public/screenshot/Home-Page.png)
+    ![Home Page](./public/screenshot/Home-Page.png)
 
-   In home page, there are features for search bar.
-   ![Search Bar](./public/screenshot/Search-Bar.png)
+    In home page, there are features for search bar.
+    ![Search Bar](./public/screenshot/Search-Bar.png)
 
-   The features of search bar includes:
+    The features of search bar includes:
 
-   - Search Input to find the worker name.
-     ![Search Skill](./public/screenshot/Home-Page-Search-Input.png)
+    - Search Input to find the worker name.
+      ![Search Skill](./public/screenshot/Home-Page-Search-Input.png)
 
-   - Sort Bar to sort by name or location
-     ![Search Skill](./public/screenshot/Home-Page-Sort-Bar.png)
+    - Sort Bar to sort by name or location
+      ![Search Skill](./public/screenshot/Home-Page-Sort-Bar.png)
 
-   Not only search bar, there also pagination feature to find based on how much page you find the worker.
-   ![Pagination](./public/screenshot/Pagination.png)
+    Not only search bar, there also pagination feature to find based on how much page you find the worker.
 
-5. Worker Profile Page
+5.  Worker Profile Page
 
-   There are two pages:
+    There are two pages:
 
-   - View Profile
+    - View Profile
 
-     This page have toolbar to view portofolio and work experience.
+    This page have toolbar to view portofolio and work experience.
 
-     When you're see portofolio:
-     ![View Worker Portofolio](./public/screenshot/View-Worker-Page-Portofolio-As-Worker.png)
+    When you're see portofolio:
+    ![View Worker Portofolio](./public/screenshot/View-Worker-Page-Portofolio-As-Worker.png)
 
-     And when you're see work experience:
-     ![View Worker Work Experience](./public/screenshot/View-Worker-Page-WorkExp-As-Worker.png)
+    And when you're see work experience:
+    ![View Worker Work Experience](./public/screenshot/View-Worker-Page-WorkExp-As-Worker.png)
 
-     This page have different button based on what role you are.
+    This page have different button based on what role you are.
 
-     For example this is worker profile if you're a recruiter
-     ![View Worker as Recruiter](./public/screenshot/View-Worker-As-Recruiter.png)
+    For example this is worker profile if you're a recruiter
+    ![View Worker as Recruiter](./public/screenshot/View-Worker-As-Recruiter.png)
 
-   - Edit Profile
+    - Edit Profile
 
-     In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
-     ![Edit Worker](./public/screenshot/Edit-Worker-Page.png)
+    In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
+    ![Edit Worker](./public/screenshot/Edit-Worker-Page.png)
 
-6. Recruiter or Company Profile Page
-   This page also have two:
+6.  Recruiter or Company Profile Page
+    This page also have two:
 
-   - View Profile
-     ![View Recruiter Company](./public/screenshot/View-Recruiter-Page.png)
+    - View Profile
+      ![View Recruiter Company](./public/screenshot/View-Recruiter-Page.png)
 
-   - Edit Profile
-     ![Edit Company](./public/screenshot/Edit-Recruiter-Page.png)
+    - Edit Profile
+      ![Edit Company](./public/screenshot/Edit-Recruiter-Page.png)
 
-7. Hire Page
+7.  Hire Page
 
-   This page is to offering job to the selected worker from recruiter.
-   ![Hire Page](./public/screenshot/Hire-Page.png)
+    This page is to offering job to the selected worker from recruiter.
+    ![Hire Page](./public/screenshot/Hire-Page.png)
 
-   There also the notification to inform both roles that recruiter offering to worker.
+    There also the notification to inform both roles that recruiter offering to worker.
 
-   > Still work in progress.
+    ![Notification](./public/screenshot/Notification-After-Hire-Worker.png)
 
 ## Performance
 
@@ -104,6 +103,8 @@ If you wish to view my website, please click the link provided below. Thank you 
 [Click Here](https://peworld-hirejob.vercel.app/)
 
 ## Reference
+
+Feel free to check it out:
 
 [Figma Template](https://www.figma.com/file/ZhfxykSA0qzko0PMs9aPOp/HireJob?type=design&node-id=67-0&mode=design&t=IX8slcJJKTGFdMcm-0)
 
