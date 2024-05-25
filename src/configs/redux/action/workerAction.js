@@ -94,25 +94,27 @@ export const resetWorkers = () => {
   return { type: "WORKER_RESET" };
 };
 
-export const getWorkerProfile = (id) => async (dispatch) => {
-  dispatch({ type: "MAIN_REQUEST" });
-  try {
-    if (id) {
-      const response = await api.get(`/workers/${id}`);
-      dispatch({ type: "GET_WORKER_USER_SUCCESS", user: response.data.data });
-    } else {
-      const response = await api.get("/workers/profile");
-      dispatch({ type: "GET_USER", user: response.data.data });
-      dispatch({ type: "GET_WORKER_USER_SUCCESS", user: response.data.data });
+export const getWorkerProfile =
+  (id = "") =>
+  async (dispatch) => {
+    dispatch({ type: "MAIN_REQUEST" });
+    try {
+      if (id) {
+        const response = await api.get(`/workers/${id}`);
+        dispatch({ type: "GET_WORKER_USER_SUCCESS", user: response.data.data });
+      } else {
+        const response = await api.get("/workers/profile");
+        dispatch({ type: "GET_USER", user: response.data.data });
+        dispatch({ type: "GET_WORKER_USER_SUCCESS", user: response.data.data });
+      }
+    } catch (error) {
+      dispatch({
+        type: "MAIN_FAILURE",
+        message: error.response.data.message,
+      });
+      dispatch({ type: "GET_WORKER_FAILURE" });
     }
-  } catch (error) {
-    dispatch({
-      type: "MAIN_FAILURE",
-      message: error.response.data.message,
-    });
-    dispatch({ type: "GET_WORKER_FAILURE" });
-  }
-};
+  };
 
 export const updateWorkerUser = (user) => {
   return { type: "UPDATE_WORKER_USER", user: user };

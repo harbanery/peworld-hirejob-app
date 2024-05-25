@@ -54,7 +54,7 @@ const CardUser = ({
           isWidthFull={false}
           extra={`px-[27px] py-[17px]`}
         >
-          Lihat Profile
+          View Profile
         </Button>
       </div>
     </div>

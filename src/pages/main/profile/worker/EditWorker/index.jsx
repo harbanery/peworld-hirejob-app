@@ -99,7 +99,7 @@ const EditWorker = () => {
                 {user.workplace}
               </h3>
 
-              <p className=" my-[18px] font-normal text-sm leading-6 text-hirejob-gray">
+              <p className=" my-[18px] font-normal text-sm text-justify leading-6 text-hirejob-gray">
                 {user.description}
               </p>
             </div>
@@ -123,28 +123,28 @@ const EditWorker = () => {
                 <Input
                   label={`Full Name`}
                   name={`name`}
-                  value={user.name}
+                  value={user.name || ""}
                   onChange={handleChange}
                   placeholder={`Enter your full name`}
                 />
                 <Input
                   label={`Job Preference`}
                   name={`job_desk`}
-                  value={user.job_desk}
+                  value={user.job_desk || ""}
                   onChange={handleChange}
                   placeholder={`Enter your job preference (e.g., Fullstack Developer)`}
                 />
                 <Input
                   label={`Location`}
                   name={`domicile`}
-                  value={user.domicile}
+                  value={user.domicile || ""}
                   onChange={handleChange}
                   placeholder={`Enter your location`}
                 />
                 <Input
                   label={`Workplace`}
                   name={`workplace`}
-                  value={user.workplace}
+                  value={user.workplace || ""}
                   onChange={handleChange}
                   placeholder={`Enter your workplace (e.g., Telkom University)`}
                 />
@@ -153,7 +153,7 @@ const EditWorker = () => {
                   type={`textarea`}
                   name={`description`}
                   rows={`6`}
-                  value={user.description}
+                  value={user.description || ""}
                   onChange={handleChange}
                   placeholder={`Tell us about yourself in a few words`}
                 />

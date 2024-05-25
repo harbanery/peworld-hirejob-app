@@ -24,7 +24,7 @@ There are 7 pages that I working in progress.
 
 3. Landing Page
 
-   Landing Page before Login
+   Landing Page (before Login)
    ![Landing Page](./public/screenshot/Landing-Page.png)
 
    Landing Page after Login

@@ -19,7 +19,7 @@ const CardExperience = ({ company, position, month, year, description }) => {
         <h3 className="font-normal text-base text-hirejob-gray">
           {`${month} ${year}`}
         </h3>
-        <p className="font-normal text-sm leading-6 text-hirejob-dark pt-3 pb-6">
+        <p className="font-normal text-sm text-justify leading-6 text-hirejob-dark pt-3 pb-6">
           {description}
         </p>
       </div>

@@ -96,7 +96,7 @@ const ViewWorker = () => {
                 {user.workplace}
               </h3>
 
-              <p className=" my-[18px] font-normal text-sm leading-6 text-hirejob-gray">
+              <p className=" my-[18px] font-normal text-justify text-sm leading-6 text-hirejob-gray">
                 {user.description}
               </p>
 
@@ -183,7 +183,10 @@ const ViewWorker = () => {
                     link={portofolio.link_repository}
                     image={portofolio.image}
                   >
-                    {portofolio.application} - {portofolio.application_name}
+                    {portofolio.application === "Aplikasi Web"
+                      ? "Web Application"
+                      : "Mobile Application"}{" "}
+                    - {portofolio.application_name}
                   </CardPortofolio>
                 ))}
                 {/* Portofolio */}

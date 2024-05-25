@@ -45,6 +45,7 @@ const CardNotifications = ({ role, arrayNotif = [] }) => {
               <div className="flex px-5 pt-5 gap-5">
                 <div className="w-1/4">
                   <img
+                    className="rounded-[50%]"
                     src={hire.worker_photo ? hire.worker_photo : imageUserNav}
                   />
                 </div>
