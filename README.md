@@ -24,10 +24,10 @@ There are 7 pages that I working in progress.
 
 3.  Landing Page
 
-    Landing Page (before Login)
+    Landing Page
     ![Landing Page](./public/screenshot/Landing-Page.png)
 
-    Landing Page after Login
+    Landing Page (after Login)
     ![Landing Page after Login](./public/screenshot/Landing-Page-After-Login.png)
 
 4.  Home Page
@@ -104,6 +104,20 @@ If you wish to view my website, please click the link provided below. Thank you 
 
 [Click Here](https://peworld-hirejob.vercel.app/)
 
+## Additional Resources
+
+1. Back-End Project Repository
+
+This back-end project for Peworld was developed by [muhammadrisano](https://github.com/muhammadrisano) using Express.js. Feel free to explore the source code, which I have forked from the original repository. It includes all the files and documentation needed to develop and run the server side of this application.
+
+[Back-End Project Repository Link](https://github.com/harbanery/be-peworld-hirejob-figma)
+
+2. API Documentation with Postman
+
+Access the complete API documentation for the Peworld project, also created by [muhammadrisano](https://github.com/muhammadrisano). Use Postman to test endpoints and understand the structure and functionality of the available APIs in this project.
+
+[Postman Link](https://documenter.getpostman.com/view/7675329/2s9YysDhDY#d67edcdf-e1ef-468b-9877-2c3e930c82a9)
+
 ## Reference
 
 Feel free to check it out:
@@ -113,6 +127,8 @@ Feel free to check it out:
 [React + Vite](https://vitejs.dev/)
 
 [React Dom Router](https://reactrouter.com/en/main)
+
+[React Redux](https://redux.js.org/introduction/getting-started)
 
 [Axios](https://axios-http.com/docs/intro)
 
