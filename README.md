@@ -91,6 +91,7 @@ There are 7 pages that I working on:
       ![Edit Worker](./public/screenshots/Edit-Worker-Page.png)
 
 6.  **Recruiter or Company Profile Page**
+
     This page also have two:
 
     - View Profile
