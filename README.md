@@ -1,14 +1,33 @@
+<div align="center">
+  <img src="./src/assets/img/header-logo.png" alt="Logo Peworld" width="200"/>
+</div>
+
 # Peworld: Hire Job Implementation Based on Figma
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Usage](#usage)
+- [Documentation](#documentation)
+- [Performance](#performance)
+- [Domain to Visit Pages](#domain-to-visit-pages)
+- [Additional Related Resources](#additional-related-resources)
+- [Other References](#other-references)
+
+## About The Project
 
 Peworld is a dynamic web application designed to revolutionize the job search experience. It not only helps job seekers find suitable employment opportunities but also provides comprehensive and detailed information about potential employers. With Peworld, users can explore a wide range of job listings tailored to their skills and preferences, gain insights into company cultures and benefits, and stay updated on the latest industry trends.
 
-## Usage
+### Usage
 
-This website is built using Vite + React with JavaScript, and the API management is done through the Axios library. Additionally, I use the React Dom Routes library for navigating between pages, along with Tailwind as the CSS Framework.
+This website is built from this [Figma template](https://www.figma.com/design/ZhfxykSA0qzko0PMs9aPOp/HireJob?node-id=67-0&t=l9ZG0nyceo9PbVaE-0) using [Vite + React](https://vitejs.dev/) with JavaScript, and the API management is done through the [Axios](https://axios-http.com/) library. Additionally, I use the [React Dom Routes](https://reactrouter.com/en/main) library for navigating between pages, along with [Tailwind](https://tailwindcss.com/) as the CSS Framework. For state management, I utilize [React Redux](https://redux.js.org/) with [redux-persist](https://github.com/rt2zz/redux-persist) for persisting state across sessions, and [redux-thunk](https://github.com/reduxjs/redux-thunk) for handling asynchronous actions. [React-slick](https://react-slick.neostack.com/) is used for the carousel component.
+
+To maintain code quality and consistency, I employ ESLint, which helps identify and report patterns in JavaScript code, ensuring a clean and maintainable codebase.
 
 ## Documentation
 
-There are 7 pages that I working in progress.
+There are 7 pages that I working on:
 
 1.  Login Page
 
@@ -53,23 +72,23 @@ There are 7 pages that I working in progress.
 
     - View Profile
 
-    This page have toolbar to view portofolio and work experience.
+      This page have toolbar to view portofolio and work experience.
 
-    When you're see portofolio:
-    ![View Worker Portofolio](./public/screenshots/View-Worker-Page-Portofolio-As-Worker.png)
+      When you're see portofolio:
+      ![View Worker Portofolio](./public/screenshots/View-Worker-Page-Portofolio-As-Worker.png)
 
-    And when you're see work experience:
-    ![View Worker Work Experience](./public/screenshots/View-Worker-Page-WorkExp-As-Worker.png)
+      And when you're see work experience:
+      ![View Worker Work Experience](./public/screenshots/View-Worker-Page-WorkExp-As-Worker.png)
 
-    This page have different button based on what role you are.
+      This page have different button based on what role you are.
 
-    For example this is worker profile if you're a recruiter
-    ![View Worker as Recruiter](./public/screenshots/View-Worker-As-Recruiter.png)
+      For example this is worker profile if you're a recruiter
+      ![View Worker as Recruiter](./public/screenshots/View-Worker-As-Recruiter.png)
 
     - Edit Profile
 
-    In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
-    ![Edit Worker](./public/screenshots/Edit-Worker-Page.png)
+      In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
+      ![Edit Worker](./public/screenshots/Edit-Worker-Page.png)
 
 6.  Recruiter or Company Profile Page
     This page also have two:
@@ -104,7 +123,7 @@ If you wish to view my website, please click the link provided below. Thank you 
 
 [Click Here](https://peworld-hirejob.vercel.app/)
 
-## Additional Resources
+## Additional Related Resources
 
 1. Back-End Project Repository
 
@@ -118,26 +137,14 @@ If you wish to view my website, please click the link provided below. Thank you 
 
    [Postman Link](https://documenter.getpostman.com/view/7675329/2s9YysDhDY#d67edcdf-e1ef-468b-9877-2c3e930c82a9)
 
-## Reference
+## Other References
 
 Feel free to check it out:
-
-[Figma Template](https://www.figma.com/file/ZhfxykSA0qzko0PMs9aPOp/HireJob?type=design&node-id=67-0&mode=design&t=IX8slcJJKTGFdMcm-0)
-
-[React + Vite](https://vitejs.dev/)
-
-[React Dom Router](https://reactrouter.com/en/main)
-
-[React Redux](https://redux.js.org/introduction/getting-started)
-
-[Axios](https://axios-http.com/docs/intro)
 
 [Javascript](https://www.w3schools.com/js/)
 
 [HTML](https://www.w3schools.com/html/)
 
 [CSS](https://www.w3schools.com/css/)
-
-[Tailwind](https://tailwindcss.com/)
 
 [Vercel as Deployment](https://vercel.com/)
