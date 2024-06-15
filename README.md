@@ -17,7 +17,7 @@
 
 ## About The Project
 
-Peworld is a dynamic web application designed to revolutionize the job search experience. It not only helps job seekers find suitable employment opportunities but also provides comprehensive and detailed information about potential employers. With Peworld, users can explore a wide range of job listings tailored to their skills and preferences, gain insights into company cultures and benefits, and stay updated on the latest industry trends.
+**Peworld** is a dynamic web application designed to revolutionize the job search experience. It not only helps job seekers find suitable employment opportunities but also provides comprehensive and detailed information about potential employers. With **Peworld**, users can explore a wide range of job listings tailored to their skills and preferences, gain insights into company cultures and benefits, and stay updated on the latest industry trends.
 
 ### Usage
 
@@ -29,11 +29,11 @@ To maintain code quality and consistency, I employ ESLint, which helps identify 
 
 There are 7 pages that I working on:
 
-1.  Login Page
+1.  **Login Page**
 
     ![Login Page](./public/screenshots/Login-Page.png)
 
-2.  Register Page
+2.  **Register Page**
 
     Register for Worker
     ![Login Page](./public/screenshots/Register-Page.png)
@@ -41,7 +41,7 @@ There are 7 pages that I working on:
     Register for Recruiter
     ![Login Page Recruiter](./public/screenshots/Register-Recruiter-Page.png)
 
-3.  Landing Page
+3.  **Landing Page**
 
     Landing Page
     ![Landing Page](./public/screenshots/Landing-Page.png)
@@ -49,7 +49,7 @@ There are 7 pages that I working on:
     Landing Page (after Login)
     ![Landing Page after Login](./public/screenshots/Landing-Page-After-Login.png)
 
-4.  Home Page
+4.  **Home Page**
 
     ![Home Page](./public/screenshots/Home-Page.png)
 
@@ -66,7 +66,7 @@ There are 7 pages that I working on:
 
     Not only search bar, there also pagination feature to find based on how much page you find the worker.
 
-5.  Worker Profile Page
+5.  **Worker Profile Page**
 
     There are two pages:
 
@@ -90,7 +90,7 @@ There are 7 pages that I working on:
       In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
       ![Edit Worker](./public/screenshots/Edit-Worker-Page.png)
 
-6.  Recruiter or Company Profile Page
+6.  **Recruiter or Company Profile Page**
     This page also have two:
 
     - View Profile
@@ -99,7 +99,7 @@ There are 7 pages that I working on:
     - Edit Profile
       ![Edit Company](./public/screenshots/Edit-Recruiter-Page.png)
 
-7.  Hire Page
+7.  **Hire Page**
 
     This page is to offering job to the selected worker from recruiter.
     ![Hire Page](./public/screenshots/Hire-Page.png)
