@@ -111,18 +111,14 @@ There are 7 pages that I working on:
 
 ## Performance
 
-According to PageSpeed Insights, the desktop performance scored 97%, with minor issues regarding LCP. However, the mobile performance, at 52%, is concerning due to significant CLS and LCP issues. The absence of loading indicators on the website may be contributing to this discrepancy. To address this, I propose implementing more loading indicators for images and other elements to enhance performance in future updates. Despite these challenges, the website remains functional on both mobile and desktop platforms.
-
-> UPDATED : After updates, mobile performance saw a significant improvement, reaching 90% from the initial 52%, thereby reducing CLS and LCP issues considerably. However, there are still shortcomings in SEO, specifically 'Document does not have a meta description' and 'Image elements do not have [alt] attributes'. Additionally, the desktop performance remains the same at 97%, with the same issues as the mobile performance.
+According to the latest PageSpeed Insights results, the desktop performance scored 97%, with minor issues regarding LCP. Initially, the mobile performance was concerning at 52% due to significant CLS and LCP issues. The absence of loading indicators on the website may have contributed to this discrepancy. After updates, mobile performance saw a significant improvement, reaching 90% from the initial 52%, thereby reducing CLS and LCP issues considerably. However, there are still shortcomings in SEO, specifically 'Document does not have a meta description' and 'Image elements do not have [alt] attributes'. Additionally, the desktop performance remains the same at 97%, with the same issues as the mobile performance. Despite these challenges, the website remains functional on both mobile and desktop platforms.
 
 ![Performance Mobile](./public/screenshots/Performance-Mobile.png)
 ![Performance Desktop](./public/screenshots/Performance-Desktop.png)
 
 ## Domain to Visit Pages
 
-If you wish to view my website, please click the link provided below. Thank you very much for your interest and appreciation.
-
-[Click Here](https://peworld-hirejob.vercel.app/)
+If you wish to view my website, please click this [link](https://peworld-hirejob.vercel.app/) right here. Thank you very much for your interest and appreciation.
 
 ## Additional Related Resources
 
