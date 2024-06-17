@@ -102,7 +102,7 @@ const ViewWorker = () => {
 
               {role === "recruiter" && (
                 <Button
-                  colorButton={`primary`}
+                  colorButton={`secondary`}
                   extra={`py-[15px]`}
                   onClick={() => navigate(`/main/hire/${user.id}`)}
                 >
