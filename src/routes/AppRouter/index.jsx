@@ -22,7 +22,6 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        {/* Authorization Section */}
         <Route
           path="/login"
           element={
@@ -37,7 +36,6 @@ const AppRouter = () => {
         <Route path="/change-password" element={<ConfirmPassword />} />
         <Route path="/recruiter/register" element={<RegRecruiter />} />
 
-        {/* Main Section */}
         <Route
           path="/main"
           element={

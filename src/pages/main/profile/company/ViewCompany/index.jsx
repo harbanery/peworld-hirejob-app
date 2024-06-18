@@ -17,25 +17,6 @@ const ViewCompany = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.recruiter);
 
-  // const [profile, setProfile] = useState({
-  //   company: "",
-  //   position: "",
-  //   city: "",
-  //   description: "",
-  //   email: "",
-  //   instagram: "",
-  //   phone: "",
-  //   linkedin: "",
-  // });
-
-  // const getProfileData = () => {
-  //   api.get("/recruiters/profile").then((res) => {
-  //     const profileData = res.data.data;
-  //     //   console.log(profileData);
-  //     setProfile(profileData);
-  //   });
-  // };
-
   const getProfile = () => {
     dispatch(getRecruiterProfile());
   };

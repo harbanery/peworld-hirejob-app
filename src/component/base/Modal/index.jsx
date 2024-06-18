@@ -14,7 +14,7 @@ const Modal = ({
       setIsOpenInternal(true);
       timer = setTimeout(() => {
         setIsOpenInternal(false);
-      }, durationInSeconds * 1000); // Convert seconds to milliseconds
+      }, durationInSeconds * 1000);
     }
     return () => {
       if (timer) {

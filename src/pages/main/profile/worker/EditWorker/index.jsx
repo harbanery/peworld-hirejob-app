@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "../../profile.module.css";
+import "../../../../../styles/pages/profile.module.css";
 import iconMap from "../../../../../assets/img/icons/map.png";
 import iconEdit from "../../../../../assets/img/icons/edit.png";
 import imageUser from "../.././../../../assets/img/profile-img/user-noimage.png";

@@ -16,18 +16,8 @@ const Hire = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { workerId } = useParams();
-  // const [role, setRole] = useState("");
   const { role } = useSelector((state) => state.checkRole);
   const { user, profile } = useSelector((state) => state.worker);
-  // const [workerSkills, setWorkerSkills] = useState([]);
-  // const [worker, setWorker] = useState({
-  //   id: "",
-  //   name: "",
-  //   job_desk: "",
-  //   domicile: "",
-  //   workplace: "",
-  //   description: "",
-  // });
 
   const [hire, setHire] = useState({
     message_purpose: "project",
@@ -38,73 +28,16 @@ const Hire = () => {
     description: "",
   });
 
-  // const [recruiter, setRecruiter] = useState({
-  //   name: "",
-  //   email: "",
-  //   phone: "",
-  // });
-
-  // const getRole = () => {
-  //   api.get("/auth/check-role").then((res) => {
-  //     const role = res.data.data.data.role;
-  //     // console.log(role);
-  //     if (role === "recruiter") {
-  //       getWorkerDataId(workerId);
-  //       getWorkerSkillsId(workerId);
-  //       getRecruiter();
-  //     } else {
-  //       navigate(`/`);
-  //     }
-  //   });
-  // };
-
   const getWorkerDataId = (id) => {
     dispatch(getWorkerProfile(id));
-    // api.get(`/workers/${id}`).then((res) => {
-    //   const workerData = res.data.data;
-    //   //   console.log(workerData);
-    //   setWorker(workerData);
-    // });
   };
 
   const getWorkerSkillsId = (id) => {
     dispatch(getSkills(id));
-    // api.get(`/skills/${id}`).then((res) => {
-    //   const skills = res.data.data;
-    //   //   console.log(skills);
-    //   setWorkerSkills(skills);
-    // });
   };
-
-  // const getRecruiter = () => {
-  //   api.get("/recruiters/profile").then((res) => {
-  //     const profileData = res.data.data;
-  //     //   console.log(profileData);
-  //     setRecruiter(profileData);
-  //   });
-  // };
 
   const handleAddHire = () => {
     dispatch(createHire(hire, workerId, navigate));
-    // api
-    //   .post(`/hire`, {
-    //     message_purpose: hire.message_purpose,
-    //     worker_id: worker.id,
-    //     name: hire.name,
-    //     email: hire.email,
-    //     phone: hire.phone,
-    //     desciption: hire.description,
-    //   })
-    //   .then(() => {
-    //     alert(
-    //       `Successfully sent to ${worker.name}! Now wait for the worker to accept your offer.`
-    //     );
-    //     navigate(`/main/home`);
-    //   })
-    //   .catch((err) => {
-    //     alert("Failed to send. Please try again later.");
-    //     console.log(err.response);
-    //   });
   };
 
   const handleChange = (e) => {

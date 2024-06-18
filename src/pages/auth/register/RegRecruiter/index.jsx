@@ -40,10 +40,8 @@ const RegRecruiter = () => {
     });
 
     if (Object.keys(errors).length === 0) {
-      // Form is valid, submit data
       dispatch(registerRecruiter(form, navigate));
     } else {
-      // Form is invalid, set errors
       setErrors(errors);
     }
   };

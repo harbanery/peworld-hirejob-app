@@ -31,7 +31,6 @@ const Landing = () => {
   };
 
   const handleOutsideClick = (event) => {
-    // Close popover if clicked outside
     if (!event.target.closest("#popover-content") && popoverVisible) {
       closePopover();
     }

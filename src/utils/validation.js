@@ -1,6 +1,5 @@
 import { allowedDomains, errorRegisterMessages } from "./constants";
 
-// register
 export const validateRegister = (name, value) => {
   let errorMessage = "";
 

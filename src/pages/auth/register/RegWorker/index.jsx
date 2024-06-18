@@ -30,7 +30,6 @@ const RegWorker = () => {
     e.preventDefault();
     const errors = {};
 
-    // Memvalidasi setiap input
     Object.keys(form).forEach((key) => {
       const errorMessage = validateRegister(key, form[key]);
       if (errorMessage) {
@@ -39,10 +38,8 @@ const RegWorker = () => {
     });
 
     if (Object.keys(errors).length === 0) {
-      // Form is valid, submit data
       dispatch(register(form, navigate));
     } else {
-      // Form is invalid, set errors
       setErrors(errors);
     }
   };

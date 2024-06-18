@@ -8,7 +8,7 @@ const TimeAgo = ({ date }) => {
       const secondsDiff = Math.floor((new Date() - new Date(date)) / 1000);
 
       if (secondsDiff <= 0) {
-        setTimeAgo("Just now"); // Handle future dates
+        setTimeAgo("Just now");
         return;
       }
 
@@ -53,7 +53,7 @@ const TimeAgo = ({ date }) => {
 
     const timer = setInterval(() => {
       calculateTimeAgo();
-    }, 60000); // Update every minute
+    }, 60000);
 
     return () => clearInterval(timer);
   }, [date]);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../profile.module.css";
+import "../../../../../styles/pages/profile.module.css";
 import iconMap from "../../../../../assets/img/icons/map.png";
 import iconEdit from "../../../../../assets/img/icons/edit.png";
 import iconMail from "../../../../../assets/img/icons/mail.png";
@@ -23,52 +23,12 @@ const EditCompany = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.recruiter);
 
-  // const [profile, setProfile] = useState({
-  //   company: "",
-  //   position: "",
-  //   city: "",
-  //   description: "",
-  //   email: "",
-  //   instagram: "",
-  //   phone: "",
-  //   linkedin: "",
-  //   photo: "",
-  // });
-
-  // const getProfileData = () => {
-  //   api.get("/recruiters/profile").then((res) => {
-  //     const profileData = res.data.data;
-  //     // console.log(profileData);
-  //     setProfile(profileData);
-  //   });
-  // };
-
   const getProfile = () => {
     dispatch(getRecruiterProfile());
   };
 
   const handleUpdateProfile = () => {
     dispatch(updateRecruiterProfile(user));
-    // api
-    //   .put(`/recruiters/profile`, {
-    //     company: profile.company,
-    //     position: profile.position,
-    //     city: profile.city,
-    //     description: profile.description,
-    //     email: profile.email,
-    //     instagram: profile.instagram,
-    //     phone: profile.phone,
-    //     linkedin: profile.linkedin,
-    //     photo: profile.photo,
-    //   })
-    //   .then(() => {
-    //     alert("Profile successfully saved.");
-    //     getProfileData();
-    //   })
-    //   .catch((err) => {
-    //     alert("Failed to save. Please try again.");
-    //     console.log(err.response);
-    //   });
   };
 
   const handleChange = (e) => {
@@ -79,39 +39,11 @@ const EditCompany = () => {
     dispatch(updateRecruiterUser(changeUser));
   };
 
-  // const handleChange = (e) => {
-  //   const changeUser = {
-  //     ...user,
-  //     [e.target.name]: e.target.value,
-  //   };
-  //   dispatch(updateWorkerUser(changeUser));
-  // };
-
   const handleFileSelect = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    // console.log(file);
 
     dispatch(createAssetProfile(file, user));
-
-    // const formData = new FormData();
-    // formData.append("file", file);
-
-    // api
-    //   .post(`/upload`, formData, {
-    //     headers: { "content-type": "multipart/form-data" },
-    //   })
-    //   .then((res) => {
-    //     const changeUser = {
-    //       ...user,
-    //       photo: res.data.data.file_url,
-    //     };
-    //     dispatch(updateRecruiterUser(changeUser));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.response.data.message);
-    //     alert(`Failed to change portofolio image. Please try again.`);
-    //   });
   };
 
   useEffect(() => {
