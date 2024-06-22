@@ -8,7 +8,7 @@
 
 - [Table of Contents](#table-of-contents)
 - [About The Project](#about-the-project)
-  - [Usage](#usage)
+- [Usage](#usage)
 - [Documentation](#documentation)
 - [Performance](#performance)
 - [Domain to Visit Pages](#domain-to-visit-pages)
@@ -19,7 +19,7 @@
 
 **Peworld** is a dynamic web application designed to revolutionize the job search experience. It not only helps job seekers find suitable employment opportunities but also provides comprehensive and detailed information about potential employers. With **Peworld**, users can explore a wide range of job listings tailored to their skills and preferences, gain insights into company cultures and benefits, and stay updated on the latest industry trends.
 
-### Usage
+## Usage
 
 This website is built from this [Figma template](https://www.figma.com/design/ZhfxykSA0qzko0PMs9aPOp/HireJob?node-id=67-0&t=l9ZG0nyceo9PbVaE-0) using [Vite + React](https://vitejs.dev/) with JavaScript, and the API management is done through the [Axios](https://axios-http.com/) library. Additionally, I use the [React Dom Routes](https://reactrouter.com/en/main) library for navigating between pages, along with [Tailwind](https://tailwindcss.com/) as the CSS Framework. For state management, I utilize [React Redux](https://redux.js.org/) with [redux-persist](https://github.com/rt2zz/redux-persist) for persisting state across sessions, and [redux-thunk](https://github.com/reduxjs/redux-thunk) for handling asynchronous actions. [React-slick](https://react-slick.neostack.com/) is used for the carousel component.
 
@@ -128,11 +128,11 @@ If you wish to view my website, please click this [link](https://peworld-hirejob
 
    [Back-End Project Repository Link](https://github.com/harbanery/be-peworld-hirejob-figma)
 
-2. API Documentation with Postman
+<!-- 2. API Documentation with Postman
 
    Access the complete API documentation for the Peworld project, also created by [muhammadrisano](https://github.com/muhammadrisano). Use Postman to test endpoints and understand the structure and functionality of the available APIs in this project.
 
-   [Postman Link](https://documenter.getpostman.com/view/7675329/2s9YysDhDY#d67edcdf-e1ef-468b-9877-2c3e930c82a9)
+   [Postman Link](https://documenter.getpostman.com/view/7675329/2s9YysDhDY#d67edcdf-e1ef-468b-9877-2c3e930c82a9) -->
 
 ## Other References
 
