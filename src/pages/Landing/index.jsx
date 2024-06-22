@@ -94,20 +94,19 @@ const Landing = () => {
                 Why Should You Seek Talent on Peworld?
               </h2>
               <div className="flex flex-wrap lg:block my-8 xl:my-10">
-                {/* tick */}
-                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
+                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-3 sm:my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
                   <span>Discover top-notch local talent</span>
                 </div>
-                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
+                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-3 sm:my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
                   <span>Expand your options</span>
                 </div>
-                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
+                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-3 sm:my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
                   <span>Boost collaboration</span>
                 </div>
-                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-6 xl:my-8 font-normal text-base text-hirejob-slate">
+                <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-[22px] w-full md:w-1/2 lg:w-auto my-3 sm:my-6 xl:my-8 font-normal text-base text-hirejob-slate">
                   <img src={tickLogo1} />
                   <span>Save time in hiring</span>
                 </div>
