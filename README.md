@@ -31,22 +31,26 @@ There are 7 pages that I working on:
 
 1.  **Login Page**
 
+    The login page can authorize both workers and recruiters.
+
     ![Login Page](./public/screenshots/Login-Page.png)
 
 2.  **Register Page**
 
     Register for Worker
+
     ![Login Page](./public/screenshots/Register-Page.png)
 
     Register for Recruiter
+
     ![Login Page Recruiter](./public/screenshots/Register-Recruiter-Page.png)
 
 3.  **Landing Page**
 
-    Landing Page
     ![Landing Page](./public/screenshots/Landing-Page.png)
 
-    Landing Page (after Login)
+    When you are logged in, there are differences in the navbar.
+
     ![Landing Page after Login](./public/screenshots/Landing-Page-After-Login.png)
 
 4.  **Home Page**
@@ -54,7 +58,6 @@ There are 7 pages that I working on:
     ![Home Page](./public/screenshots/Home-Page.png)
 
     In home page, there are features for search bar.
-    ![Search Bar](./public/screenshots/Search-Bar.png)
 
     The features of search bar includes:
 
@@ -72,22 +75,26 @@ There are 7 pages that I working on:
 
     - View Profile
 
-      This page have toolbar to view portofolio and work experience.
+      This page have toolbar to view portfolio and work experience.
 
-      When you're see portofolio:
-      ![View Worker Portofolio](./public/screenshots/View-Worker-Page-Portofolio-As-Worker.png)
+      When you're see portfolio:
+
+      ![View Worker Portfolio](./public/screenshots/View-Worker-Page-Portofolio-As-Worker.png)
 
       And when you're see work experience:
+
       ![View Worker Work Experience](./public/screenshots/View-Worker-Page-WorkExp-As-Worker.png)
 
       This page have different button based on what role you are.
 
       For example this is worker profile if you're a recruiter
+
       ![View Worker as Recruiter](./public/screenshots/View-Worker-As-Recruiter.png)
 
     - Edit Profile
 
-      In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portofolio
+      In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portfolio
+
       ![Edit Worker](./public/screenshots/Edit-Worker-Page.png)
 
 6.  **Recruiter or Company Profile Page**
@@ -95,14 +102,17 @@ There are 7 pages that I working on:
     This page also have two:
 
     - View Profile
+
       ![View Recruiter Company](./public/screenshots/View-Recruiter-Page.png)
 
     - Edit Profile
+
       ![Edit Company](./public/screenshots/Edit-Recruiter-Page.png)
 
 7.  **Hire Page**
 
     This page is to offering job to the selected worker from recruiter.
+
     ![Hire Page](./public/screenshots/Hire-Page.png)
 
     There also the notification to inform both roles that recruiter offering to worker.
@@ -113,8 +123,12 @@ There are 7 pages that I working on:
 
 According to the latest PageSpeed Insights results, the desktop performance scored 97%, with minor issues regarding LCP. Initially, the mobile performance was concerning at 52% due to significant CLS and LCP issues. The absence of loading indicators on the website may have contributed to this discrepancy. After updates, mobile performance saw a significant improvement, reaching 90% from the initial 52%, thereby reducing CLS and LCP issues considerably. However, there are still shortcomings in SEO, specifically 'Document does not have a meta description' and 'Image elements do not have [alt] attributes'. Additionally, the desktop performance remains the same at 97%, with the same issues as the mobile performance. Despite these challenges, the website remains functional on both mobile and desktop platforms.
 
-![Performance Mobile](./public/screenshots/Performance-Mobile.png)
-![Performance Desktop](./public/screenshots/Performance-Desktop.png)
+<details>
+  <summary>Show/Hide Image</summary>
+  <br>
+  <img src="./public/screenshots/Performance-Mobile.png" alt="Performance Mobile">
+  <img src="./public/screenshots/Performance-Desktop.png" alt="Performance Desktop">
+</details>
 
 ## Domain to Visit Pages
 
