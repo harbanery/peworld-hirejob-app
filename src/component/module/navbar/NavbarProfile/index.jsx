@@ -8,6 +8,8 @@ import imageNoNotif from "../../../../assets/img/icons/no-notification.png";
 import CardNotifications from "../../main/profile/CardNotifications";
 import { useDispatch } from "react-redux";
 import { resetWorkers } from "../../../../configs/redux/action/workerAction";
+import Button from "../../../base/Button";
+import { logout } from "../../../../configs/redux/action/authAction";
 
 const NavbarProfile = ({
   isShadow = false,
@@ -19,6 +21,27 @@ const NavbarProfile = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+
+  const handleClickOutside = (event) => {
+    const isDropdown = event.target.closest(".dropdown-menu");
+    const isButton = event.target.closest(".dropdown-button");
+
+    if (!isDropdown && !isButton) {
+      setVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    dispatch(logout(navigate));
+  };
 
   // const handleNavigation = () => {
   //   dispatch(resetWorkers());
@@ -104,7 +127,7 @@ const NavbarProfile = ({
                 ? `h-2/5`
                 : `h-auto`
             } top-14 right-8 md:top-20 md:right-28 lg:right-48 z-10 bg-hirejob-white border border-hirejob-frost rounded-md shadow-lg transition duration-500 ${
-              notifHire && `overflow-y-scroll`
+              notifHire.length > 0 && `overflow-y-scroll`
             }`}
           >
             {notifHire.length !== 0 ? (
@@ -182,15 +205,49 @@ const NavbarProfile = ({
         <div>
           <img className="w-5 md:w-auto h-auto" src={iconMail} />
         </div>
-        <Link
+        <div className="w-[32px] h-[32px] overflow-hidden rounded-[50%]">
+          <Button onClick={() => setVisible(!visible)}>
+            <img
+              className="w-full h-auto dropdown-button"
+              src={image ? image : imageUserNav}
+            />
+          </Button>
+          {visible && (
+            <div className="dropdown-menu w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 h-auto rounded p-1 gap-1 flex flex-col bg-white absolute top-0 right-0 mt-16 md:mt-20 sm:mr-2 md:mr-12 lg:mr-32 z-50 border border-hirejob-purple-normal shadow-lg">
+              <Button
+                onClick={() =>
+                  role === "worker"
+                    ? navigate(`/main/profile/worker`)
+                    : navigate(`/main/profile/company`)
+                }
+                isBorder={true}
+                colorButton={`primary`}
+                radius="rounded"
+                extra={`py-2`}
+              >
+                Profile
+              </Button>
+              <Button
+                onClick={handleLogout}
+                isBorder={true}
+                colorButton={`primary`}
+                isOutline={true}
+                radius="rounded"
+                extra={`py-2`}
+              >
+                Sign Out
+              </Button>
+            </div>
+          )}
+        </div>
+        {/* <Link
           to={
             role === "worker" ? `/main/profile/worker` : `/main/profile/company`
           }
-          // onClick={handleNavigation}
           className="w-[32px] h-[32px] overflow-hidden rounded-[50%]"
         >
           <img className="w-full h-auto" src={image ? image : imageUserNav} />
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );

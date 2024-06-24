@@ -108,7 +108,7 @@ const NavbarLanding = ({
               to={`/main/home`}
               className="inline-block font-semibold text-base md:text-lg text-hirejob-purple-normal hover:text-hirejob-purple-dark after:content-[''] after:block after:py-0 after:border-b-2 after:scale-x-0 after:transition after:ease-linear after:duration-200 after:hover:scale-x-100"
             >
-              Home
+              Search Worker
             </NavLink>
           </div>
 
