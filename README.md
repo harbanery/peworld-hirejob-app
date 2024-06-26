@@ -8,16 +8,59 @@
 
 - [Table of Contents](#table-of-contents)
 - [About The Project](#about-the-project)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Setup Environment Variables](#setup-environment-variables)
 - [Usage](#usage)
-- [Documentation](#documentation)
-- [Performance](#performance)
+  - [Documentation](#documentation)
+  - [Performance](#performance)
 - [Domain to Visit Pages](#domain-to-visit-pages)
 - [Additional Related Resources](#additional-related-resources)
-- [Other References](#other-references)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#Contact)
+- [Acknowledgements](#acknowledgements)
 
 ## About The Project
 
 **Peworld** is a dynamic web application designed to revolutionize the job search experience. It not only helps job seekers find suitable employment opportunities but also provides comprehensive and detailed information about potential employers. With **Peworld**, users can explore a wide range of job listings tailored to their skills and preferences, gain insights into company cultures and benefits, and stay updated on the latest industry trends.
+
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+- npm
+
+  ```sh
+    npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone Repo
+
+   ```sh
+     git clone https://github.com/harbanery/peworld-hirejob-app.git
+   ```
+
+2. Install NPM packages
+
+   ```sh
+     npm install
+   ```
+
+### Setup Environment Variables
+
+1. Create a `.env` or `.env.local` file in your local root directory.
+
+2. Add the following variables to the `.env` or `.env.local` file:
+
+   ```sh
+     VITE_VERCEL_URL=your_api_url
+   ```
 
 ## Usage
 
@@ -25,7 +68,7 @@ This website is built using [Vite + React](https://vitejs.dev/) with JavaScript,
 
 To maintain code quality and consistency, I employ ESLint, which helps identify and report patterns in JavaScript code, ensuring a clean and maintainable codebase.
 
-## Documentation
+### Documentation
 
 There are 7 pages that I working on:
 
@@ -119,7 +162,7 @@ There are 7 pages that I working on:
 
     ![Notification](./public/screenshots/Notification-After-Hire-Worker.png)
 
-## Performance
+### Performance
 
 According to the latest PageSpeed Insights results, the desktop performance scored 97%, with minor issues regarding LCP. Initially, the mobile performance was concerning at 52% due to significant CLS and LCP issues. The absence of loading indicators on the website may have contributed to this discrepancy. After updates, mobile performance saw a significant improvement, reaching 90% from the initial 52%, thereby reducing CLS and LCP issues considerably. However, there are still shortcomings in SEO, specifically 'Document does not have a meta description' and 'Image elements do not have [alt] attributes'. Additionally, the desktop performance remains the same at 97%, with the same issues as the mobile performance. Despite these challenges, the website remains functional on both mobile and desktop platforms.
 
@@ -142,14 +185,32 @@ If you wish to view my website, please click this [link](https://peworld-hirejob
 
    [Back-End Project Repository Link](https://github.com/harbanery/be-peworld-hirejob-app)
 
-## Other References
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See [`LICENSE`](https://github.com/harbanery/peworld-hirejob-app/blob/main/LICENSE) for more information.
+
+## Contact
+
+If you have any questions or inquiries regarding this project, feel free to contact me at ryusuf05@gmail.com
+
+## Acknowledgements
 
 Feel free to check it out:
 
-[Javascript](https://www.w3schools.com/js/)
-
-[HTML](https://www.w3schools.com/html/)
-
-[CSS](https://www.w3schools.com/css/)
-
-[Vercel as Deployment](https://vercel.com/)
+- [Vercel as Deployment](https://vercel.com/)
+- [Img Shields](https://shields.io)
+- [Choose an Open Source License](https://choosealicense.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [Javascript](https://www.w3schools.com/js/)
+- [HTML](https://www.w3schools.com/html/)
+- [CSS](https://www.w3schools.com/css/)
