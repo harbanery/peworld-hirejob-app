@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/assets/img/header-logo.png" alt="Logo Peworld" width="200"/>
+  <img src="./src/assets/img/header-logo.png" alt="Logo Peworld" width="300"/>
 </div>
 
 # Peworld: Hire Job Implementation
