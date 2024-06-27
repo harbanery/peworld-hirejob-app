@@ -13,6 +13,8 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Setup Environment Variables](#setup-environment-variables)
+  - [Running the Application](#running-the-application)
+  - [Test Accounts](#test-accounts)
 - [Usage](#usage)
   - [Features](#features)
   - [Screenshots](#screenshots)
@@ -69,6 +71,42 @@ To get a local copy up and running follow these simple steps.
 
    ```sh
      VITE_VERCEL_URL=your_api_url
+   ```
+
+### Running the Application
+
+1. Start the development server:
+
+   ```sh
+    npm run dev
+   ```
+
+2. Open your browser and locally navigate to:
+
+   ```sh
+   http://localhost:5173
+   ```
+
+### Test Accounts
+
+Use the following test accounts to log in and explore the application:
+
+1. Recruiter Account
+
+   ```json
+   {
+     "email": "talent.acquisition@gmail.com",
+     "password": "Tal3ntAqc!s1t1on"
+   }
+   ```
+
+2. Worker Account
+
+   ```json
+   {
+     "email": "alex.taylor123@gmail.com",
+     "password": "Al3xT@yl0r456"
+   }
    ```
 
 ## Usage
