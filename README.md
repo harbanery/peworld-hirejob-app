@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/assets/img/header-logo.png" alt="Logo Peworld" width="300"/>
+  <img src="./src/assets/img/header-logo.png" alt="Logo Peworld" width="250"/>
 </div>
 
 # Peworld: Hire Job Implementation
@@ -25,6 +25,14 @@
 ## About The Project
 
 **Peworld** is a dynamic web application designed to revolutionize the job search experience. It not only helps job seekers find suitable employment opportunities but also provides comprehensive and detailed information about potential employers. With **Peworld**, users can explore a wide range of job listings tailored to their skills and preferences, gain insights into company cultures and benefits, and stay updated on the latest industry trends.
+
+### Built With
+
+- [**Vite**](https://vitejs.dev/)
+- [**React.js**](https://reactjs.org/)
+- [**Tailwind CSS**](https://tailwindcss.com/)
+- [**Redux**](https://redux.js.org/)
+- [**Node.js**](https://nodejs.org/en)
 
 ## Getting Started
 
@@ -64,11 +72,18 @@ To get a local copy up and running follow these simple steps.
 
 ## Usage
 
-This website is built using [Vite + React](https://vitejs.dev/) with JavaScript, and the API management is done through the [Axios](https://axios-http.com/) library. Additionally, I use the [React Dom Routes](https://reactrouter.com/en/main) library for navigating between pages, along with [Tailwind](https://tailwindcss.com/) as the CSS Framework. For state management, I utilize [React Redux](https://redux.js.org/) with [redux-persist](https://github.com/rt2zz/redux-persist) for persisting state across sessions, and [redux-thunk](https://github.com/reduxjs/redux-thunk) for handling asynchronous actions. [React-slick](https://react-slick.neostack.com/) is used for the carousel component.
+### Features
 
-To maintain code quality and consistency, I employ ESLint, which helps identify and report patterns in JavaScript code, ensuring a clean and maintainable codebase.
+- **User Authentication and Authorization**
+- **Job Listing and Search Functionality**
+- **Profile Management for Both Job Seekers and Recruiters**
+- **Api Management** with [**Axios**](https://axios-http.com/)
+- **Pages Navigation** with [**React Routes**](https://reactrouter.com/en/main)
+- **State Management**: Utilizes [React Redux](https://redux.js.org/) with [redux-persist](https://github.com/rt2zz/redux-persist) for persisting state across sessions, and [redux-thunk](https://github.com/reduxjs/redux-thunk) for handling asynchronous actions.
+- **Carousel Component**: Implemented using [React-slick](https://react-slick.neostack.com/).
+- **Code Quality**: Ensured by employing ESLint, which helps identify and report patterns in JavaScript code, ensuring a clean and maintainable codebase.
 
-### Documentation
+### Screenshots
 
 There are 7 pages that I working on:
 
@@ -76,39 +91,73 @@ There are 7 pages that I working on:
 
     The login page can authorize both workers and recruiters.
 
-    ![Login Page](./public/screenshots/Login-Page.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Login-Page.png" alt="Login Page">
+    </details>
 
 2.  **Register Page**
 
     Register for Worker
 
-    ![Login Page](./public/screenshots/Register-Page.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Register-Page.png" alt="Register Worker Page">
+    </details>
 
     Register for Recruiter
 
-    ![Login Page Recruiter](./public/screenshots/Register-Recruiter-Page.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Register-Recruiter-Page.png" alt="Register Recruiter Page">
+    </details>
 
 3.  **Landing Page**
 
-    ![Landing Page](./public/screenshots/Landing-Page.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Landing-Page.png" alt="Landing Page">
+    </details>
 
     When you are logged in, there are differences in the navbar.
 
-    ![Landing Page after Login](./public/screenshots/Landing-Page-After-Login.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Landing-Page-After-Login.png" alt="Landing Page after Login">
+    </details>
 
 4.  **Home Page**
 
-    ![Home Page](./public/screenshots/Home-Page.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Home-Page.png" alt="Home Page">
+    </details>
 
     In home page, there are features for search bar.
 
     The features of search bar includes:
 
     - Search Input to find the worker name.
-      ![Search Skill](./public/screenshots/Home-Page-Search-Input.png)
+
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/Home-Page-Search-Input.png" alt="Search Workers Input">
+      </details>
 
     - Sort Bar to sort by name or location
-      ![Search Skill](./public/screenshots/Home-Page-Sort-Bar.png)
+
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/Home-Page-Sort-Bar.png" alt="Sort Bar">
+      </details>
 
     Not only search bar, there also pagination feature to find based on how much page you find the worker.
 
@@ -122,23 +171,39 @@ There are 7 pages that I working on:
 
       When you're see portfolio:
 
-      ![View Worker Portfolio](./public/screenshots/View-Worker-Page-Portofolio-As-Worker.png)
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/View-Worker-Page-Portofolio-As-Worker.png" alt="View Worker Portfolio">
+      </details>
 
       And when you're see work experience:
 
-      ![View Worker Work Experience](./public/screenshots/View-Worker-Page-WorkExp-As-Worker.png)
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/View-Worker-Page-WorkExp-As-Worker.png" alt="View Worker Work Experience">
+      </details>
 
       This page have different button based on what role you are.
 
       For example this is worker profile if you're a recruiter
 
-      ![View Worker as Recruiter](./public/screenshots/View-Worker-As-Recruiter.png)
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/View-Worker-As-Recruiter.png" alt="View Worker as Recruiter">
+      </details>
 
     - Edit Profile
 
       In edit page, there are many section to add, edit, and also delete your biodata, work experience, skill, and portfolio
 
-      ![Edit Worker](./public/screenshots/Edit-Worker-Page.png)
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/Edit-Worker-Page.png" alt="Edit Worker">
+      </details>
 
 6.  **Recruiter or Company Profile Page**
 
@@ -146,21 +211,37 @@ There are 7 pages that I working on:
 
     - View Profile
 
-      ![View Recruiter Company](./public/screenshots/View-Recruiter-Page.png)
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/View-Recruiter-Page.png" alt="View Recruiter">
+      </details>
 
     - Edit Profile
 
-      ![Edit Company](./public/screenshots/Edit-Recruiter-Page.png)
+      <details>
+        <summary>Show/Hide Image</summary>
+        <br>
+        <img src="./public/screenshots/Edit-Recruiter-Page.png" alt="Edit Recruiter">
+      </details>
 
 7.  **Hire Page**
 
     This page is to offering job to the selected worker from recruiter.
 
-    ![Hire Page](./public/screenshots/Hire-Page.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Hire-Page.png" alt="Hire Page">
+    </details>
 
     There also the notification to inform both roles that recruiter offering to worker.
 
-    ![Notification](./public/screenshots/Notification-After-Hire-Worker.png)
+    <details>
+      <summary>Show/Hide Image</summary>
+      <br>
+      <img src="./public/screenshots/Notification-After-Hire-Worker.png" alt="Notification Hire">
+    </details>
 
 ### Performance
 
@@ -173,7 +254,17 @@ According to the latest PageSpeed Insights results, the desktop performance scor
   <img src="./public/screenshots/Performance-Desktop.png" alt="Performance Desktop">
 </details>
 
-## Domain to Visit Pages
+### Project Related
+
+If you wish to view my website, please click this link below. Thank you very much for your interest and appreciation.
+
+- [`Front-End Demonstration Link`](https://peworld-hirejob.vercel.app/)
+
+Also feel free to explore the source code, which I have forked from the original repository. It includes all the files and documentation needed to develop and run the server side of this application.
+
+- [`Back-End Project Repository Link`](https://github.com/harbanery/be-peworld-hirejob-app)
+
+<!-- ## Domain to Visit Pages
 
 If you wish to view my website, please click this [link](https://peworld-hirejob.vercel.app/) right here. Thank you very much for your interest and appreciation.
 
@@ -183,7 +274,7 @@ If you wish to view my website, please click this [link](https://peworld-hirejob
 
    This back-end project for Peworld was developed by [muhammadrisano](https://github.com/muhammadrisano) using Express.js. Feel free to explore the source code, which I have forked from the original repository. It includes all the files and documentation needed to develop and run the server side of this application.
 
-   [Back-End Project Repository Link](https://github.com/harbanery/be-peworld-hirejob-app)
+   [Back-End Project Repository Link](https://github.com/harbanery/be-peworld-hirejob-app) -->
 
 ## Contributing
 
