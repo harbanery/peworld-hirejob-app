@@ -255,6 +255,7 @@ const Portofolio = ({ myPortofolio }) => {
           <input
             id="file-upload"
             type="file"
+            className="hidden"
             name="image"
             onChange={handleFileChange}
           />

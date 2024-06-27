@@ -73,6 +73,7 @@ const EditCompany = () => {
                 </label>
                 <input
                   id="img-worker-upload"
+                  className="hidden"
                   type="file"
                   onChange={handleFileSelect}
                 />
