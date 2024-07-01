@@ -57,7 +57,13 @@ To get a local copy up and running follow these simple steps.
      git clone https://github.com/harbanery/peworld-hirejob-app.git
    ```
 
-2. Install NPM packages
+2. Go to folder directory
+
+   ```bash
+   cd peworld-hirejob-app
+   ```
+
+3. Install NPM packages
 
    ```sh
      npm install
