@@ -46,7 +46,7 @@ To get a local copy up and running follow these simple steps.
 - npm
 
   ```sh
-    npm install npm@latest -g
+  npm install npm@latest -g
   ```
 
 ### Installation
@@ -54,7 +54,7 @@ To get a local copy up and running follow these simple steps.
 1. Clone Repo
 
    ```sh
-     git clone https://github.com/harbanery/peworld-hirejob-app.git
+   git clone https://github.com/harbanery/peworld-hirejob-app.git
    ```
 
 2. Go to folder directory
@@ -66,7 +66,7 @@ To get a local copy up and running follow these simple steps.
 3. Install NPM packages
 
    ```sh
-     npm install
+   npm install
    ```
 
 ### Setup Environment Variables
@@ -76,7 +76,7 @@ To get a local copy up and running follow these simple steps.
 2. Add the following variables to the `.env` or `.env.local` file:
 
    ```sh
-     VITE_VERCEL_URL=your_api_url
+   VITE_VERCEL_URL=your_api_url
    ```
 
 ### Running the Application
@@ -84,7 +84,7 @@ To get a local copy up and running follow these simple steps.
 1. Start the development server:
 
    ```sh
-    npm run dev
+   npm run dev
    ```
 
 2. Open your browser and locally navigate to:
