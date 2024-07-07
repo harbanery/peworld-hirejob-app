@@ -19,42 +19,59 @@ export const getSkills = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
     });
   }
 };
 
 export const createSkill = (skill, setSkill) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
   try {
     await api.post(`/skills`, { skill_name: skill });
     dispatch({
       type: "CREATE_SUCCESS",
-      message: `Skill ${skill} successfully added.`,
+    });
+    dispatch({
+      type: "ALERT_SUCCESS",
+      payload: `Skill ${skill} successfully added.`,
     });
     setSkill("");
     dispatch(getSkills());
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };
 
 export const deleteSkill = (id) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
   try {
     await api.delete(`/skills/${id}`);
     dispatch({
       type: "DELETE_SUCCESS",
-      message: `Skill successfully deleted!`,
+    });
+    dispatch({
+      type: "ALERT_SUCCESS",
+      payload: `Skill successfully deleted!`,
     });
     dispatch(getSkills());
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };

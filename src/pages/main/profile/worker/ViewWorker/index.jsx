@@ -70,7 +70,7 @@ const ViewWorker = () => {
       <main>
         <div className="container max-w-full px-4 md:px-16 lg:px-[150px] py-5 lg:py-[70px] flex flex-col lg:flex-row justify-between items-start gap-[30px]">
           <aside className="w-full lg:w-2/5 xl:w-1/3 flex flex-col gap-[30px]">
-            <div className="text-center md:text-left p-[30px] rounded-lg bg-hirejob-white">
+            <div className="text-center md:text-left p-[30px] rounded-lg bg-hirejob-white shadow-md">
               <div className="flex justify-center items-center py-2">
                 <div className="w-[150px] md:w-[300px] lg:w-[150px] h-[150px] md:h-[300px] lg:h-[150px] overflow-hidden rounded-[50%]">
                   <img
@@ -157,7 +157,7 @@ const ViewWorker = () => {
             </div>
           </aside>
 
-          <section className="w-full lg:w-3/5 xl:w-2/3 rounded-lg py-4 px-9 bg-hirejob-white">
+          <section className="w-full lg:w-3/5 xl:w-2/3 rounded-lg py-4 px-9 bg-hirejob-white shadow-md">
             <ul className="font-semibold text-xl sm:text-[22px] flex flex-wrap sm:flex-nowrap justify-between sm:justify-start pb-8 sm:pb-[18px] pt-[18px] gap-[15px] sm:gap-[30px] text-hirejob-gray">
               <li
                 onClick={() => getPortofolioBar()}

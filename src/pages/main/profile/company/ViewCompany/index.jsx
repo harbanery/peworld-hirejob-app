@@ -28,7 +28,7 @@ const ViewCompany = () => {
   return (
     <main>
       <div className="container max-w-full px-4 md:px-16 lg:px-[150px] py-5 lg:py-[70px]">
-        <div className="w-full rounded-lg bg-hirejob-white">
+        <div className="w-full rounded-lg bg-hirejob-white shadow-md">
           <div className="w-full h-48 overflow-hidden rounded-t-lg bg-hirejob-purple-normal">
             {/* <img className="w-full h-auto" src={bgUser} alt="" /> */}
           </div>

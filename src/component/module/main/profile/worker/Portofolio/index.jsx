@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Input from "../../../../../base/Input";
 import Button from "../../../../../base/Button";
 import iconUpload from "../../../../../../assets/img/icons/cloud.png";
@@ -49,73 +49,27 @@ const Portofolio = ({ myPortofolio }) => {
   const handleFileChange = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    // console.log(file);
 
     dispatch(createAsset(file, portofolio, setPortofolio));
-
-    // const formData = new FormData();
-    // formData.append("file", file);
-
-    // api
-    //   .post(`/upload`, formData, {
-    //     headers: { "content-type": "multipart/form-data" },
-    //   })
-    //   .then((res) => {
-    //     // console.log(res.data.data.file_url);
-    //     setPortofolio({
-    //       ...portofolio,
-    //       image: res.data.data.file_url,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.response.data.message);
-    //     alert(`Failed to change portofolio image. Please try again.`);
-    //   });
-    // alert("'Click to your local file directory' still in development...");
-    // setPortofolio({
-    //   ...portofolio,
-    //   image: e.target.files[0],
-    // });
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     const dataTransfer = e.dataTransfer;
 
-    // Handle dropped files
     if (dataTransfer.items) {
       for (let i = 0; i < dataTransfer.items.length; i++) {
         if (dataTransfer.items[i].kind === "file") {
           const file = dataTransfer.items[i].getAsFile();
-          // console.log(file);
           console.log(dataTransfer.types.includes("text/uri-list"));
 
           if (!dataTransfer.types.includes("text/uri-list")) {
             dispatch(createAsset(file, portofolio, setPortofolio));
-            // const formData = new FormData();
-            // formData.append("file", file);
-
-            // api
-            //   .post(`/upload`, formData, {
-            //     headers: { "content-type": "multipart/form-data" },
-            //   })
-            //   .then((res) => {
-            //     console.log(res.data.data.file_url);
-            //     setPortofolio({
-            //       ...portofolio,
-            //       image: res.data.data.file_url,
-            //     });
-            //   })
-            //   .catch((err) => {
-            //     console.log(err.response.data.message);
-            //     alert(`Failed to change portofolio image. Please try again.`);
-            //   });
           }
         }
       }
     }
 
-    // Handle dropped URLs
     if (dataTransfer.types.includes("text/uri-list")) {
       const url = dataTransfer.getData("text/plain");
       console.log("Dropped URL:", url);
@@ -130,12 +84,8 @@ const Portofolio = ({ myPortofolio }) => {
     e.preventDefault();
   };
 
-  // useEffect(() => {
-  //   getPortofolio();
-  // }, []);
-
   return (
-    <section className="w-full rounded-lg py-4 bg-hirejob-white">
+    <section className="w-full rounded-lg py-4 bg-hirejob-white shadow-md">
       <div className="font-semibold text-[22px] border-b border-[#C4C4C4] px-9 py-[18px] text-hirejob-dark">
         <h1>Portofolio</h1>
       </div>
@@ -240,18 +190,6 @@ const Portofolio = ({ myPortofolio }) => {
               </div>
             </div>
           </label>
-          {/* <label
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            htmlFor="file-upload"
-            className="border border-hirejob-gray border-dashed inline-block w-full mt-3 h-[333px] cursor-pointer"
-          >
-            <div className="text-hirejob-dark flex flex-nowrap flex-col align-center justify-center">
-              <div className="flex align-center justify-center">
-                <img className="w-full" src={portofolio.image} />
-              </div>
-            </div>
-          </label> */}
           <input
             id="file-upload"
             type="file"
@@ -323,15 +261,6 @@ const Portofolio = ({ myPortofolio }) => {
                   </button>
                 )}
               </li>
-              // <TagExtra
-              //   key={exp.id}
-              //   date={`${exp.work_month} ${exp.work_year}`}
-              //   position={exp.position}
-              //   company={exp.company}
-              //   // getClick={() => getDataExperience(exp.id)}
-              //   // updateClick={() => handleUpdateExperience(exp.id)}
-              //   deleteClick={() => deleteExperience(exp.id)}
-              // />
             ))}
           </ul>
         )}

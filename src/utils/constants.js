@@ -17,6 +17,13 @@ export const months = [
   "December",
 ];
 
+const imageLogo = [
+  {
+    name: [`Tokopedia`],
+    image: `https://assets.tokopedia.net/assets-tokopedia-lite/v2/arael/kratos/672c8b0f.png`,
+  },
+];
+
 export const user_reviews = [
   {
     name: `Olivia Jones`,
@@ -43,6 +50,8 @@ export const user_reviews = [
 ];
 
 export const allowedDomains = ["gmail.com", "yahoo.com"];
+
+export const notAllowedDomains = ["example.com"];
 
 export const errorRegisterMessages = {
   name: {
@@ -75,6 +84,6 @@ export const errorRegisterMessages = {
   },
   confirmPassword: {
     require: "Confirm Password is required",
-    isEqual: "Confirm Password must be same with Password",
+    mismatch: "Confirm Password must be same with Password",
   },
 };

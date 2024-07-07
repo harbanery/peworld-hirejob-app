@@ -21,7 +21,7 @@ const Skill = ({ mySkills }) => {
   };
 
   return (
-    <section className="w-full rounded-lg py-4 bg-hirejob-white">
+    <section className="w-full rounded-lg py-4 bg-hirejob-white shadow-md">
       <div className="font-semibold text-[22px] border-b border-[#C4C4C4] px-9 py-[18px] text-hirejob-dark">
         <h1>Skills</h1>
       </div>

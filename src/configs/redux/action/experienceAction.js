@@ -21,13 +21,11 @@ export const getExperience = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
     });
   }
 };
 
 export const readExperience = (id, setExperience) => async (dispatch) => {
-  dispatch({ type: "MAIN_REQUEST" });
   setExperience({
     position: "",
     company: "",
@@ -54,6 +52,9 @@ export const readExperience = (id, setExperience) => async (dispatch) => {
 export const createExperience =
   (experience, setExperience) => async (dispatch) => {
     dispatch({ type: "MAIN_REQUEST" });
+    dispatch({
+      type: "ALERT_IDLE",
+    });
     const date = new Date(experience.work_date);
     const month = months[date.getMonth()];
     const year = date.getFullYear();
@@ -67,7 +68,10 @@ export const createExperience =
       });
       dispatch({
         type: "CREATE_SUCCESS",
-        message: `Experience successfully added.`,
+      });
+      dispatch({
+        type: "ALERT_SUCCESS",
+        payload: "Experience successfully added.",
       });
       setExperience({
         position: "",
@@ -79,7 +83,10 @@ export const createExperience =
     } catch (error) {
       dispatch({
         type: "MAIN_FAILURE",
-        message: error.response.data.message,
+      });
+      dispatch({
+        type: "ALERT_FAILED",
+        payload: error.response.data.message,
       });
     }
   };
@@ -87,6 +94,9 @@ export const createExperience =
 export const updateExperience =
   (id, experience, setExperience) => async (dispatch) => {
     dispatch({ type: "MAIN_REQUEST" });
+    dispatch({
+      type: "ALERT_IDLE",
+    });
     const date = new Date(experience.work_date);
     const month = months[date.getMonth()];
     const year = date.getFullYear();
@@ -100,7 +110,10 @@ export const updateExperience =
       });
       dispatch({
         type: "UPDATE_SUCCESS",
-        message: `Experience successfully updated.`,
+      });
+      dispatch({
+        type: "ALERT_SUCCESS",
+        payload: "Experience successfully updated.",
       });
       setExperience({
         position: "",
@@ -112,24 +125,36 @@ export const updateExperience =
     } catch (error) {
       dispatch({
         type: "MAIN_FAILURE",
-        message: error.response.data.message,
+      });
+      dispatch({
+        type: "ALERT_FAILED",
+        payload: error.response.data.message,
       });
     }
   };
 
 export const deleteExperience = (id) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
   try {
     await api.delete(`/experience/${id}`);
     dispatch({
       type: "DELETE_SUCCESS",
-      message: `Experience successfully deleted!`,
+    });
+    dispatch({
+      type: "ALERT_SUCCESS",
+      payload: "Experience successfully deleted!",
     });
     dispatch(getExperience());
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };

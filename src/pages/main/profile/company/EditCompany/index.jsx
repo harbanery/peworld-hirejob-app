@@ -55,7 +55,7 @@ const EditCompany = () => {
       <main>
         <div className="container max-w-full px-4 md:px-16 lg:px-[150px] py-5 lg:py-[70px] flex flex-col md:flex-row justify-between items-start gap-[30px]">
           <aside className="w-full md:w-2/5 xl:w-1/3 flex flex-col gap-[30px]">
-            <div className="text-center md:text-left p-[30px] rounded-lg bg-hirejob-white">
+            <div className="text-center md:text-left p-[30px] rounded-lg bg-hirejob-white shadow-md">
               <div className="w-[150px] h-[150px] mx-auto overflow-hidden rounded-[50%]">
                 <img
                   className="w-full h-auto"
@@ -133,7 +133,7 @@ const EditCompany = () => {
           </aside>
 
           <div className="w-full md:w-3/5 xl:w-2/3 flex flex-col gap-[30px]">
-            <section className="w-full rounded-lg py-4 bg-hirejob-white">
+            <section className="w-full rounded-lg py-4 bg-hirejob-white shadow-md">
               <div className="font-semibold text-[22px] border-b border-[#C4C4C4] px-9 py-[18px] text-hirejob-dark">
                 <h1>Company Information</h1>
               </div>

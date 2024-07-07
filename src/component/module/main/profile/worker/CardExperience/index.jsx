@@ -2,12 +2,6 @@ import React from "react";
 import officeImage from "../../../../../../assets/img/icons/company.png";
 
 const CardExperience = ({ company, position, month, year, description }) => {
-  const imageLogo = [
-    {
-      name: [`Tokopedia`],
-      image: `https://assets.tokopedia.net/assets-tokopedia-lite/v2/arael/kratos/672c8b0f.png`,
-    },
-  ];
   return (
     <li className="flex items-start gap-4 my-3">
       <div className="hidden md:block w-[74px] h-[74px] overflow-hidden">

@@ -91,7 +91,7 @@ const mainReducer = (state = initialState, action) => {
         response: {
           show: true,
           error: true,
-          message: action.message,
+          message: "failed",
         },
       };
     case "NOTIFICATION_SUCCESS":
@@ -158,12 +158,12 @@ const mainReducer = (state = initialState, action) => {
           search: false,
           data: false,
         },
-        response: {
-          ...state.response,
-          show: true,
-          error: false,
-          message: action.message,
-        },
+        // response: {
+        //   ...state.response,
+        //   show: true,
+        //   error: false,
+        //   message: action.message,
+        // },
       };
     case "UPDATE_SUCCESS":
       return {
@@ -172,12 +172,12 @@ const mainReducer = (state = initialState, action) => {
           search: false,
           data: false,
         },
-        response: {
-          ...state.response,
-          show: true,
-          error: false,
-          message: action.message,
-        },
+        // response: {
+        //   ...state.response,
+        //   show: true,
+        //   error: false,
+        //   message: action.message,
+        // },
       };
     case "DELETE_SUCCESS":
       return {
@@ -186,12 +186,12 @@ const mainReducer = (state = initialState, action) => {
           search: false,
           data: false,
         },
-        response: {
-          ...state.response,
-          show: true,
-          error: false,
-          message: action.message,
-        },
+        // response: {
+        //   ...state.response,
+        //   show: true,
+        //   error: false,
+        //   message: action.message,
+        // },
       };
     default:
       return state;

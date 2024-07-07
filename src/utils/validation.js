@@ -1,6 +1,6 @@
-import { allowedDomains, errorRegisterMessages } from "./constants";
+import { errorRegisterMessages, notAllowedDomains } from "./constants";
 
-export const validateRegister = (name, value) => {
+export const validateRegister = ({ name, value, allValues = undefined }) => {
   let errorMessage = "";
 
   if (name === "name") {
@@ -18,7 +18,7 @@ export const validateRegister = (name, value) => {
       errorMessage = errorRegisterMessages.email.invalidFormat;
     } else {
       const domain = value.split("@")[1];
-      if (!allowedDomains.includes(domain)) {
+      if (notAllowedDomains.includes(domain)) {
         errorMessage = errorRegisterMessages.email.domain;
       }
     }
@@ -65,6 +65,30 @@ export const validateRegister = (name, value) => {
   if (name === "confirmPassword") {
     if (value.trim() === "") {
       errorMessage = errorRegisterMessages.confirmPassword.require;
+    } else if (allValues) {
+      if (value !== allValues.password) {
+        errorMessage = errorRegisterMessages.confirmPassword.mismatch;
+      }
+    }
+  }
+
+  return errorMessage;
+};
+
+export const validateLogin = ({ name, value }) => {
+  let errorMessage = "";
+
+  if (name === "email") {
+    if (value.trim() === "") {
+      errorMessage = errorRegisterMessages.email.require;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      errorMessage = errorRegisterMessages.email.invalidFormat;
+    }
+  }
+
+  if (name === "password") {
+    if (value.trim() === "") {
+      errorMessage = errorRegisterMessages.password.require;
     }
   }
 

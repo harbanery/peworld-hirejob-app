@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import imageUser from "../../../assets/img/profile-img/user-noimage.png";
 import iconMap from "../../../assets/img/icons/map.png";
-import iconMail from "../../../assets/img/icons/mail.png";
-import iconPhone from "../../../assets/img/icons/phone.png";
 import Input from "../../../component/base/Input";
 import Tag from "../../../component/base/Tag";
 import Button from "../../../component/base/Button";

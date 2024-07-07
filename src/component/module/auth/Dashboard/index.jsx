@@ -1,4 +1,4 @@
-import style from "./dashboard.module.css";
+import style from "../../../../styles/components/dashboard.module.css";
 import imageLogo from "../../../../assets/img/header-logo-white.png";
 import { Link } from "react-router-dom";
 

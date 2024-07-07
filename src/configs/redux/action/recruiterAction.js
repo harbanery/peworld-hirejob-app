@@ -1,32 +1,12 @@
 import api from "../../../services/api";
 
-const validation_password = (form) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (form.password === form.confirmPassword) {
-        resolve(true);
-      } else {
-        reject(new Error(`Password and confirm password do not match.`));
-      }
-    }, 500);
-  });
-};
-
 export const registerRecruiter = (form, navigate) => async (dispatch) => {
   dispatch({
     type: "REGISTER_REQUEST",
   });
-
-  try {
-    await validation_password(form);
-  } catch (error) {
-    return dispatch({
-      type: "REGISTER_FAILURE",
-      message: `Sign up failed. Try again! 
-    
-    Error: ${error.message}`,
-    });
-  }
+  dispatch({
+    type: "ALERT_IDLE",
+  });
 
   try {
     await api.post("/recruiters/register", {
@@ -37,12 +17,16 @@ export const registerRecruiter = (form, navigate) => async (dispatch) => {
       position: form.position,
       phone: form.phone,
     });
-    dispatch({ type: "REGISTER_SUCCESS", message: "Sign up successfully." });
+    dispatch({ type: "REGISTER_SUCCESS" });
+    dispatch({ type: "ALERT_SUCCESS", payload: "Register Successfully!" });
     navigate("/login");
   } catch (error) {
     dispatch({
       type: "REGISTER_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };
@@ -55,10 +39,7 @@ export const getRecruiterProfile = () => async (dispatch) => {
     dispatch({ type: "GET_USER", user: userData });
     dispatch({ type: "GET_RECRUITER_SUCCESS", user: userData });
   } catch (error) {
-    console.error("Error fetching recruiter profile:", error);
-    const errorMessage =
-      error.response?.data?.message || "Failed to fetch recruiter profile";
-    dispatch({ type: "MAIN_FAILURE", message: errorMessage });
+    dispatch({ type: "MAIN_FAILURE" });
     dispatch({ type: "GET_RECRUITER_FAILURE" });
   }
 };
@@ -69,6 +50,9 @@ export const updateRecruiterUser = (user) => {
 
 export const updateRecruiterProfile = (user) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
   try {
     await api.put(`/recruiters/profile`, {
       company: user.company,
@@ -83,13 +67,16 @@ export const updateRecruiterProfile = (user) => async (dispatch) => {
     });
     dispatch({
       type: "UPDATE_SUCCESS",
-      message: "Profile successfully saved.",
     });
+    dispatch({ type: "ALERT_SUCCESS", payload: "Profile successfully saved." });
     dispatch(getWorkerProfile());
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };

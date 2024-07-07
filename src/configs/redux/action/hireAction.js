@@ -22,6 +22,9 @@ export const getHire = (role) => async (dispatch) => {
 
 export const createHire = (hire, worker_id, navigate) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
   try {
     await api.post(`/hire`, {
       message_purpose: hire.message_purpose,
@@ -33,13 +36,20 @@ export const createHire = (hire, worker_id, navigate) => async (dispatch) => {
     });
     dispatch({
       type: "CREATE_SUCCESS",
-      message: `Successfully sent! Now wait for the worker to accept your offer.`,
+    });
+    dispatch({
+      type: "ALERT_SUCCESS",
+      payload:
+        "Successfully sent! Now wait for the worker to accept your offer.",
     });
     navigate(`/main/home`);
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };

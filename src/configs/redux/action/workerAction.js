@@ -1,32 +1,12 @@
 import api from "../../../services/api";
 
-const validation_password = (form) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (form.password === form.confirmPassword) {
-        resolve(true);
-      } else {
-        reject(new Error(`Password and confirm password do not match.`));
-      }
-    }, 500);
-  });
-};
-
 export const register = (form, navigate) => async (dispatch) => {
   dispatch({
     type: "REGISTER_REQUEST",
   });
-
-  try {
-    await validation_password(form);
-  } catch (error) {
-    return dispatch({
-      type: "REGISTER_FAILURE",
-      message: `Sign up failed. Try again! 
-    
-    Error: ${error.message}`,
-    });
-  }
+  dispatch({
+    type: "ALERT_IDLE",
+  });
 
   try {
     await api.post("/workers/register", {
@@ -35,12 +15,16 @@ export const register = (form, navigate) => async (dispatch) => {
       name: form.name,
       phone: form.phone,
     });
-    dispatch({ type: "REGISTER_SUCCESS", message: "Sign up successfully." });
+    dispatch({ type: "REGISTER_SUCCESS" });
+    dispatch({ type: "ALERT_SUCCESS", payload: "Register Successfully!" });
     navigate("/login");
   } catch (error) {
     dispatch({
       type: "REGISTER_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };
@@ -110,7 +94,6 @@ export const getWorkerProfile =
     } catch (error) {
       dispatch({
         type: "MAIN_FAILURE",
-        message: error.response.data.message,
       });
       dispatch({ type: "GET_WORKER_FAILURE" });
     }
@@ -122,6 +105,9 @@ export const updateWorkerUser = (user) => {
 
 export const updateWorkerProfile = (user) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
   try {
     await api.put(`/workers/profile`, {
       name: user.name,
@@ -132,19 +118,25 @@ export const updateWorkerProfile = (user) => async (dispatch) => {
     });
     dispatch({
       type: "UPDATE_SUCCESS",
-      message: "Profile successfully saved.",
     });
+    dispatch({ type: "ALERT_SUCCESS", payload: "Profile successfully saved." });
     dispatch(getWorkerProfile());
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };
 
 export const updateWorkerProfilePhoto = (file) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
 
   const formData = new FormData();
   formData.append("photo", file);
@@ -155,13 +147,19 @@ export const updateWorkerProfilePhoto = (file) => async (dispatch) => {
     });
     dispatch({
       type: "UPDATE_SUCCESS",
-      message: "Profile photo successfully updated.",
+    });
+    dispatch({
+      type: "ALERT_SUCCESS",
+      payload: "Profile photo successfully updated.",
     });
     dispatch(getWorkerProfile());
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };

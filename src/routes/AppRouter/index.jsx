@@ -30,11 +30,25 @@ const AppRouter = () => {
             </PublicRouter>
           }
         />
-        <Route path="/register" element={<RegWorker />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRouter>
+              <RegWorker />
+            </PublicRouter>
+          }
+        />
         <Route path="/reset-password" element={<ResetInput />} />
         <Route path="/request-password" element={<ResetRequest />} />
         <Route path="/change-password" element={<ConfirmPassword />} />
-        <Route path="/recruiter/register" element={<RegRecruiter />} />
+        <Route
+          path="/recruiter/register"
+          element={
+            <PublicRouter>
+              <RegRecruiter />
+            </PublicRouter>
+          }
+        />
 
         <Route
           path="/main"

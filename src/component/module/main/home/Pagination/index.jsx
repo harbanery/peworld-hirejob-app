@@ -11,6 +11,9 @@ const Pagination = ({
   handlePrev,
   handleNext,
 }) => {
+  if (totalPage == 0) {
+    totalPage += 1;
+  }
   const paginationNumbers = calculatePaginationNumbers(params, totalPage);
 
   return (

@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NavbarProfile from "../../component/module/navbar/NavbarProfile";
 import Footer from "../../component/module/Footer";
-import Modal from "../../component/base/Modal";
 import { getWorkerProfile } from "../../configs/redux/action/workerAction";
 import { getRecruiterProfile } from "../../configs/redux/action/recruiterAction";
 import { getHire } from "../../configs/redux/action/hireAction";
@@ -12,7 +11,7 @@ import { checkRole } from "../../configs/redux/action/checkRoleAction";
 const Main = () => {
   const dispatch = useDispatch();
   const { role } = useSelector((state) => state.checkRole);
-  const { user, notification, response } = useSelector((state) => state.main);
+  const { user, notification } = useSelector((state) => state.main);
   const [popoverVisible, setPopoverVisible] = useState(false);
 
   const getUser = (role) => {
@@ -46,11 +45,6 @@ const Main = () => {
   return (
     <>
       <div onClick={handleOutsideClick}>
-        <Modal
-          isOpen={response.show}
-          error={response.error}
-          message={response.message}
-        />
         <NavbarProfile
           popoverVisible={popoverVisible}
           togglePopover={togglePopover}

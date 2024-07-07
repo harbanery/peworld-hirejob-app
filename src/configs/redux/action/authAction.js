@@ -6,12 +6,16 @@ export const login =
     dispatch({
       type: "LOGIN_REQUEST",
     });
+    dispatch({
+      type: "ALERT_IDLE",
+    });
     try {
       const response = await api.post(`/auth/login`, {
         email: email,
         password: password,
       });
       dispatch({ type: "LOGIN_SUCCESS" });
+      dispatch({ type: "ALERT_SUCCESS", payload: "Login Successfully!" });
       const { token, refreshToken } = response.data.data;
       localStorage.setItem("token", token);
       localStorage.setItem("refreshToken", refreshToken);
@@ -19,15 +23,16 @@ export const login =
     } catch (error) {
       dispatch({
         type: "LOGIN_FAILURE",
-        message: "Your email or password is incorrect.",
+      });
+      dispatch({
+        type: "ALERT_FAILED",
+        payload: "Your email or password is incorrect.",
       });
     }
   };
 
 export const logout = (navigate) => async (dispatch) => {
   await api.get(`/auth/logout`);
-  localStorage.removeItem("persist:role");
-  localStorage.removeItem("persist:recruiter");
   localStorage.removeItem("token");
   localStorage.removeItem("refreshToken");
   navigate("/login");
@@ -39,5 +44,5 @@ export const logout = (navigate) => async (dispatch) => {
 };
 
 export const reset = () => {
-  return { type: "RESPONSE_OPEN_RESET" };
+  return { type: "ALERT_IDLE" };
 };

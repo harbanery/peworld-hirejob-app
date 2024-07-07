@@ -216,17 +216,25 @@ const Home = () => {
             </section>
           ) : (
             <section className="w-full rounded-lg mt-[60px] mb-[100px] shadow-md bg-hirejob-white">
-              {data.map((worker) => (
-                <CardUser
-                  key={worker.id}
-                  onClick={() => handleNavigate(worker.id)}
-                  image={worker.photo}
-                  name={worker.name}
-                  job_desk={worker.job_desk}
-                  domicile={worker.domicile}
-                  skills={worker.skills}
-                />
-              ))}
+              {data.length > 0 ? (
+                data.map((worker) => (
+                  <CardUser
+                    key={worker.id}
+                    onClick={() => handleNavigate(worker.id)}
+                    image={worker.photo}
+                    name={worker.name}
+                    job_desk={worker.job_desk}
+                    domicile={worker.domicile}
+                    skills={worker.skills}
+                  />
+                ))
+              ) : (
+                <div className="flex justify-center items-center gap-5 py-20">
+                  <h1 className="font-semibold text-2xl">
+                    Not Found Any Worker!
+                  </h1>
+                </div>
+              )}
             </section>
           )}
 

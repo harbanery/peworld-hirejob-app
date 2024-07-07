@@ -9,14 +9,13 @@ import loader from "../../../../styles/components/loading.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerRecruiter } from "../../../../configs/redux/action/recruiterAction";
 import { reset } from "../../../../configs/redux/action/authAction";
-import Modal from "../../../../component/base/Modal";
 import { validateRegister } from "../../../../utils/validation";
 
 const RegRecruiter = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-  const { loading, response } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
     email: "",
@@ -33,7 +32,11 @@ const RegRecruiter = () => {
     const errors = {};
 
     Object.keys(form).forEach((key) => {
-      const errorMessage = validateRegister(key, form[key]);
+      const errorMessage = validateRegister({
+        name: key,
+        value: form[key],
+        allValues: form,
+      });
       if (errorMessage) {
         errors[key] = errorMessage;
       }
@@ -52,7 +55,7 @@ const RegRecruiter = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const errorMessage = validateRegister(name, value);
+    const errorMessage = validateRegister({ name, value });
 
     setErrors({
       ...errors,
@@ -69,11 +72,6 @@ const RegRecruiter = () => {
     <main
       className={`container max-w-full flex items-center lg:block py-[39px] ${style.bgAuthRecruiter}`}
     >
-      <Modal
-        isOpen={response.open}
-        error={response.error}
-        message={response.message}
-      />
       <div className="flex mx-5 md:mx-[75px] rounded lg:rounded-none bg-[#ffffffd3] lg:bg-hirejob-light lg:bg-none shadow-md lg:shadow-none px-5 lg:px-0 ">
         <Dashboard />
 

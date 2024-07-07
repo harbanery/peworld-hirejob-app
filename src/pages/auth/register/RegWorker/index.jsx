@@ -8,7 +8,6 @@ import Dashboard from "../../../../component/module/auth/Dashboard";
 import AuthDesc from "../../../../component/module/auth/AuthDesc";
 import Input from "../../../../component/base/Input";
 import Button from "../../../../component/base/Button";
-import Modal from "../../../../component/base/Modal";
 import { reset } from "../../../../configs/redux/action/authAction";
 import { validateRegister } from "../../../../utils/validation";
 
@@ -16,7 +15,7 @@ const RegWorker = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-  const { loading, response } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
     email: "",
@@ -31,7 +30,11 @@ const RegWorker = () => {
     const errors = {};
 
     Object.keys(form).forEach((key) => {
-      const errorMessage = validateRegister(key, form[key]);
+      const errorMessage = validateRegister({
+        name: key,
+        value: form[key],
+        allValues: form,
+      });
       if (errorMessage) {
         errors[key] = errorMessage;
       }
@@ -50,7 +53,7 @@ const RegWorker = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const errorMessage = validateRegister(name, value);
+    const errorMessage = validateRegister({ name, value });
 
     setErrors({
       ...errors,
@@ -67,11 +70,6 @@ const RegWorker = () => {
     <main
       className={`container max-w-full flex items-center lg:block py-[39px] ${style.bgAuthWorker}`}
     >
-      <Modal
-        isOpen={response.open}
-        error={response.error}
-        message={response.message}
-      />
       <div className="flex mx-5 md:mx-[75px] rounded lg:rounded-none bg-[#ffffffd3] lg:bg-hirejob-light lg:bg-none shadow-md lg:shadow-none px-5 lg:px-0 ">
         <Dashboard />
 

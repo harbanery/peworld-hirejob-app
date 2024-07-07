@@ -41,7 +41,7 @@ const CardUser = ({
               .map((skill, i) => (
                 <Tag key={i}>{skill}</Tag>
               ))}
-            {skills.length > 5 && <Tag>{`+${skills.length - 6}`}</Tag>}
+            {skills.length > 6 && <Tag>{`+${skills.length - 6}`}</Tag>}
           </ul>
         ) : (
           <div className="mt-[10px] h-[46px]"></div>

@@ -19,13 +19,11 @@ export const getPortofolio = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
     });
   }
 };
 
 export const readPortofolio = (id, setPortofolio) => async (dispatch) => {
-  dispatch({ type: "MAIN_REQUEST" });
   setPortofolio({
     application_name: "",
     link_repository: "",
@@ -47,6 +45,9 @@ export const readPortofolio = (id, setPortofolio) => async (dispatch) => {
 export const createPortofolio =
   (portofolio, setPortofolio) => async (dispatch) => {
     dispatch({ type: "MAIN_REQUEST" });
+    dispatch({
+      type: "ALERT_IDLE",
+    });
     try {
       await api.post(`/portfolio`, {
         application_name: portofolio.application_name,
@@ -56,7 +57,10 @@ export const createPortofolio =
       });
       dispatch({
         type: "CREATE_SUCCESS",
-        message: `Portfolio successfully added.`,
+      });
+      dispatch({
+        type: "ALERT_SUCCESS",
+        payload: `Portfolio successfully added.`,
       });
       setPortofolio({
         application_name: "",
@@ -68,7 +72,10 @@ export const createPortofolio =
     } catch (error) {
       dispatch({
         type: "MAIN_FAILURE",
-        message: error.response.data.message,
+      });
+      dispatch({
+        type: "ALERT_FAILED",
+        payload: error.response.data.message,
       });
     }
   };
@@ -76,6 +83,9 @@ export const createPortofolio =
 export const updatePortofolio =
   (id, portofolio, setPortofolio) => async (dispatch) => {
     dispatch({ type: "MAIN_REQUEST" });
+    dispatch({
+      type: "ALERT_IDLE",
+    });
     try {
       await api.put(`/portfolio/${id}`, {
         application_name: portofolio.application_name,
@@ -85,7 +95,10 @@ export const updatePortofolio =
       });
       dispatch({
         type: "UPDATE_SUCCESS",
-        message: `Portfolio successfully updated.`,
+      });
+      dispatch({
+        type: "ALERT_SUCCESS",
+        payload: `Portfolio successfully updated.`,
       });
       setPortofolio({
         application_name: "",
@@ -97,24 +110,36 @@ export const updatePortofolio =
     } catch (error) {
       dispatch({
         type: "MAIN_FAILURE",
-        message: error.response.data.message,
+      });
+      dispatch({
+        type: "ALERT_FAILED",
+        payload: error.response.data.message,
       });
     }
   };
 
 export const deletePortofolio = (id) => async (dispatch) => {
   dispatch({ type: "MAIN_REQUEST" });
+  dispatch({
+    type: "ALERT_IDLE",
+  });
   try {
     await api.delete(`/portfolio/${id}`);
     dispatch({
       type: "DELETE_SUCCESS",
-      message: `Portofolio successfully deleted!`,
+    });
+    dispatch({
+      type: "ALERT_SUCCESS",
+      payload: `Portofolio successfully deleted!`,
     });
     dispatch(getPortofolio());
   } catch (error) {
     dispatch({
       type: "MAIN_FAILURE",
-      message: error.response.data.message,
+    });
+    dispatch({
+      type: "ALERT_FAILED",
+      payload: error.response.data.message,
     });
   }
 };
